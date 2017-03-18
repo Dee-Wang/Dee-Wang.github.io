@@ -70,5 +70,5 @@ theme: landscape
 deploy:
   type: git
   repo: ssh://git@github.com/Dee-Wang/Dee-Wang.github.io.git
-  branch: master
+  branch: dist
   message:  
