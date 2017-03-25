@@ -161,7 +161,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta custom-logo">
     
 
     <div class="custom-logo-site-title">
@@ -353,6 +353,24 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -369,7 +387,7 @@
       
         
           
-          这里只是介绍下python实现的栈的定义：栈的一个特点就是先进后出，看代码实现：123456789101112131415161718192021222324252627282930313233343536373839404142434445&gt;&gt;&gt; class Stack:... 
+          这里只是介绍下python实现的栈的定义：栈的一个特点就是先进后出，看代码实现：123456789101112131415161718192021222324252627282930313233343536373839404142434445&gt;&gt;&gt; class Stack:...     def __init__(self):...         self.items = []...     def isempty(self):...         return self.items == []...     def push(self,item):...        
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -502,6 +520,24 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -521,7 +557,13 @@
           本文参考链接：https://github.com/qiwsir/algorithm/blob/master/binary_tree.md
 这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。二叉排序树（Binary Sort Tree）或者是一棵空树，或者是具有下列性质的二叉树：
 
-如
+如果它的左子树不空，那么左子树上的所有节点的值都小于它的根节点的值；
+如果它的右子树不空，那么右子树上的所有节点的值都大于它的根节点的值；
+它的左右子树也分别是二叉排序树。
+没有键值相等的结点。
+
+
+二叉排序树又叫做二叉查找树，它的查找过程和次优二叉树类似。也就是当二叉排序树不为空的时候，把给定的关键
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -654,6 +696,24 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -671,7 +731,7 @@
         
           
           List是python中一种很常见的数据结构，他有很多内置的函数或者操作，这些函数很有用，在这里从函数的功能（参数和输出），使用的场景，时间复杂度几个方面分析下这些函数。
-Python的list的实现不是类似数据结构中的单链表，而是类似数组，也就是说==list中的元素保存在一片连续的内存区域中==
+Python的list的实现不是类似数据结构中的单链表，而是类似数组，也就是说==list中的元素保存在一片连续的内存区域中==，这样的话只有知道元素索引就能确定元素的内存位置，从而直接取出该位置上的值，但是它的缺点在于前插需要移动元素，而且随着list中元素的增多需要移动的元素也就越多，花费的时间也就自然多了。而单链表不同，单链表要得到某个位置上的元素必须要从头开始遍历，但是它的插入操作(前插或者后插)基本上都是恒定的时间
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -804,6 +864,24 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -820,7 +898,7 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
       
         
           
-          怎样在用户那里得到输入的列表呢？因为Python中声明列表的时候是不用指定列表是什么类型的，所以呢，在从用户的数据中得到消息的时候怎样把得到的元素转化成自己想要的类型并且存储进来呢？看个例子：123456789101112&gt;&gt;&gt; nodelist = []&gt;&gt;&gt; 
+          怎样在用户那里得到输入的列表呢？因为Python中声明列表的时候是不用指定列表是什么类型的，所以呢，在从用户的数据中得到消息的时候怎样把得到的元素转化成自己想要的类型并且存储进来呢？看个例子：123456789101112&gt;&gt;&gt; nodelist = []&gt;&gt;&gt; mystr = input(&quot;Please input the elements that would be sorted, please divided elements with space :&quot;)Please input the elements that would be
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -930,6 +1008,24 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
 
           
 
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -1058,6 +1154,24 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
 
           
 
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -1209,6 +1323,24 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -1233,7 +1365,12 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
 
 
 二叉树：
-二叉树是由n（n≥0）个结点组成的有限
+二叉树是由n（n≥0）个结点组成的有限集合、每个结点最多有两个子树的有序树。它或者是空集，或者是由一个根和称为左、右子树的两个不相交的二叉树组成。
+特点：
+
+（1）二叉树是有序树，即使只有一个子树，也必须区分左、右子树；
+（2）二叉树的每个结点的度不能大于2，只能取0、1、2三者之一；
+（3）二叉树中所有结点的形态有5种：空结点、无左右
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1525,6 +1662,28 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
