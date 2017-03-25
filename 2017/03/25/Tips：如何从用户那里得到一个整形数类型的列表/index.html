@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>怎样在获得键盘输入的整型数的列表 | 对面的朋友看过来</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="怎样在用户那里得到输入的列表呢？因为Python中声明列表的时候是不用指定列表是什么类型的，所以呢，在从用户的数据中得到消息的时候怎样把得到的元素转化成自己想要的类型并且存储进来呢？看个例子：123456789101112&amp;gt;&amp;gt;&amp;gt; nodelist = []&amp;gt;&amp;gt;&amp;gt; mystr = input(&amp;quot;Please input the elements that">
+<meta property="og:type" content="article">
+<meta property="og:title" content="怎样在获得键盘输入的整型数的列表">
+<meta property="og:url" content="http://yoursite.com/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/index.html">
+<meta property="og:site_name" content="对面的朋友看过来">
+<meta property="og:description" content="怎样在用户那里得到输入的列表呢？因为Python中声明列表的时候是不用指定列表是什么类型的，所以呢，在从用户的数据中得到消息的时候怎样把得到的元素转化成自己想要的类型并且存储进来呢？看个例子：123456789101112&amp;gt;&amp;gt;&amp;gt; nodelist = []&amp;gt;&amp;gt;&amp;gt; mystr = input(&amp;quot;Please input the elements that">
+<meta property="og:updated_time" content="2017-03-21T16:01:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="怎样在获得键盘输入的整型数的列表">
+<meta name="twitter:description" content="怎样在用户那里得到输入的列表呢？因为Python中声明列表的时候是不用指定列表是什么类型的，所以呢，在从用户的数据中得到消息的时候怎样把得到的元素转化成自己想要的类型并且存储进来呢？看个例子：123456789101112&amp;gt;&amp;gt;&amp;gt; nodelist = []&amp;gt;&amp;gt;&amp;gt; mystr = input(&amp;quot;Please input the elements that">
+  
+    <link rel="alternate" href="/atom.xml" title="对面的朋友看过来" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">对面的朋友看过来</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Tips：如何从用户那里得到一个整形数类型的列表" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/" class="article-date">
+  <time datetime="2017-03-25T02:18:29.967Z" itemprop="datePublished">2017-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python-Tips/">python Tips</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      怎样在获得键盘输入的整型数的列表
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="怎样在用户那里得到输入的列表呢？"><a href="#怎样在用户那里得到输入的列表呢？" class="headerlink" title="怎样在用户那里得到输入的列表呢？"></a>怎样在用户那里得到输入的列表呢？</h4><p>因为Python中声明列表的时候是不用指定列表是什么类型的，所以呢，在从用户的数据中得到消息的时候怎样把得到的元素转化成自己想要的类型并且存储进来呢？看个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; nodelist = []</div><div class="line">&gt;&gt;&gt; mystr = input(&quot;Please input the elements that would be sorted, please divided elements with space :&quot;)</div><div class="line">Please input the elements that would be sorted, please divided elements with space :3 4 5 1 6 8 0 9 34 11</div><div class="line">&gt;&gt;&gt; print(mystr)</div><div class="line">3 4 5 1 6 8 0 9 34 11</div><div class="line">&gt;&gt;&gt; print(mystr.split())</div><div class="line">[&apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;1&apos;, &apos;6&apos;, &apos;8&apos;, &apos;0&apos;, &apos;9&apos;, &apos;34&apos;, &apos;11&apos;]</div><div class="line">&gt;&gt;&gt; for i in mystr.split():</div><div class="line">...     nodelist.append(int(i))</div><div class="line">... </div><div class="line">&gt;&gt;&gt; print(nodelist)</div><div class="line">[3, 4, 5, 1, 6, 8, 0, 9, 34, 11]</div></pre></td></tr></table></figure></p>
+<p>这里呢首先定义了一个空的列表，然后使用input函数得到用户的输入，因为input()函数得到的内容都是字符串，所以只能得到一个字符串以后再转换成自己想要的类型，比如我们想得到int类型的元素，但是python内置的函数int()的参数只能输字符或者字符串。这是python中的int()函数的说明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;help(int)</div><div class="line">Help on class int in module builtins:</div><div class="line"></div><div class="line">class int(object)</div><div class="line"> |  int(x=0) -&gt; integer</div><div class="line"> |  int(x, base=10) -&gt; integer</div><div class="line"> |  </div><div class="line"> |  Convert a number or string to an integer, or return 0 if no arguments</div><div class="line"> |  are given.  If x is a number, return x.__int__().  For floating point</div><div class="line"> |  numbers, this truncates towards zero.</div><div class="line"> |  </div><div class="line"> |  If x is not a number or if base is given, then x must be a string,</div><div class="line"> |  bytes, or bytearray instance representing an integer literal in the</div><div class="line"> |  given base.  The literal can be preceded by &apos;+&apos; or &apos;-&apos; and be surrounded</div><div class="line"> |  by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.</div><div class="line"> |  Base 0 means to interpret the base from the string as an integer literal.</div><div class="line"> |  &gt;&gt;&gt; int(&apos;0b100&apos;, base=0)</div><div class="line"> |  4</div></pre></td></tr></table></figure></p>
+<p>这时候就用到了一个神奇的函数split()（或者说是str.split()，因为还有os.psth.split()，那个函数有其他的作用），我称呼它为切片函数，或者分裂函数。它的作用就是拆分字符串，按照指定的分隔符对字符串进行切片。语法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">str.split(str = &quot;&quot;,num = string.count(str))</div></pre></td></tr></table></figure></p>
+<p>第一个参数是指定的分隔符，默认类型是所有的空字符，包括空格，换行(\n),制表符(\t)等等。如果空着的话就是默认类型的。</p>
+<p>第二个参数指的是将字符串分成几部分，如果说指定的num有值，那么就把字符串分割成num个子字符串。</p>
+<p>所以可以这样得到整形数的列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; for i in mystr.split():</div><div class="line">         nodelist.append(int(i))</div></pre></td></tr></table></figure></p>
+<p>现在遇到了这样的一个问题，就是排序二叉树的节点的值是不能重复的，否则会出现错误，那怎么样去判断一个列表中的元素是否有重复的内容呢？这时候就会用到set()函数，这个函数可以将一个列表中的重复的元素过滤掉，当一个列表中的元素重复很多次的时候我们只留其中的一个，如果列表的长度和set()函数之后的长度一样的时候，我们认为这个列表中没有重复的元素的。</p>
+<p>接下来还有一个问题，就是Python中是不支持goto语句的，所以需要写一个循环函数，来执行goto语句做的事情，看例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; while True:</div><div class="line">...     nodelist = []</div><div class="line">...     mystr = input(&quot;please input:&quot;)</div><div class="line">...     for i in mystr.split():</div><div class="line">...         nodelist.append(int(i))</div><div class="line">...     print(nodelist)</div><div class="line">...     if len(nodelist) != len(set(nodelist)):</div><div class="line">...         print(&quot;again!&quot;)</div><div class="line">...         continue</div><div class="line">...     else:</div><div class="line">...         break</div><div class="line">... </div><div class="line">please input:1 2 3 4 5 5</div><div class="line">[1, 2, 3, 4, 5, 5]</div><div class="line">again!</div><div class="line">please input:1 23 4 5 67 7 8 7</div><div class="line">[1, 23, 4, 5, 67, 7, 8, 7]</div><div class="line">again!</div><div class="line">please input:1 2 3 4 56</div><div class="line">[1, 2, 3, 4, 56]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<p>这样就完成了一个从键盘得到一个整形数的列表，并且保证列表中没有重复的元素。</p>
+<p>在严谨一点，就得判断得到的列表是否是空的列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; while True:</div><div class="line">...     nodelist = []</div><div class="line">...     mystr = input(&quot;please input:&quot;)</div><div class="line">...     for i in mystr.split():</div><div class="line">...         nodelist.append(int(i))</div><div class="line">...     print(nodelist)</div><div class="line">...     if len(nodelist) == 0:</div><div class="line">...         print(&quot;Error, List is empty! Try again:&quot;)</div><div class="line">...         continue</div><div class="line">...     elif len(nodelist) != len(set(nodelist)):</div><div class="line">...         print(&quot;again!&quot;)</div><div class="line">...         continue</div><div class="line">...     else:</div><div class="line">...         break</div><div class="line">... </div><div class="line">please input:1 2 3 4 5 5</div><div class="line">[1, 2, 3, 4, 5, 5]</div><div class="line">again!</div><div class="line">please input:1 23 4 5 67 7 8 7</div><div class="line">[1, 23, 4, 5, 67, 7, 8, 7]</div><div class="line">again!</div><div class="line">please input:1 2 3 4 56</div><div class="line">[1, 2, 3, 4, 56]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/" data-id="cj0ommv8b0002jkuutjr5we04" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类型转换/">类型转换</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/获得输入/">获得输入</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/25/使用二叉树之二叉排序树/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用二叉树之二叉排序树
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/25/Python数据结构之List/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">python数据结构之List</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/python-Tips/">python Tips</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python实现算法/">python实现算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python数据结构/">python数据结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/theme-hiker/">theme:hiker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉排序树/">二叉排序树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/列表/">列表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/处理标签/">处理标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用函数/">常用函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类型转换/">类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/获得输入/">获得输入</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/theme-hiker/" style="font-size: 10px;">theme:hiker</a> <a href="/tags/二叉排序树/" style="font-size: 10px;">二叉排序树</a> <a href="/tags/二叉树/" style="font-size: 15px;">二叉树</a> <a href="/tags/列表/" style="font-size: 10px;">列表</a> <a href="/tags/处理标签/" style="font-size: 10px;">处理标签</a> <a href="/tags/常用函数/" style="font-size: 10px;">常用函数</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/栈/" style="font-size: 10px;">栈</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/类型转换/" style="font-size: 10px;">类型转换</a> <a href="/tags/获得输入/" style="font-size: 10px;">获得输入</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/03/25/栈/">python数据结构之栈</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/使用二叉树之二叉排序树/">使用二叉树之二叉排序树</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/">怎样在获得键盘输入的整型数的列表</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/Python数据结构之List/">python数据结构之List</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Dee-Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

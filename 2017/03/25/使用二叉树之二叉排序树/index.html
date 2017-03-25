@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用二叉树之二叉排序树 | 对面的朋友看过来</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文参考链接：https://github.com/qiwsir/algorithm/blob/master/binary_tree.md
+这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。二叉排序树（Binary Sort Tree）或者是一棵空树，或者是具有下列性质的二叉树：
+
+如果它的左子树不空，那么左子树上的所有节点的值都小于它的根节点的值；
+如果它的右子树不空，那么右子树上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用二叉树之二叉排序树">
+<meta property="og:url" content="http://yoursite.com/2017/03/25/使用二叉树之二叉排序树/index.html">
+<meta property="og:site_name" content="对面的朋友看过来">
+<meta property="og:description" content="本文参考链接：https://github.com/qiwsir/algorithm/blob/master/binary_tree.md
+这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。二叉排序树（Binary Sort Tree）或者是一棵空树，或者是具有下列性质的二叉树：
+
+如果它的左子树不空，那么左子树上的所有节点的值都小于它的根节点的值；
+如果它的右子树不空，那么右子树上">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490075971759&di=7ae716db1e20d15d2d01b385e711ef1a&imgtype=0&src=http%3A%2F%2Fsee.xidian.edu.cn%2Fcpp%2Fuploads%2Fallimg%2F120301%2F1-120301120233S0.jpg">
+<meta property="og:updated_time" content="2017-03-21T16:01:53.337Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用二叉树之二叉排序树">
+<meta name="twitter:description" content="本文参考链接：https://github.com/qiwsir/algorithm/blob/master/binary_tree.md
+这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。二叉排序树（Binary Sort Tree）或者是一棵空树，或者是具有下列性质的二叉树：
+
+如果它的左子树不空，那么左子树上的所有节点的值都小于它的根节点的值；
+如果它的右子树不空，那么右子树上">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490075971759&di=7ae716db1e20d15d2d01b385e711ef1a&imgtype=0&src=http%3A%2F%2Fsee.xidian.edu.cn%2Fcpp%2Fuploads%2Fallimg%2F120301%2F1-120301120233S0.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="对面的朋友看过来" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">对面的朋友看过来</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用二叉树之二叉排序树" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/25/使用二叉树之二叉排序树/" class="article-date">
+  <time datetime="2017-03-25T02:18:29.974Z" itemprop="datePublished">2017-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python实现算法/">python实现算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用二叉树之二叉排序树
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文参考链接：<a href="https://github.com/qiwsir/algorithm/blob/master/binary_tree.md" target="_blank" rel="external">https://github.com/qiwsir/algorithm/blob/master/binary_tree.md</a></p>
+<h2 id="这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。"><a href="#这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。" class="headerlink" title="这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。"></a>这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。</h2><p>二叉排序树（Binary Sort Tree）或者是一棵空树，或者是具有下列性质的二叉树：</p>
+<ol>
+<li>如果它的左子树不空，那么左子树上的所有节点的值都小于它的根节点的值；</li>
+<li>如果它的右子树不空，那么右子树上的所有节点的值都大于它的根节点的值；</li>
+<li>它的左右子树也分别是二叉排序树。</li>
+<li>没有键值相等的结点。</li>
+</ol>
+<hr>
+<p>二叉排序树又叫做二叉查找树，它的查找过程和次优二叉树类似。也就是当二叉排序树不为空的时候，把给定的关键词先和根节点的值作比较，如果小于根节点的值，就再和左孩子的值进行比较；反之，则和右孩子的值进行比较，这样循环往复，直到查找成功。</p>
+<p>接下来先构建一棵二叉排序树，有图作参考（图片来自网络）：</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1490075971759&amp;di=7ae716db1e20d15d2d01b385e711ef1a&amp;imgtype=0&amp;src=http%3A%2F%2Fsee.xidian.edu.cn%2Fcpp%2Fuploads%2Fallimg%2F120301%2F1-120301120233S0.jpg" alt="构建二叉排序树"></p>
+<p>python实现这个算法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"># coding:utf-8</div><div class="line">&quot;关于二叉排序树&quot;</div><div class="line"></div><div class="line">class Node:</div><div class="line">    &quot;&quot;&quot;构造节点类&quot;&quot;&quot;</div><div class="line">    def __init__(self,data):</div><div class="line">        &quot;&quot;&quot;节点结构&quot;&quot;&quot;</div><div class="line">        self.lchild = None</div><div class="line">        self.rchild = None</div><div class="line">        self.data = data</div><div class="line">    </div><div class="line">    # 创建一个只有根节点的树，然后根据这个根节点进行插入，完成一棵完整的二叉排序树,这里默认从列表的第一个元素开始构建</div><div class="line">    def insertnode(self,data):</div><div class="line">        &quot;&quot;&quot;插入节点的数据&quot;&quot;&quot;</div><div class="line">            # 如果要插入的节点的值小于根节点的值</div><div class="line">        if data &lt; self.data:</div><div class="line">            if self.lchild is None:</div><div class="line">                self.lchild = Node(data)</div><div class="line">            else:</div><div class="line">                self.lchild.insertnode(data)</div><div class="line">        elif data &gt; self.data:</div><div class="line">            if self.rchild is None:</div><div class="line">                self.rchild = Node(data)</div><div class="line">            else:</div><div class="line">                self.rchild.insertnode(data)</div><div class="line"></div><div class="line">    # 接下来就是遍历了，二叉排序树也是二叉树，所以二叉树的遍历方式我们都能用在二叉排序树上，这里采用中序遍历的方法，因为中序遍历得到的序列是一个有序的列表。</div><div class="line">    def print_tree(self):</div><div class="line">        &quot;&quot;&quot;按照顺序来打印&quot;&quot;&quot;</div><div class="line">        orderlist = []</div><div class="line">        if self.lchild:</div><div class="line">            self.lchild.print_tree()</div><div class="line">        print(self.data)</div><div class="line">        if self.rchild:</div><div class="line">            self.rchild.print_tree()</div><div class="line"></div><div class="line">    # 得到一个输入的列表</div><div class="line">while True:</div><div class="line">    jiedianlist = []</div><div class="line">    mystr = input(&quot;please input the elements that could be sorted. The elements should not be repetitive, and divided them with space:&quot;)</div><div class="line">    print(mystr)</div><div class="line">    for i in mystr.split():</div><div class="line">        jiedianlist.append(int(i))</div><div class="line">    print(jiedianlist)</div><div class="line">    if len(jiedianlist) == 0:</div><div class="line">        print(&quot;Error, empty list. Try again!&quot;)</div><div class="line">        continue</div><div class="line">    elif len(jiedianlist) == len(set(jiedianlist)):</div><div class="line">    	print(&quot;debug!&quot;)</div><div class="line">    	break</div><div class="line">    else:</div><div class="line">        print(&quot;Sorry, there are some elements repetitive in the list, please input again!&quot;)</div><div class="line">        continue</div><div class="line"></div><div class="line">root = Node(jiedianlist.pop(0))</div><div class="line">print(root.data)</div><div class="line">if len(jiedianlist):</div><div class="line">    for i in range(0,len(jiedianlist)):</div><div class="line">        root.insertnode(jiedianlist.pop(0))</div><div class="line">    print(&quot;insert ok!&quot;)</div><div class="line">root.print_tree()</div></pre></td></tr></table></figure></p>
+<p>上面代码亲测可用，记下遇到坑。首先就是接收键盘输入部分的代码应该放在外面，class Node中就是有关node的所有操作，为什么要抽象出类，就是尽可能的把可能重复的内容集中到一起。‘</p>
+<p>下一个坑就是缩进格式的问题，python中的格式是一个很重要的点，缩进格式可能会导致一些灾难。</p>
+<p>还有一个就是range()函数，range()函数的前两个参数是起始位置和最终位置，比如在这个例子中，如果是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for i in range(0,len(jiedianlist)-1):</div><div class="line">    root.insertnode(jiedianlist.pop(0))</div><div class="line">print(&quot;insert ok!&quot;)</div></pre></td></tr></table></figure></p>
+<p>这样的结果就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">peter@peter-VirtualBox:~/DataStructure$ python3 binsorttree.py</div><div class="line">please input the elements that could be sorted. The elements should not be repetitive, and divided them with space:2 1 4 9 0 5 3 8</div><div class="line">2 1 4 9 0 5 3 8</div><div class="line">[2, 1, 4, 9, 0, 5, 3, 8]</div><div class="line">debug!</div><div class="line">2</div><div class="line">insert ok!</div><div class="line">0</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">9</div></pre></td></tr></table></figure></p>
+<p>结果是丢掉了8，所以修改之后，结果就正确了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">peter@peter-VirtualBox:~/DataStructure$ python3 binsorttree.py</div><div class="line">please input the elements that could be sorted. The elements should not be repetitive, and divided them with space:2 1 4 9 0 5 3 8</div><div class="line">2 1 4 9 0 5 3 8</div><div class="line">[2, 1, 4, 9, 0, 5, 3, 8]</div><div class="line">debug!</div><div class="line">2</div><div class="line">insert ok!</div><div class="line">0</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">8</div><div class="line">9</div></pre></td></tr></table></figure></p>
+<p>接下来继续研究怎样去删除二叉排序树的节点，这是一个比较复杂的工作，先看代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div></pre></td><td class="code"><pre><div class="line"># coding:utf-8</div><div class="line">&quot;接下来实现节点的删除&quot;</div><div class="line"></div><div class="line">class Node:</div><div class="line">    &quot;&quot;&quot;构造节点类&quot;&quot;&quot;</div><div class="line">    def __init__(self,data):</div><div class="line">        &quot;&quot;&quot;节点结构&quot;&quot;&quot;</div><div class="line">        self.lchild = None</div><div class="line">        self.rchild = None</div><div class="line">        self.data = data</div><div class="line">    </div><div class="line">    # 创建一个只有根节点的树，然后根据这个根节点进行插入，完成一棵完整的二叉排序树,这里默认从列表的第一个元素开始构建</div><div class="line">    def insertnode(self,data):</div><div class="line">        &quot;&quot;&quot;插入节点的数据&quot;&quot;&quot;</div><div class="line">            # 如果要插入的节点的值小于根节点的值</div><div class="line">        if data &lt; self.data:</div><div class="line">            if self.lchild is None:</div><div class="line">                self.lchild = Node(data)</div><div class="line">            else:</div><div class="line">                self.lchild.insertnode(data)</div><div class="line">        elif data &gt; self.data:</div><div class="line">            if self.rchild is None:</div><div class="line">                self.rchild = Node(data)</div><div class="line">            else:</div><div class="line">                self.rchild.insertnode(data)</div><div class="line"></div><div class="line">    # 接下来就是遍历了，二叉排序树也是二叉树，所以二叉树的遍历方式我们都能用在二叉排序树上，这里采用中序遍历的方法，因为中序遍历得到的序列是一个有序的列表。</div><div class="line">    def lookup(self,data,parent = None):</div><div class="line">        &quot;&quot;&quot;遍历二叉树&quot;&quot;&quot;</div><div class="line">        if data &lt; self.data:</div><div class="line">            if self.lchild is None:</div><div class="line">                print(&quot;Error, can not find it!&quot;)</div><div class="line">                return None,None</div><div class="line">            return self.lchild.lookup(data,self)</div><div class="line">        elif data &gt; self.data:</div><div class="line">            if self.rchild is None:</div><div class="line">                print(&quot;Error, can not find it!&quot;)</div><div class="line">                return None,None</div><div class="line">            return self.rchild.lookup(data,self)</div><div class="line">        else:</div><div class="line">            return self,parent</div><div class="line">            print(&quot;OK, find it !&quot;)</div><div class="line"></div><div class="line">    # 接下来是将二叉树中的节点的值打印出来的函数</div><div class="line">    def print_tree(self):</div><div class="line">        &quot;&quot;&quot;按照顺序来打印&quot;&quot;&quot;</div><div class="line">        orderlist = []</div><div class="line">        if self.lchild:</div><div class="line">            self.lchild.print_tree()</div><div class="line">        print(self.data)</div><div class="line">        if self.rchild:</div><div class="line">            self.rchild.print_tree()</div><div class="line"></div><div class="line">    # 删除节点的函数，这里分三种情况</div><div class="line">    def deletenode(self,data):</div><div class="line">        &quot;&quot;&quot;删除节点&quot;&quot;&quot;</div><div class="line">        node,parent = self.lookup(data)</div><div class="line">        if node is not None:</div><div class="line">            # 先判断子节点数目</div><div class="line">            children_count = node.children_count()</div><div class="line">            if node.children_count == 0:</div><div class="line">                # 如果这个节点下面没有子节点，就直接将该节点删除</div><div class="line">                if parent.lchild is node:</div><div class="line">                    parent.lchild = None</div><div class="line">                else:</div><div class="line">                    parent.rchild = None</div><div class="line">                del node</div><div class="line">            elif children_count == 1:</div><div class="line">                # 如果有一个子节点，则让子节点上移替换该节点(该节点消失)</div><div class="line">                if node.lchild:</div><div class="line">                    n = node.lchild</div><div class="line">                else:</div><div class="line">                    n = node.rchild</div><div class="line">                if parent:</div><div class="line">                    if parent.lchild is node:</div><div class="line">                        parent.lchild = n</div><div class="line">                    else:</div><div class="line">                        parent.rchild = n</div><div class="line">                del node</div><div class="line">            else:</div><div class="line">                # 如果要删除的节点的左右子节点都存在，那需要判断节点下面的所有的叶子</div><div class="line">                parent = node</div><div class="line">                successor = node.rchild</div><div class="line">                while successor.lchild:</div><div class="line">                    parent = successor</div><div class="line">                    successor = successor.lchild</div><div class="line">                node.data = successor.data</div><div class="line">                if parent.lchild == successor:</div><div class="line">                    parent.lchild = successor.rchild</div><div class="line">                else:</div><div class="line">                    parent.rchild = successor.rchild</div><div class="line"></div><div class="line">    # 上面用到了统计的函数，这里补充</div><div class="line">    def children_count(self):</div><div class="line">        &quot;&quot;&quot;统计子节点的个数&quot;&quot;&quot;</div><div class="line">        cnt = 0</div><div class="line">        if self.lchild:</div><div class="line">            cnt += 1</div><div class="line">        if self.rchild:</div><div class="line">            cnt += 1</div><div class="line">        return cnt            </div><div class="line"></div><div class="line"># 测试函数。这里从键盘输入中获得一个整型数的列表，测试二叉排序树的构建，查找和删除等功能。</div><div class="line">while True:</div><div class="line">    jiedianlist = []</div><div class="line">    mystr = input(&quot;please input the elements that could be sorted. The elements should not be repetitive, and divided them with space:&quot;)</div><div class="line">    print(mystr)</div><div class="line">    for i in mystr.split():</div><div class="line">        jiedianlist.append(int(i))</div><div class="line">    print(jiedianlist)</div><div class="line">    if len(jiedianlist) == 0:</div><div class="line">        print(&quot;Error, empty list. Try again!&quot;)</div><div class="line">        continue</div><div class="line">    elif len(jiedianlist) == len(set(jiedianlist)):</div><div class="line">    	print(&quot;debug!&quot;)</div><div class="line">    	break</div><div class="line">    else:</div><div class="line">        print(&quot;Sorry, there are some elements repetitive in the list, please input again!&quot;)</div><div class="line">        continue</div><div class="line"></div><div class="line">root = Node(jiedianlist.pop(0))</div><div class="line">print(root.data)</div><div class="line">if len(jiedianlist):</div><div class="line">    for i in range(0,len(jiedianlist)):</div><div class="line">        root.insertnode(jiedianlist.pop(0))</div><div class="line">    print(&quot;insert ok!&quot;)</div><div class="line">root.print_tree()</div><div class="line"># 测试查找和删除</div><div class="line">a = int(input(&quot;Please tell me the elements you want to find:&quot;))</div><div class="line">print(a)</div><div class="line">root.lookup(a)</div><div class="line">#root.deletenode(a)</div></pre></td></tr></table></figure></p>
+<p>这样写的结果就是可以检测到要删除选项的输入，但是不能成功的调用lookup()函数，这和lookup()函数有关系，明天再继续的研究下。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/25/使用二叉树之二叉排序树/" data-id="cj0ommv8z000ajkuuq1hz4bg6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二叉排序树/">二叉排序树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/25/栈/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          python数据结构之栈
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">怎样在获得键盘输入的整型数的列表</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/python-Tips/">python Tips</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python实现算法/">python实现算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python数据结构/">python数据结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/theme-hiker/">theme:hiker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉排序树/">二叉排序树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/列表/">列表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/处理标签/">处理标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用函数/">常用函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类型转换/">类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/获得输入/">获得输入</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/theme-hiker/" style="font-size: 10px;">theme:hiker</a> <a href="/tags/二叉排序树/" style="font-size: 10px;">二叉排序树</a> <a href="/tags/二叉树/" style="font-size: 15px;">二叉树</a> <a href="/tags/列表/" style="font-size: 10px;">列表</a> <a href="/tags/处理标签/" style="font-size: 10px;">处理标签</a> <a href="/tags/常用函数/" style="font-size: 10px;">常用函数</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/栈/" style="font-size: 10px;">栈</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/类型转换/" style="font-size: 10px;">类型转换</a> <a href="/tags/获得输入/" style="font-size: 10px;">获得输入</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/03/25/栈/">python数据结构之栈</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/使用二叉树之二叉排序树/">使用二叉树之二叉排序树</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/">怎样在获得键盘输入的整型数的列表</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/Python数据结构之List/">python数据结构之List</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Dee-Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

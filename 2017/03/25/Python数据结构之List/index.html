@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python数据结构之List | 对面的朋友看过来</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="List是python中一种很常见的数据结构，他有很多内置的函数或者操作，这些函数很有用，在这里从函数的功能（参数和输出），使用的场景，时间复杂度几个方面分析下这些函数。
+Python的list的实现不是类似数据结构中的单链表，而是类似数组，也就是说==list中的元素保存在一片连续的内存区域中==，这样的话只有知道元素索引就能确定元素的内存位置，从而直接取出该位置上的值，但是它的缺点在于前插需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python数据结构之List">
+<meta property="og:url" content="http://yoursite.com/2017/03/25/Python数据结构之List/index.html">
+<meta property="og:site_name" content="对面的朋友看过来">
+<meta property="og:description" content="List是python中一种很常见的数据结构，他有很多内置的函数或者操作，这些函数很有用，在这里从函数的功能（参数和输出），使用的场景，时间复杂度几个方面分析下这些函数。
+Python的list的实现不是类似数据结构中的单链表，而是类似数组，也就是说==list中的元素保存在一片连续的内存区域中==，这样的话只有知道元素索引就能确定元素的内存位置，从而直接取出该位置上的值，但是它的缺点在于前插需要">
+<meta property="og:updated_time" content="2017-03-23T13:44:34.471Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python数据结构之List">
+<meta name="twitter:description" content="List是python中一种很常见的数据结构，他有很多内置的函数或者操作，这些函数很有用，在这里从函数的功能（参数和输出），使用的场景，时间复杂度几个方面分析下这些函数。
+Python的list的实现不是类似数据结构中的单链表，而是类似数组，也就是说==list中的元素保存在一片连续的内存区域中==，这样的话只有知道元素索引就能确定元素的内存位置，从而直接取出该位置上的值，但是它的缺点在于前插需要">
+  
+    <link rel="alternate" href="/atom.xml" title="对面的朋友看过来" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">对面的朋友看过来</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python数据结构之List" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/25/Python数据结构之List/" class="article-date">
+  <time datetime="2017-03-25T02:18:29.964Z" itemprop="datePublished">2017-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python数据结构/">python数据结构</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python数据结构之List
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="List是python中一种很常见的数据结构，他有很多内置的函数或者操作，这些函数很有用，在这里从函数的功能（参数和输出），使用的场景，时间复杂度几个方面分析下这些函数。"><a href="#List是python中一种很常见的数据结构，他有很多内置的函数或者操作，这些函数很有用，在这里从函数的功能（参数和输出），使用的场景，时间复杂度几个方面分析下这些函数。" class="headerlink" title="List是python中一种很常见的数据结构，他有很多内置的函数或者操作，这些函数很有用，在这里从函数的功能（参数和输出），使用的场景，时间复杂度几个方面分析下这些函数。"></a>List是python中一种很常见的数据结构，他有很多内置的函数或者操作，这些函数很有用，在这里从函数的功能（参数和输出），使用的场景，时间复杂度几个方面分析下这些函数。</h5><hr>
+<p>Python的list的实现不是类似数据结构中的单链表，而是类似数组，也就是说==list中的元素保存在一片连续的内存区域中==，这样的话只有知道元素索引就能确定元素的内存位置，从而直接取出该位置上的值，但是它的缺点在于前插需要移动元素，而且随着list中元素的增多需要移动的元素也就越多，花费的时间也就自然多了。而单链表不同，单链表要得到某个位置上的元素必须要从头开始遍历，但是它的插入操作(前插或者后插)基本上都是恒定的时间，与链表中元素的多少没有关系，因为元素之间用“==指针==”维护着他们的关系。</p>
+<p>参考的一个博客的博主，他的观点认为python中的列表其实是动态表，类似于C++中的vector和Java中的ArrayList。可以看算法导论中对动态表的介绍。</p>
+<hr>
+<ul>
+<li>首先是list()函数，list()函数的作用是将字符转化成列表，举个例子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; word = &quot;Hello&quot;</div><div class="line">&gt;&gt;&gt; name = list(word)</div><div class="line">&gt;&gt;&gt; name</div><div class="line">[&apos;H&apos;, &apos;e&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;]</div><div class="line">&gt;&gt;&gt; mystr = &quot;Welcome to here!&quot;</div><div class="line">&gt;&gt;&gt; name = list(mystr)</div><div class="line">&gt;&gt;&gt; name</div><div class="line">[&apos;W&apos;, &apos;e&apos;, &apos;l&apos;, &apos;c&apos;, &apos;o&apos;, &apos;m&apos;, &apos;e&apos;, &apos; &apos;, &apos;t&apos;, &apos;o&apos;, &apos; &apos;, &apos;h&apos;, &apos;e&apos;, &apos;r&apos;, &apos;e&apos;, &apos;!&apos;]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>参数就是字符串，在使用list()函数以后，字符串里面的每一个字符都作为列表中的元素，第二个例子中，向空格和叹号这样的字符也被划分成一个列表中的元素。</p>
+<ul>
+<li>接下来就是一些针对列表的操作：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; list = [1,&apos;234&apos;,&apos;hello&apos;,&apos;!&apos;,&apos;&apos;]</div><div class="line">&gt;&gt;&gt; list</div><div class="line">[1, &apos;234&apos;, &apos;hello&apos;, &apos;!&apos;, &apos;&apos;]</div><div class="line">&gt;&gt;&gt; list[0] = &apos;3&apos;</div><div class="line">&gt;&gt;&gt; list</div><div class="line">[&apos;3&apos;, &apos;234&apos;, &apos;hello&apos;, &apos;!&apos;, &apos;&apos;]</div><div class="line">&gt;&gt;&gt; type(list[0])</div><div class="line">&lt;class &apos;str&apos;&gt;</div><div class="line">&gt;&gt;&gt; list[0] = 3</div><div class="line">&gt;&gt;&gt; list</div><div class="line">[3, &apos;234&apos;, &apos;hello&apos;, &apos;!&apos;, &apos;&apos;]</div><div class="line">&gt;&gt;&gt; type(list[0])</div><div class="line">&lt;class &apos;int&apos;&gt;</div><div class="line">&gt;&gt;&gt; list[0] = 3.01</div><div class="line">&gt;&gt;&gt; type(list[0])</div><div class="line">&lt;class &apos;float&apos;&gt;</div><div class="line">&gt;&gt;&gt; list[0] = [0,1,2]</div><div class="line">&gt;&gt;&gt; list</div><div class="line">[[0, 1, 2], &apos;234&apos;, &apos;hello&apos;, &apos;!&apos;, &apos;&apos;]</div><div class="line">&gt;&gt;&gt; type(list[0])</div><div class="line">&lt;class &apos;list&apos;&gt;</div><div class="line">&gt;&gt;&gt; list[0] = &#123;1:&apos;hello&apos;, 2:&apos;word&apos;&#125;</div><div class="line">&gt;&gt;&gt; list</div><div class="line">[&#123;1: &apos;hello&apos;, 2: &apos;word&apos;&#125;, &apos;234&apos;, &apos;hello&apos;, &apos;!&apos;, &apos;&apos;]</div><div class="line">&gt;&gt;&gt; type(list[0])</div><div class="line">&lt;class &apos;dict&apos;&gt;</div><div class="line">&gt;&gt;&gt; list[0] = (1,2,3)</div><div class="line">&gt;&gt;&gt; list</div><div class="line">[(1, 2, 3), &apos;234&apos;, &apos;hello&apos;, &apos;!&apos;, &apos;&apos;]</div><div class="line">&gt;&gt;&gt; type(list[0])</div><div class="line">&lt;class &apos;tuple&apos;&gt;</div><div class="line">&gt;&gt;&gt; list[0] = True</div><div class="line">&gt;&gt;&gt; list</div><div class="line">[True, &apos;234&apos;, &apos;hello&apos;, &apos;!&apos;, &apos;&apos;]</div><div class="line">&gt;&gt;&gt; type(list[0])</div><div class="line">&lt;class &apos;bool&apos;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这么看来list虽然在一些方面和数组很像，但是他们两个的差别还是很大的，就比如上面的例子中list中的元素的类型可以是各种各样的，在创建一个list的时候不用考虑类型的问题，也不用考虑大小的问题（至于为什么不用考虑后面再继续研究下）。在上面的例子中还用到了python中的一个内置的函数type()，这个函数的作用就是查看对象的数据类型，要知道，在python中一切都是对象，所以type()是一个很实用的函数，并且type()本身也是有类型的，它是type类型的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; type(type(list[0]))</div><div class="line">&lt;class &apos;type&apos;&gt;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>分片操作，类比数组就是取得子数组，但是python中的list的分片操作是很方便的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; listme = [1,2,3,4,5]</div><div class="line">&gt;&gt;&gt; listme1 = listme[1:3]</div><div class="line">&gt;&gt;&gt; listme1</div><div class="line">[2, 3]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在这里，通过标记索引来获得切片，比如这里的listme1 = listme[1:3]，冒号左边是起始元素的索引，冒号右边是结束元素后面一个位置的索引，在例子中就是从listme[1]到listme[3-1]，也就是listme[2]，得到的切片包含两个元素，listme1 = [listme[1],listme[2]]。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num  = [0,1,2,3,4,5,6,7,8,9,10]</div><div class="line">&gt;&gt;&gt; num1 = num[3:]</div><div class="line">&gt;&gt;&gt; num1</div><div class="line">[3, 4, 5, 6, 7, 8, 9, 10]</div><div class="line">&gt;&gt;&gt; num2 = num[:5]</div><div class="line">&gt;&gt;&gt; num2</div><div class="line">[0, 1, 2, 3, 4]</div><div class="line">&gt;&gt;&gt; num3 = num[:]</div><div class="line">&gt;&gt;&gt; num3</div><div class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</div></pre></td></tr></table></figure></p>
+<p>在这里如果冒号左边的索引省略，则默认是从头开始；如果冒号右边的索引省略，则默认是一直到最后的元素。</p>
+<ul>
+<li><p>修改序列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num  = [0,1,2,3,4,5,6,7,8,9,10]</div><div class="line">&gt;&gt;&gt; num[1:] = &apos;hello&apos;</div><div class="line">&gt;&gt;&gt; num</div><div class="line">[0, &apos;h&apos;, &apos;e&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>插入序列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num</div><div class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</div><div class="line">&gt;&gt;&gt; num[2:2] = [1,2,3]</div><div class="line">&gt;&gt;&gt; num</div><div class="line">[0, 1, 1, 2, 3, 2, 3, 4, 5, 6, 7, 8, 9, 10]</div><div class="line">&gt;&gt;&gt; mylist = [&apos;he&apos;,&apos;hel&apos;,&apos;lo&apos;,1,2,3,&apos;!&apos;,&apos;&apos;]</div><div class="line">&gt;&gt;&gt; mylist</div><div class="line">[&apos;he&apos;, &apos;hel&apos;, &apos;lo&apos;, 1, 2, 3, &apos;!&apos;, &apos;&apos;]</div><div class="line">&gt;&gt;&gt; mylist[3:3] = &apos;follow me&apos;</div><div class="line">&gt;&gt;&gt; mylist</div><div class="line">[&apos;he&apos;, &apos;hel&apos;, &apos;lo&apos;, &apos;f&apos;, &apos;o&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;, &apos;w&apos;, &apos; &apos;, &apos;m&apos;, &apos;e&apos;, 1, 2, 3, &apos;!&apos;, &apos;&apos;]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在插入的时候，如果插入的数据是列表或者字符串，那么列表的每项，字符串的每个字符都会作为列表的一个元素，而不是说列表或者字符串整体作为一个字符串插入。</p>
+<h6 id="那么问题来了，如果想作为整体插入该怎么办呢？"><a href="#那么问题来了，如果想作为整体插入该怎么办呢？" class="headerlink" title="那么问题来了，如果想作为整体插入该怎么办呢？"></a>那么问题来了，如果想作为整体插入该怎么办呢？</h6><p>这时候要用到insert()函数，语法：list.insert(index, obj)。这个函数有两个参数第一个参数是要插入位置的索引，第二个参数是要插入的内容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; mylist = [&apos;he&apos;,&apos;hel&apos;,&apos;lo&apos;,1,2,3,&apos;!&apos;,&apos;&apos;]</div><div class="line">&gt;&gt;&gt; mylist.insert(2,&apos;Follow me&apos;)</div><div class="line">&gt;&gt;&gt; mylist</div><div class="line">[&apos;he&apos;, &apos;hel&apos;, &apos;Follow me&apos;, &apos;lo&apos;, 1, 2, 3, &apos;!&apos;, &apos;&apos;]</div><div class="line">&gt;&gt;&gt; mylist.insert(1,[2,3,4])</div><div class="line">&gt;&gt;&gt; mylist</div><div class="line">[&apos;he&apos;, [2, 3, 4], &apos;hel&apos;, &apos;Follow me&apos;, &apos;lo&apos;, 1, 2, 3, &apos;!&apos;, &apos;&apos;]</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>删除序列：把要删除的部分置为空列表即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; mylist</div><div class="line">[&apos;he&apos;, [2, 3, 4], &apos;hel&apos;, &apos;Follow me&apos;, &apos;lo&apos;, 1, 2, 3, &apos;!&apos;, &apos;&apos;]</div><div class="line">&gt;&gt;&gt; mylist[2:] = []</div><div class="line">&gt;&gt;&gt; mylist</div><div class="line">[&apos;he&apos;, [2, 3, 4]]</div><div class="line">&gt;&gt;&gt; mylist[1:len(mylist)] = []</div><div class="line">&gt;&gt;&gt; mylist</div><div class="line">[&apos;he&apos;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>count()函数，用来统计某个元素在列表中出现的次数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num = [1,2,3,3,4,5,6,7,5,4,6,7,8,3,0]</div><div class="line">&gt;&gt;&gt; num.count(3)</div><div class="line">3</div></pre></td></tr></table></figure>
+</li>
+<li><p>len()函数用来统计列表中元素的个数，有时候也是用来计算列表的长度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num = [1,2,3,3,4,5,6,7,5,4,6,7,8,3,0]</div><div class="line">&gt;&gt;&gt; len(num)</div><div class="line">15</div></pre></td></tr></table></figure>
+</li>
+<li><p>append()函数用来在列表的最后一个位置插入元素（类似于入栈操作）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num = [1,2,3,3,4,5,6,7,5,4,6,7,8,3,0]</div><div class="line">&gt;&gt;&gt; num.append(10)</div><div class="line">&gt;&gt;&gt; num</div><div class="line">[1, 2, 3, 3, 4, 5, 6, 7, 5, 4, 6, 7, 8, 3, 0, 10]</div><div class="line">&gt;&gt;&gt; num.append(&apos;hello&apos;)</div><div class="line">&gt;&gt;&gt; num</div><div class="line">[1, 2, 3, 3, 4, 5, 6, 7, 5, 4, 6, 7, 8, 3, 0, 10, &apos;hello&apos;]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Tips：可以使用“+”来实现列表的相加操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a = [1,2,3]</div><div class="line">&gt;&gt;&gt; b = [4,5,6]</div><div class="line">&gt;&gt;&gt; c = [7,8,9]</div><div class="line">&gt;&gt;&gt; d  = a + c + b</div><div class="line">&gt;&gt;&gt; d</div><div class="line">[1, 2, 3, 7, 8, 9, 4, 5, 6]</div><div class="line">&gt;&gt;&gt; e = b + a +c</div><div class="line">&gt;&gt;&gt; e</div><div class="line">[4, 5, 6, 1, 2, 3, 7, 8, 9]</div></pre></td></tr></table></figure></p>
+<ul>
+<li>extend函数，修改原来的序列，链接两个序列产生新的序列：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a = [1,2,3]</div><div class="line">&gt;&gt;&gt; b = [&apos;1&apos;,&apos;2&apos;,&apos;3&apos;]</div><div class="line">&gt;&gt;&gt; a.extend(b)</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[1, 2, 3, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;]</div><div class="line">&gt;&gt;&gt; b</div><div class="line">[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>那么append()和extend()函数区别在哪里呢？个人认为一个是向列表的末尾逐个的插入新的元素，另一个是将另一个列表中的元素链接到前一个列表的后面。</p>
+<ul>
+<li>pop()函数，弹出指定的列表中的元素，如果不指定索引的话，默认是弹出列表的最后一个元素。pop()函数将元素弹出来之后，原来列表中就没有这个元素了，可以看成是一种删除列表中的元素的方法。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a</div><div class="line">[1, 2, 3, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;]</div><div class="line">&gt;&gt;&gt; b</div><div class="line">[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;]</div><div class="line">&gt;&gt;&gt; a.pop()</div><div class="line">&apos;3&apos;</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[1, 2, 3, &apos;1&apos;, &apos;2&apos;]</div><div class="line">&gt;&gt;&gt; a.pop(0)</div><div class="line">1</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[2, 3, &apos;1&apos;, &apos;2&apos;]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其实pop()和append()搭档可以类比栈和队列，如果是appen()之后使用pop()，可以看成是先进后出，类比栈结构。但是append()之后写一个循环去pop(0)的话，就可以看成先进先出，可以模仿队结构。</p>
+<ul>
+<li><p>remove()函数，就是删除遇到的第一个指定的元素，这是在知道元素的值得时候。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num</div><div class="line">[1, 2, 3, 3, 4, 5, 6, 7, 5, 4, 6, 7, 8, 3, 0, 10, &apos;hello&apos;]</div><div class="line"># 因为只有一个1，所以删除了就没了</div><div class="line">&gt;&gt;&gt; num.remove(1)</div><div class="line">&gt;&gt;&gt; num</div><div class="line">[2, 3, 3, 4, 5, 6, 7, 5, 4, 6, 7, 8, 3, 0, 10, &apos;hello&apos;]</div><div class="line"># 但是3有多个，remove()函数就只是删除遇到的第一个符合条件的元素</div><div class="line">&gt;&gt;&gt; num.remove(3)</div><div class="line">&gt;&gt;&gt; num</div><div class="line">[2, 3, 4, 5, 6, 7, 5, 4, 6, 7, 8, 3, 0, 10, &apos;hello&apos;]</div><div class="line"># 那问题来了，如果一个元素在列表里面出现了很多次，怎样将他们全部删除呢？</div><div class="line"># 很简单啊，写个循环就好了，遇到这个元素就删掉，直到删光为止啊！</div><div class="line">&gt;&gt;&gt; num</div><div class="line">[2, 3, 4, 5, 6, 7, 5, 4, 6, 7, 8, 3, 0, 10, &apos;hello&apos;]</div><div class="line">&gt;&gt;&gt; while 3 in num:</div><div class="line">...     num.remove(3)</div><div class="line">... </div><div class="line">&gt;&gt;&gt; num</div><div class="line">[2, 4, 5, 6, 7, 5, 4, 6, 7, 8, 0, 10, &apos;hello&apos;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>index()函数，用来寻找与某个指定元素匹配的第一个索引（匹配项的位置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num</div><div class="line">[2, 4, 5, 6, 7, 5, 4, 6, 7, 8, 0, 10, &apos;hello&apos;]</div><div class="line">&gt;&gt;&gt; num.index(4)</div><div class="line">1</div><div class="line">&gt;&gt;&gt; num.index(33)</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">ValueError: 33 is not in list</div></pre></td></tr></table></figure>
+</li>
+<li><p>reverse()函数，可以翻转列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num</div><div class="line">[2, 4, 5, 6, 7, 5, 4, 6, 7, 8, 0, 10, &apos;hello&apos;]</div><div class="line">&gt;&gt;&gt; num.reverse()</div><div class="line">&gt;&gt;&gt; num</div><div class="line">[&apos;hello&apos;, 10, 0, 8, 7, 6, 4, 5, 7, 6, 5, 4, 2]</div></pre></td></tr></table></figure>
+</li>
+<li><p>sort()函数，用来对列表中的元素进行排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; num</div><div class="line">[&apos;hello&apos;, 10, 0, 8, 7, 6, 4, 5, 7, 6, 5, 4, 2]</div><div class="line">&gt;&gt;&gt; num.sort()</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">TypeError: unorderable types: int() &lt; str()</div><div class="line">&gt;&gt;&gt; num.pop(0)</div><div class="line">&apos;hello&apos;</div><div class="line">&gt;&gt;&gt; num</div><div class="line">[10, 0, 8, 7, 6, 4, 5, 7, 6, 5, 4, 2]</div><div class="line">&gt;&gt;&gt; num.sort()</div><div class="line">&gt;&gt;&gt; num</div><div class="line">[0, 2, 4, 4, 5, 5, 6, 6, 7, 7, 8, 10]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在这里，要排序的列表中的元素类型应该是一样的，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; mystr = [&apos;Hello&apos;,&apos;1&apos;,&apos;!&apos;,&apos;last&apos;,&apos;follow me&apos;]</div><div class="line">&gt;&gt;&gt; mystr.sort()</div><div class="line">&gt;&gt;&gt; mystr</div><div class="line">[&apos;!&apos;, &apos;1&apos;, &apos;Hello&apos;, &apos;follow me&apos;, &apos;last&apos;]</div><div class="line">&gt;&gt;&gt; mystr.append(0)</div><div class="line">&gt;&gt;&gt; mystr.sort()</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">TypeError: unorderable types: int() &lt; str()</div></pre></td></tr></table></figure></p>
+<p>那么在这里排序是按照什么来进行的呢？这个可以参考一下大神们的博客：<a href="http://blog.csdn.net/zyl1042635242/article/details/43115675" target="_blank" rel="external">http://blog.csdn.net/zyl1042635242/article/details/43115675</a></p>
+<p>sor()函数会修改原来的序列，如果采用b = a的方式，那么对b排序之后，a也改变了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a = [2,3,1]</div><div class="line">&gt;&gt;&gt; b = a</div><div class="line">&gt;&gt;&gt; b.sort()</div><div class="line">&gt;&gt;&gt; b</div><div class="line">[1, 2, 3]</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[1, 2, 3]</div></pre></td></tr></table></figure></p>
+<h6 id="怎样做才能不会修改原来的列表呢？"><a href="#怎样做才能不会修改原来的列表呢？" class="headerlink" title="怎样做才能不会修改原来的列表呢？"></a>怎样做才能不会修改原来的列表呢？</h6><p>两个方法，第一个方法就是使用sorted()函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a = [1,4,3,1,6,7,4,8,9,2]</div><div class="line">&gt;&gt;&gt; b = sorted(a)</div><div class="line">&gt;&gt;&gt; b</div><div class="line">[1, 1, 2, 3, 4, 4, 6, 7, 8, 9]</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[1, 4, 3, 1, 6, 7, 4, 8, 9, 2]</div></pre></td></tr></table></figure></p>
+<p>另一种方法就是创建副本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a</div><div class="line">[1, 4, 3, 1, 6, 7, 4, 8, 9, 2]</div><div class="line">&gt;&gt;&gt; b = a[:]</div><div class="line">&gt;&gt;&gt; b</div><div class="line">[1, 4, 3, 1, 6, 7, 4, 8, 9, 2]</div><div class="line">&gt;&gt;&gt; b.sort()</div><div class="line">&gt;&gt;&gt; b</div><div class="line">[1, 1, 2, 3, 4, 4, 6, 7, 8, 9]</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[1, 4, 3, 1, 6, 7, 4, 8, 9, 2]</div></pre></td></tr></table></figure></p>
+<p>在这里如果b = a,那么a和b指向的就是同一个列表，如果b = a[:]，那么b就是创建的一个a的副本，对b的操作不会影响到a。</p>
+<ul>
+<li><p>关键字排序:key，举个例子一个元素都是字符串的列表中，按照字符串的长度来进行排序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; mystr</div><div class="line">[&apos;!&apos;, &apos;1&apos;, &apos;Hello&apos;, &apos;follow me&apos;, &apos;last&apos;, 0]</div><div class="line">&gt;&gt;&gt; mystr.sort(key = len)</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">TypeError: object of type &apos;int&apos; has no len()</div><div class="line">&gt;&gt;&gt; mystr.pop()</div><div class="line">0</div><div class="line">&gt;&gt;&gt; mystr.sort(key = len)</div><div class="line">&gt;&gt;&gt; mystr</div><div class="line">[&apos;!&apos;, &apos;1&apos;, &apos;last&apos;, &apos;Hello&apos;, &apos;follow me&apos;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>关键词排序，reverse。因为sort()函数默认是按照从小到大排序的也就是升序排序，但是如果想按照从大到小排序也就是降序排序的话，需要指定关键字reverse，因为默认是False，所以要设置成True。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; mystr</div><div class="line">[&apos;!&apos;, &apos;1&apos;, &apos;last&apos;, &apos;Hello&apos;, &apos;follow me&apos;]</div><div class="line">&gt;&gt;&gt; mystr.sort(reverse = True)</div><div class="line">&gt;&gt;&gt; mystr</div><div class="line">[&apos;last&apos;, &apos;follow me&apos;, &apos;Hello&apos;, &apos;1&apos;, &apos;!&apos;]</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[1, 4, 3, 1, 6, 7, 4, 8, 9, 2]</div><div class="line">&gt;&gt;&gt; a.sort()</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[1, 1, 2, 3, 4, 4, 6, 7, 8, 9]</div><div class="line">&gt;&gt;&gt; a.sort(reverse = True)</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[9, 8, 7, 6, 4, 4, 3, 2, 1, 1]</div></pre></td></tr></table></figure>
+</li>
+<li><p>cmp()函数，用来比较两个元素的大小。==但是python3.x中已经没有了cmp()函数，如果想要比较两个元素大小的话，需不要import进operator模块，==</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">operator.lt(a, b)</div><div class="line">operator.le(a, b)</div><div class="line">operator.eq(a, b)</div><div class="line">operator.ne(a, b)</div><div class="line">operator.ge(a, b)</div><div class="line">operator.gt(a, b)</div><div class="line">operator.__lt__(a, b)</div><div class="line">operator.__le__(a, b)</div><div class="line">operator.__eq__(a, b)</div><div class="line">operator.__ne__(a, b)</div><div class="line">operator.__ge__(a, b)</div><div class="line">operator.__gt__(a, b)</div><div class="line"></div><div class="line">&gt;&gt;&gt; import operator</div><div class="line">&gt;&gt;&gt; operator.eq(&apos;hello&apos;, &apos;name&apos;);</div><div class="line">False</div><div class="line">&gt;&gt;&gt; operator.eq(&apos;hello&apos;, &apos;hello&apos;);</div><div class="line">True</div></pre></td></tr></table></figure>
+</li>
+<li><p>set()函数，用来过滤掉列表中的重复的元素，也就是如果一个列表中有一个元素重复了很多次，使用set()函数之后只留下一个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a</div><div class="line">[9, 8, 7, 6, 4, 4, 3, 2, 1, 1]</div><div class="line">&gt;&gt;&gt; a.append(4)</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[9, 8, 7, 6, 4, 4, 3, 2, 1, 1, 4]</div><div class="line">&gt;&gt;&gt; c = set(a)</div><div class="line">&gt;&gt;&gt; c</div><div class="line">&#123;1, 2, 3, 4, 6, 7, 8, 9&#125;</div><div class="line">&gt;&gt;&gt; c[2]</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">TypeError: &apos;set&apos; object does not support indexing</div><div class="line"></div><div class="line">&gt;&gt;&gt; set([4,4,4,3,4,2,1,3,4,1,1,1,1,1,2])</div><div class="line">&#123;1, 2, 3, 4&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>set()完成之后，输出结果集合，集合中的元素是没有顺序的，所以再按照索引寻找元素就会出错。还有一点不知道为什么，每次使用set()之后得到的集合总是排好顺序的，为什么呢？</p>
+<ul>
+<li>未完待续</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/25/Python数据结构之List/" data-id="cj0ommv8j0005jkuuk6ou97pj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/列表/">列表</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常用函数/">常用函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          怎样在获得键盘输入的整型数的列表
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/25/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/python-Tips/">python Tips</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python实现算法/">python实现算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python数据结构/">python数据结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/theme-hiker/">theme:hiker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉排序树/">二叉排序树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/列表/">列表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/处理标签/">处理标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用函数/">常用函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类型转换/">类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/获得输入/">获得输入</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/theme-hiker/" style="font-size: 10px;">theme:hiker</a> <a href="/tags/二叉排序树/" style="font-size: 10px;">二叉排序树</a> <a href="/tags/二叉树/" style="font-size: 15px;">二叉树</a> <a href="/tags/列表/" style="font-size: 10px;">列表</a> <a href="/tags/处理标签/" style="font-size: 10px;">处理标签</a> <a href="/tags/常用函数/" style="font-size: 10px;">常用函数</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/栈/" style="font-size: 10px;">栈</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/类型转换/" style="font-size: 10px;">类型转换</a> <a href="/tags/获得输入/" style="font-size: 10px;">获得输入</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/03/25/栈/">python数据结构之栈</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/使用二叉树之二叉排序树/">使用二叉树之二叉排序树</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/">怎样在获得键盘输入的整型数的列表</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/Python数据结构之List/">python数据结构之List</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Dee-Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

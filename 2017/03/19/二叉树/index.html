@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>二叉树的Python实现 | 对面的朋友看过来</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学了这么长时间的Python，可以尝试下二叉树的构建，作为练习。树结构的特点是：它的每一个结点都可以有不止一个直接后继，除根结点外的所有结点都有且只有一个直接前驱。
+树的递归定义如下：
+
+（1）至少有一个结点（称为根）
+（2）其它是互不相交的子树
+
+
+二叉树：
+二叉树是由n（n≥0）个结点组成的有限集合、每个结点最多有两个子树的有序树。它或者是空集，或者是由一个根和称为左、右子树的两个不相交的二叉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树的Python实现">
+<meta property="og:url" content="http://yoursite.com/2017/03/19/二叉树/index.html">
+<meta property="og:site_name" content="对面的朋友看过来">
+<meta property="og:description" content="学了这么长时间的Python，可以尝试下二叉树的构建，作为练习。树结构的特点是：它的每一个结点都可以有不止一个直接后继，除根结点外的所有结点都有且只有一个直接前驱。
+树的递归定义如下：
+
+（1）至少有一个结点（称为根）
+（2）其它是互不相交的子树
+
+
+二叉树：
+二叉树是由n（n≥0）个结点组成的有限集合、每个结点最多有两个子树的有序树。它或者是空集，或者是由一个根和称为左、右子树的两个不相交的二叉">
+<meta property="og:updated_time" content="2017-03-20T15:41:30.590Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二叉树的Python实现">
+<meta name="twitter:description" content="学了这么长时间的Python，可以尝试下二叉树的构建，作为练习。树结构的特点是：它的每一个结点都可以有不止一个直接后继，除根结点外的所有结点都有且只有一个直接前驱。
+树的递归定义如下：
+
+（1）至少有一个结点（称为根）
+（2）其它是互不相交的子树
+
+
+二叉树：
+二叉树是由n（n≥0）个结点组成的有限集合、每个结点最多有两个子树的有序树。它或者是空集，或者是由一个根和称为左、右子树的两个不相交的二叉">
+  
+    <link rel="alternate" href="/atom.xml" title="对面的朋友看过来" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">对面的朋友看过来</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-二叉树" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/19/二叉树/" class="article-date">
+  <time datetime="2017-03-19T02:53:47.000Z" itemprop="datePublished">2017-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python实现算法/">python实现算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      二叉树的Python实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学了这么长时间的Python，可以尝试下二叉树的构建，作为练习。<br>树结构的特点是：它的每一个结点都可以有不止一个直接后继，除根结点外的所有结点都有且只有一个直接前驱。</p>
+<p>树的递归定义如下：</p>
+<ul>
+<li>（1）至少有一个结点（称为根）</li>
+<li>（2）其它是互不相交的子树</li>
+</ul>
+<hr>
+<p>二叉树：</p>
+<p>二叉树是由n（n≥0）个结点组成的有限集合、每个结点最多有两个子树的有序树。它或者是空集，或者是由一个根和称为左、右子树的两个不相交的二叉树组成。</p>
+<p>特点：</p>
+<ul>
+<li>（1）二叉树是有序树，即使只有一个子树，也必须区分左、右子树；</li>
+<li>（2）二叉树的每个结点的度不能大于2，只能取0、1、2三者之一；</li>
+<li>（3）二叉树中所有结点的形态有5种：空结点、无左右子树的结点、只有左子树的结点、只有右子树的结点和具有左右子树的结点。</li>
+</ul>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div></pre></td><td class="code"><pre><div class="line"># coding:utf-8</div><div class="line">&quot;二叉树的Python实现&quot;</div><div class="line"></div><div class="line">class Node(object):</div><div class="line">    &quot;&quot;&quot;节点类&quot;&quot;&quot;</div><div class="line">    def __init__(self,elem = -1,lchild = None,rchild = None):</div><div class="line">        self.elem = elem</div><div class="line">        self.lchild = lchild</div><div class="line">        self.rchild = rchild</div><div class="line"></div><div class="line">class Tree(object):</div><div class="line">    &quot;&quot;&quot;树类&quot;&quot;&quot;</div><div class="line">    def __init__(self):</div><div class="line">        self.root = Node()</div><div class="line">        self.myQueue = []</div><div class="line"></div><div class="line">    def addnodes(self,elem):</div><div class="line">        &quot;&quot;&quot;为树添加节点&quot;&quot;&quot;</div><div class="line">        node = Node(elem)</div><div class="line">        # 如果树是空的，就对根节点赋值</div><div class="line">        if self.root.elem == -1:</div><div class="line">            self.root = node</div><div class="line">            self.myQueue.append(self.root)</div><div class="line">        else:</div><div class="line">            # 此时节点的子树还没有齐</div><div class="line">            treeNode = self.myQueue[0]</div><div class="line">            if treeNode.lchild == None:</div><div class="line">                treeNode.lchild = node</div><div class="line">                self.myQueue.append(treeNode.lchild)</div><div class="line">            else:</div><div class="line">                # 如果该节点存在右子树，将此节点丢弃</div><div class="line">                treeNode.rchild = node</div><div class="line">                self.myQueue.append(treeNode.rchild)</div><div class="line">                self.myQueue.pop(0)</div><div class="line"></div><div class="line"></div><div class="line">    # 接下来利用递归实现二叉树的先序遍历</div><div class="line">    def front_digui(self, root):</div><div class="line">        if root == None:</div><div class="line">            return</div><div class="line">        print(root.elem)</div><div class="line">        # 递归遍历左子树</div><div class="line">        self.front_digui(root.lchild)</div><div class="line">        # 递归遍历右子树</div><div class="line">        self.front_digui(root.rchild)</div><div class="line"></div><div class="line">    #接下来递归方式实现二叉树的中序遍历，也就是按照左子树-根节点-右子树的顺序遍历 </div><div class="line">    def middle_digui(self, root):</div><div class="line">    	if root == None:</div><div class="line">    		return</div><div class="line">        # 遍历左子树</div><div class="line">    	self.middle_digui(root.lchild)</div><div class="line">        # 遍历根节点</div><div class="line">    	print(root.elem)</div><div class="line">        # 遍历右子树</div><div class="line">    	self.middle_digui(root.rchild)</div><div class="line"></div><div class="line">    #递归实现二叉树的后序遍历，按照左子树-右子树-根节点的顺序来遍历</div><div class="line">    def postorder_digui(self,root):</div><div class="line">    	if root == None:</div><div class="line">    		return</div><div class="line">        # 遍历左子树 </div><div class="line">    	self.postorder_digui(root.lchild)</div><div class="line">        # 遍历右子树</div><div class="line">    	self.postorder_digui(root.rchild)</div><div class="line">        # 遍历根节点</div><div class="line">    	print(root.elem)</div><div class="line"></div><div class="line">    # 用堆栈来实现二叉树的先序遍历</div><div class="line">    def front_stack(self,root):</div><div class="line">    	if root == None:</div><div class="line">    		return </div><div class="line">    	myStack = []</div><div class="line">    	node = root</div><div class="line">    	while node or myStack:</div><div class="line">    		while node:</div><div class="line">    			print(node.elem)</div><div class="line">    			myStack.append(node)</div><div class="line">    			node = node.lchild</div><div class="line">    		node = myStack.pop()</div><div class="line">    		node = node.rchild</div><div class="line"></div><div class="line">    # 用栈实现二叉树的中序遍历</div><div class="line">    def middle_stack(self,root):</div><div class="line">    	if root == None:</div><div class="line">    		return </div><div class="line">    	myStack = []</div><div class="line">    	node = root</div><div class="line">    	while node or myStack:</div><div class="line">    		while node:</div><div class="line">    			myStack.append(node)</div><div class="line">    			node = node.lchild</div><div class="line">    		node = myStack.pop()</div><div class="line">    		print(node.elem)</div><div class="line">    		node = node.rchild</div><div class="line"></div><div class="line">    # 用栈实现二叉树的后序遍历,这里用到了两个栈，mystack1先弹出根节点，再按照右子树-左子树的顺序存储，弹出的顺序就是根节点-右子树-左子树，所以mystack2的存入顺序也是根节点-右子树-左子树，弹出顺序就是左子树-右子树-根节点，实现了后序遍历。</div><div class="line">    def postorder_stack(self,root):</div><div class="line">    	if root == None:</div><div class="line">    		return</div><div class="line">    	myStack1 = []</div><div class="line">    	myStack2 = []</div><div class="line">    	node = root</div><div class="line">    	myStack1.append(node)</div><div class="line">    	while myStack1:</div><div class="line">    		node = myStack1.pop()</div><div class="line">    		if node.lchild:</div><div class="line">    			myStack1.append(node.lchild)</div><div class="line">    		if node.rchild:</div><div class="line">    			myStack1.append(node.rchild)</div><div class="line">    		myStack2.append(node)</div><div class="line">    	while myStack2:</div><div class="line">    		print(myStack2.pop().elem)</div><div class="line"></div><div class="line"></div><div class="line">    # 用队列的形式实现二叉树的层次遍历，这个做法好聪明啊，每次只是pop(0)，就能按照层次一层一层地遍历。</div><div class="line">    def level_queue(self,root):</div><div class="line">    	if root == None:</div><div class="line">    		return</div><div class="line">    	myQueue = []</div><div class="line">    	node = root</div><div class="line">    	myQueue.append(node)</div><div class="line">    	while myQueue:</div><div class="line">    		node = myQueue.pop(0)</div><div class="line">    		print(node.elem)</div><div class="line">    		if node.lchild != None:</div><div class="line">    			myQueue.append(node.lchild)</div><div class="line">    		if node.rchild != None:</div><div class="line">    			myQueue.append(node.rchild)</div><div class="line"></div><div class="line"></div><div class="line">    			</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    &quot;&quot;&quot;主函数&quot;&quot;&quot;</div><div class="line">    elems = range(10)</div><div class="line">    tree = Tree()</div><div class="line">    for elem in elems:</div><div class="line">        tree.addnodes(elem)</div><div class="line">    </div><div class="line">    print(&quot;递归方式实现的二叉树的先序遍历&quot;)</div><div class="line">    print(tree.front_digui(tree.root))</div><div class="line">    print(&quot;递归方式实现二叉树的中序遍历&quot;)</div><div class="line">    print(tree.middle_digui(tree.root))</div><div class="line">    print(&quot;递归方式实现二叉树的后续遍历&quot;)</div><div class="line">    print(tree.postorder_digui(tree.root))</div><div class="line">    print(&quot;用栈实现二叉树的先序遍历&quot;)</div><div class="line">    print(tree.front_stack(tree.root))</div><div class="line">    print(&quot;用栈实现二叉树的中序遍历&quot;)</div><div class="line">    print(tree.middle_stack(tree.root))</div><div class="line">    print(&quot;用栈实现二叉树的后续遍历&quot;)</div><div class="line">    print(tree.postorder_stack(tree.root))</div><div class="line">    print(&quot;用队列实现二叉树的层次遍历&quot;)</div><div class="line">    print(tree.level_queue(tree.root))</div></pre></td></tr></table></figure>
+<p>在python中有一对很神奇的函数，就是append和pop()，append的作用就是每次在列表后面添加进来一个值，而pop()函数可以指定列表的任何一个位置的元素弹出来，默认的是从后往前弹出，这样就相当于数据结构中的栈，还可以写个循环，指定每次都从列表最前面弹出元素，这样就相当于队。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/19/二叉树/" data-id="cj0ommv870001jkuuw06rwggi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/19/怎样去添加对应标签的链接呢？/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          怎样去添加对应标签的链接呢？
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/python-Tips/">python Tips</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python实现算法/">python实现算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python数据结构/">python数据结构</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/theme-hiker/">theme:hiker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉排序树/">二叉排序树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/列表/">列表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/处理标签/">处理标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/常用函数/">常用函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类型转换/">类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/获得输入/">获得输入</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/theme-hiker/" style="font-size: 10px;">theme:hiker</a> <a href="/tags/二叉排序树/" style="font-size: 10px;">二叉排序树</a> <a href="/tags/二叉树/" style="font-size: 15px;">二叉树</a> <a href="/tags/列表/" style="font-size: 10px;">列表</a> <a href="/tags/处理标签/" style="font-size: 10px;">处理标签</a> <a href="/tags/常用函数/" style="font-size: 10px;">常用函数</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/栈/" style="font-size: 10px;">栈</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/类型转换/" style="font-size: 10px;">类型转换</a> <a href="/tags/获得输入/" style="font-size: 10px;">获得输入</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/03/25/栈/">python数据结构之栈</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/使用二叉树之二叉排序树/">使用二叉树之二叉排序树</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/">怎样在获得键盘输入的整型数的列表</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/Python数据结构之List/">python数据结构之List</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/25/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Dee-Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
