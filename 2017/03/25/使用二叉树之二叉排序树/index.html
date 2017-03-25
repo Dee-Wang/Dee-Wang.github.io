@@ -1,0 +1,742 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,二叉树,算法,二叉排序树," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文参考链接：https://github.com/qiwsir/algorithm/blob/master/binary_tree.md
+这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。二叉排序树（Binary Sort Tree）或者是一棵空树，或者是具有下列性质的二叉树：
+
+如果它的左子树不空，那么左子树上的所有节点的值都小于它的根节点的值；
+如果它的右子树不空，那么右子树上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用二叉树之二叉排序树">
+<meta property="og:url" content="http://yoursite.com/2017/03/25/使用二叉树之二叉排序树/index.html">
+<meta property="og:site_name" content="对面的朋友看过来">
+<meta property="og:description" content="本文参考链接：https://github.com/qiwsir/algorithm/blob/master/binary_tree.md
+这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。二叉排序树（Binary Sort Tree）或者是一棵空树，或者是具有下列性质的二叉树：
+
+如果它的左子树不空，那么左子树上的所有节点的值都小于它的根节点的值；
+如果它的右子树不空，那么右子树上">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490075971759&di=7ae716db1e20d15d2d01b385e711ef1a&imgtype=0&src=http%3A%2F%2Fsee.xidian.edu.cn%2Fcpp%2Fuploads%2Fallimg%2F120301%2F1-120301120233S0.jpg">
+<meta property="og:updated_time" content="2017-03-21T16:01:53.337Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用二叉树之二叉排序树">
+<meta name="twitter:description" content="本文参考链接：https://github.com/qiwsir/algorithm/blob/master/binary_tree.md
+这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。二叉排序树（Binary Sort Tree）或者是一棵空树，或者是具有下列性质的二叉树：
+
+如果它的左子树不空，那么左子树上的所有节点的值都小于它的根节点的值；
+如果它的右子树不空，那么右子树上">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490075971759&di=7ae716db1e20d15d2d01b385e711ef1a&imgtype=0&src=http%3A%2F%2Fsee.xidian.edu.cn%2Fcpp%2Fuploads%2Fallimg%2F120301%2F1-120301120233S0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/25/使用二叉树之二叉排序树/"/>
+
+
+
+
+
+  <title> 使用二叉树之二叉排序树 | 对面的朋友看过来 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">对面的朋友看过来</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/25/使用二叉树之二叉排序树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="对面的朋友看过来">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用二叉树之二叉排序树
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T10:36:09+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python实现算法/" itemprop="url" rel="index">
+                    <span itemprop="name">python实现算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文参考链接：<a href="https://github.com/qiwsir/algorithm/blob/master/binary_tree.md" target="_blank" rel="external">https://github.com/qiwsir/algorithm/blob/master/binary_tree.md</a></p>
+<h2 id="这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。"><a href="#这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。" class="headerlink" title="这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。"></a>这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。</h2><p>二叉排序树（Binary Sort Tree）或者是一棵空树，或者是具有下列性质的二叉树：</p>
+<ol>
+<li>如果它的左子树不空，那么左子树上的所有节点的值都小于它的根节点的值；</li>
+<li>如果它的右子树不空，那么右子树上的所有节点的值都大于它的根节点的值；</li>
+<li>它的左右子树也分别是二叉排序树。</li>
+<li>没有键值相等的结点。</li>
+</ol>
+<hr>
+<p>二叉排序树又叫做二叉查找树，它的查找过程和次优二叉树类似。也就是当二叉排序树不为空的时候，把给定的关键词先和根节点的值作比较，如果小于根节点的值，就再和左孩子的值进行比较；反之，则和右孩子的值进行比较，这样循环往复，直到查找成功。</p>
+<p>接下来先构建一棵二叉排序树，有图作参考（图片来自网络）：</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1490075971759&amp;di=7ae716db1e20d15d2d01b385e711ef1a&amp;imgtype=0&amp;src=http%3A%2F%2Fsee.xidian.edu.cn%2Fcpp%2Fuploads%2Fallimg%2F120301%2F1-120301120233S0.jpg" alt="构建二叉排序树"></p>
+<p>python实现这个算法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"># coding:utf-8</div><div class="line">&quot;关于二叉排序树&quot;</div><div class="line"></div><div class="line">class Node:</div><div class="line">    &quot;&quot;&quot;构造节点类&quot;&quot;&quot;</div><div class="line">    def __init__(self,data):</div><div class="line">        &quot;&quot;&quot;节点结构&quot;&quot;&quot;</div><div class="line">        self.lchild = None</div><div class="line">        self.rchild = None</div><div class="line">        self.data = data</div><div class="line">    </div><div class="line">    # 创建一个只有根节点的树，然后根据这个根节点进行插入，完成一棵完整的二叉排序树,这里默认从列表的第一个元素开始构建</div><div class="line">    def insertnode(self,data):</div><div class="line">        &quot;&quot;&quot;插入节点的数据&quot;&quot;&quot;</div><div class="line">            # 如果要插入的节点的值小于根节点的值</div><div class="line">        if data &lt; self.data:</div><div class="line">            if self.lchild is None:</div><div class="line">                self.lchild = Node(data)</div><div class="line">            else:</div><div class="line">                self.lchild.insertnode(data)</div><div class="line">        elif data &gt; self.data:</div><div class="line">            if self.rchild is None:</div><div class="line">                self.rchild = Node(data)</div><div class="line">            else:</div><div class="line">                self.rchild.insertnode(data)</div><div class="line"></div><div class="line">    # 接下来就是遍历了，二叉排序树也是二叉树，所以二叉树的遍历方式我们都能用在二叉排序树上，这里采用中序遍历的方法，因为中序遍历得到的序列是一个有序的列表。</div><div class="line">    def print_tree(self):</div><div class="line">        &quot;&quot;&quot;按照顺序来打印&quot;&quot;&quot;</div><div class="line">        orderlist = []</div><div class="line">        if self.lchild:</div><div class="line">            self.lchild.print_tree()</div><div class="line">        print(self.data)</div><div class="line">        if self.rchild:</div><div class="line">            self.rchild.print_tree()</div><div class="line"></div><div class="line">    # 得到一个输入的列表</div><div class="line">while True:</div><div class="line">    jiedianlist = []</div><div class="line">    mystr = input(&quot;please input the elements that could be sorted. The elements should not be repetitive, and divided them with space:&quot;)</div><div class="line">    print(mystr)</div><div class="line">    for i in mystr.split():</div><div class="line">        jiedianlist.append(int(i))</div><div class="line">    print(jiedianlist)</div><div class="line">    if len(jiedianlist) == 0:</div><div class="line">        print(&quot;Error, empty list. Try again!&quot;)</div><div class="line">        continue</div><div class="line">    elif len(jiedianlist) == len(set(jiedianlist)):</div><div class="line">    	print(&quot;debug!&quot;)</div><div class="line">    	break</div><div class="line">    else:</div><div class="line">        print(&quot;Sorry, there are some elements repetitive in the list, please input again!&quot;)</div><div class="line">        continue</div><div class="line"></div><div class="line">root = Node(jiedianlist.pop(0))</div><div class="line">print(root.data)</div><div class="line">if len(jiedianlist):</div><div class="line">    for i in range(0,len(jiedianlist)):</div><div class="line">        root.insertnode(jiedianlist.pop(0))</div><div class="line">    print(&quot;insert ok!&quot;)</div><div class="line">root.print_tree()</div></pre></td></tr></table></figure></p>
+<p>上面代码亲测可用，记下遇到坑。首先就是接收键盘输入部分的代码应该放在外面，class Node中就是有关node的所有操作，为什么要抽象出类，就是尽可能的把可能重复的内容集中到一起。‘</p>
+<p>下一个坑就是缩进格式的问题，python中的格式是一个很重要的点，缩进格式可能会导致一些灾难。</p>
+<p>还有一个就是range()函数，range()函数的前两个参数是起始位置和最终位置，比如在这个例子中，如果是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for i in range(0,len(jiedianlist)-1):</div><div class="line">    root.insertnode(jiedianlist.pop(0))</div><div class="line">print(&quot;insert ok!&quot;)</div></pre></td></tr></table></figure></p>
+<p>这样的结果就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">peter@peter-VirtualBox:~/DataStructure$ python3 binsorttree.py</div><div class="line">please input the elements that could be sorted. The elements should not be repetitive, and divided them with space:2 1 4 9 0 5 3 8</div><div class="line">2 1 4 9 0 5 3 8</div><div class="line">[2, 1, 4, 9, 0, 5, 3, 8]</div><div class="line">debug!</div><div class="line">2</div><div class="line">insert ok!</div><div class="line">0</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">9</div></pre></td></tr></table></figure></p>
+<p>结果是丢掉了8，所以修改之后，结果就正确了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">peter@peter-VirtualBox:~/DataStructure$ python3 binsorttree.py</div><div class="line">please input the elements that could be sorted. The elements should not be repetitive, and divided them with space:2 1 4 9 0 5 3 8</div><div class="line">2 1 4 9 0 5 3 8</div><div class="line">[2, 1, 4, 9, 0, 5, 3, 8]</div><div class="line">debug!</div><div class="line">2</div><div class="line">insert ok!</div><div class="line">0</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">8</div><div class="line">9</div></pre></td></tr></table></figure></p>
+<p>接下来继续研究怎样去删除二叉排序树的节点，这是一个比较复杂的工作，先看代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div></pre></td><td class="code"><pre><div class="line"># coding:utf-8</div><div class="line">&quot;接下来实现节点的删除&quot;</div><div class="line"></div><div class="line">class Node:</div><div class="line">    &quot;&quot;&quot;构造节点类&quot;&quot;&quot;</div><div class="line">    def __init__(self,data):</div><div class="line">        &quot;&quot;&quot;节点结构&quot;&quot;&quot;</div><div class="line">        self.lchild = None</div><div class="line">        self.rchild = None</div><div class="line">        self.data = data</div><div class="line">    </div><div class="line">    # 创建一个只有根节点的树，然后根据这个根节点进行插入，完成一棵完整的二叉排序树,这里默认从列表的第一个元素开始构建</div><div class="line">    def insertnode(self,data):</div><div class="line">        &quot;&quot;&quot;插入节点的数据&quot;&quot;&quot;</div><div class="line">            # 如果要插入的节点的值小于根节点的值</div><div class="line">        if data &lt; self.data:</div><div class="line">            if self.lchild is None:</div><div class="line">                self.lchild = Node(data)</div><div class="line">            else:</div><div class="line">                self.lchild.insertnode(data)</div><div class="line">        elif data &gt; self.data:</div><div class="line">            if self.rchild is None:</div><div class="line">                self.rchild = Node(data)</div><div class="line">            else:</div><div class="line">                self.rchild.insertnode(data)</div><div class="line"></div><div class="line">    # 接下来就是遍历了，二叉排序树也是二叉树，所以二叉树的遍历方式我们都能用在二叉排序树上，这里采用中序遍历的方法，因为中序遍历得到的序列是一个有序的列表。</div><div class="line">    def lookup(self,data,parent = None):</div><div class="line">        &quot;&quot;&quot;遍历二叉树&quot;&quot;&quot;</div><div class="line">        if data &lt; self.data:</div><div class="line">            if self.lchild is None:</div><div class="line">                print(&quot;Error, can not find it!&quot;)</div><div class="line">                return None,None</div><div class="line">            return self.lchild.lookup(data,self)</div><div class="line">        elif data &gt; self.data:</div><div class="line">            if self.rchild is None:</div><div class="line">                print(&quot;Error, can not find it!&quot;)</div><div class="line">                return None,None</div><div class="line">            return self.rchild.lookup(data,self)</div><div class="line">        else:</div><div class="line">            return self,parent</div><div class="line">            print(&quot;OK, find it !&quot;)</div><div class="line"></div><div class="line">    # 接下来是将二叉树中的节点的值打印出来的函数</div><div class="line">    def print_tree(self):</div><div class="line">        &quot;&quot;&quot;按照顺序来打印&quot;&quot;&quot;</div><div class="line">        orderlist = []</div><div class="line">        if self.lchild:</div><div class="line">            self.lchild.print_tree()</div><div class="line">        print(self.data)</div><div class="line">        if self.rchild:</div><div class="line">            self.rchild.print_tree()</div><div class="line"></div><div class="line">    # 删除节点的函数，这里分三种情况</div><div class="line">    def deletenode(self,data):</div><div class="line">        &quot;&quot;&quot;删除节点&quot;&quot;&quot;</div><div class="line">        node,parent = self.lookup(data)</div><div class="line">        if node is not None:</div><div class="line">            # 先判断子节点数目</div><div class="line">            children_count = node.children_count()</div><div class="line">            if node.children_count == 0:</div><div class="line">                # 如果这个节点下面没有子节点，就直接将该节点删除</div><div class="line">                if parent.lchild is node:</div><div class="line">                    parent.lchild = None</div><div class="line">                else:</div><div class="line">                    parent.rchild = None</div><div class="line">                del node</div><div class="line">            elif children_count == 1:</div><div class="line">                # 如果有一个子节点，则让子节点上移替换该节点(该节点消失)</div><div class="line">                if node.lchild:</div><div class="line">                    n = node.lchild</div><div class="line">                else:</div><div class="line">                    n = node.rchild</div><div class="line">                if parent:</div><div class="line">                    if parent.lchild is node:</div><div class="line">                        parent.lchild = n</div><div class="line">                    else:</div><div class="line">                        parent.rchild = n</div><div class="line">                del node</div><div class="line">            else:</div><div class="line">                # 如果要删除的节点的左右子节点都存在，那需要判断节点下面的所有的叶子</div><div class="line">                parent = node</div><div class="line">                successor = node.rchild</div><div class="line">                while successor.lchild:</div><div class="line">                    parent = successor</div><div class="line">                    successor = successor.lchild</div><div class="line">                node.data = successor.data</div><div class="line">                if parent.lchild == successor:</div><div class="line">                    parent.lchild = successor.rchild</div><div class="line">                else:</div><div class="line">                    parent.rchild = successor.rchild</div><div class="line"></div><div class="line">    # 上面用到了统计的函数，这里补充</div><div class="line">    def children_count(self):</div><div class="line">        &quot;&quot;&quot;统计子节点的个数&quot;&quot;&quot;</div><div class="line">        cnt = 0</div><div class="line">        if self.lchild:</div><div class="line">            cnt += 1</div><div class="line">        if self.rchild:</div><div class="line">            cnt += 1</div><div class="line">        return cnt            </div><div class="line"></div><div class="line"># 测试函数。这里从键盘输入中获得一个整型数的列表，测试二叉排序树的构建，查找和删除等功能。</div><div class="line">while True:</div><div class="line">    jiedianlist = []</div><div class="line">    mystr = input(&quot;please input the elements that could be sorted. The elements should not be repetitive, and divided them with space:&quot;)</div><div class="line">    print(mystr)</div><div class="line">    for i in mystr.split():</div><div class="line">        jiedianlist.append(int(i))</div><div class="line">    print(jiedianlist)</div><div class="line">    if len(jiedianlist) == 0:</div><div class="line">        print(&quot;Error, empty list. Try again!&quot;)</div><div class="line">        continue</div><div class="line">    elif len(jiedianlist) == len(set(jiedianlist)):</div><div class="line">    	print(&quot;debug!&quot;)</div><div class="line">    	break</div><div class="line">    else:</div><div class="line">        print(&quot;Sorry, there are some elements repetitive in the list, please input again!&quot;)</div><div class="line">        continue</div><div class="line"></div><div class="line">root = Node(jiedianlist.pop(0))</div><div class="line">print(root.data)</div><div class="line">if len(jiedianlist):</div><div class="line">    for i in range(0,len(jiedianlist)):</div><div class="line">        root.insertnode(jiedianlist.pop(0))</div><div class="line">    print(&quot;insert ok!&quot;)</div><div class="line">root.print_tree()</div><div class="line"># 测试查找和删除</div><div class="line">a = int(input(&quot;Please tell me the elements you want to find:&quot;))</div><div class="line">print(a)</div><div class="line">root.lookup(a)</div><div class="line">#root.deletenode(a)</div></pre></td></tr></table></figure></p>
+<p>这样写的结果就是可以检测到要删除选项的输入，但是不能成功的调用lookup()函数，这和lookup()函数有关系，明天再继续的研究下。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/二叉树/" rel="tag"># 二叉树</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/二叉排序树/" rel="tag"># 二叉排序树</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/25/Python数据结构之List/" rel="next" title="python数据结构之List">
+                <i class="fa fa-chevron-left"></i> python数据结构之List
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/25/栈/" rel="prev" title="python数据结构之栈">
+                python数据结构之栈 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。"><span class="nav-number">1.</span> <span class="nav-text">这里介绍一下一种特殊的二叉树，从定义，构建以及基本的操作来介绍。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
