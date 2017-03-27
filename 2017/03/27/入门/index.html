@@ -1,0 +1,1057 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="入门,基本语句," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="过程化语言
+非过程化语言
+
+DDL数据定义语言
+DML数据操纵语言
+DCL数据控制语言
+
+交互式SQL 比如MySQL的终端工具
+嵌入式SQL SQL被嵌入到其他的高级语言中
+查询语句select 字段名称 from 数据表 where 查询条件
+
+对表的操作：create tabledrop tablealter table
+
+grant 用于授予用户的访问权限revoke 用于接触用户访问权限">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库入门">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/入门/index.html">
+<meta property="og:site_name" content="Dee-Wang">
+<meta property="og:description" content="过程化语言
+非过程化语言
+
+DDL数据定义语言
+DML数据操纵语言
+DCL数据控制语言
+
+交互式SQL 比如MySQL的终端工具
+嵌入式SQL SQL被嵌入到其他的高级语言中
+查询语句select 字段名称 from 数据表 where 查询条件
+
+对表的操作：create tabledrop tablealter table
+
+grant 用于授予用户的访问权限revoke 用于接触用户访问权限">
+<meta property="og:updated_time" content="2017-03-27T15:46:24.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库入门">
+<meta name="twitter:description" content="过程化语言
+非过程化语言
+
+DDL数据定义语言
+DML数据操纵语言
+DCL数据控制语言
+
+交互式SQL 比如MySQL的终端工具
+嵌入式SQL SQL被嵌入到其他的高级语言中
+查询语句select 字段名称 from 数据表 where 查询条件
+
+对表的操作：create tabledrop tablealter table
+
+grant 用于授予用户的访问权限revoke 用于接触用户访问权限">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/27/入门/"/>
+
+
+
+
+
+  <title> 数据库入门 | Dee-Wang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dee-Wang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dee-Wang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据库入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T23:44:08+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>过程化语言</p>
+<p>非过程化语言</p>
+<hr>
+<p>DDL数据定义语言</p>
+<p>DML数据操纵语言</p>
+<p>DCL数据控制语言</p>
+<hr>
+<p>交互式SQL 比如MySQL的终端工具</p>
+<p>嵌入式SQL SQL被嵌入到其他的高级语言中</p>
+<p>查询语句<br>select 字段名称 from 数据表 where 查询条件</p>
+<hr>
+<p>对表的操作：<br>create table<br>drop table<br>alter table</p>
+<hr>
+<p>grant 用于授予用户的访问权限<br>revoke 用于接触用户访问权限</p>
+<hr>
+<p>支持的数据类型</p>
+<p>整数</p>
+<ul>
+<li>TINYINT 使用一个字节，也就是八位来存储</li>
+<li>SMALLINT 使用两个字节，也就是十六位来存储</li>
+<li>MEDIUMINT  三个字节，24位</li>
+<li>INT  四个字节，32位</li>
+<li>BIGINT 八个字节，64位存储</li>
+</ul>
+<hr>
+<p>实数 带有小数部分的数字</p>
+<p>MySQL支持精确类型的实数，也支持不精确类型的实数。</p>
+<p>支持使用标准的浮点数运算，也就是不精确的类型。</p>
+<ul>
+<li>FLOAT 四个字节，32位</li>
+<li>DOUBLE 八个字节，64位</li>
+<li>可以指定精度，但是精度都是非标准的，建议是只指定数据类型，不要指定精度。</li>
+<li>DECIMAL 用于存储精确的小数。还能指定小数点之后的位数。<br>DECIMAL（20,2）小数点后两位，前18位</li>
+</ul>
+<hr>
+<p>字符串类型的数据 在数据库中用的是最多的。</p>
+<ul>
+<li>VARCHAR 保存可变长度的字符串，只规定最大长度值，系统根据实际存储的数据量分配存储空间。</li>
+<li>CHAR 固定长度的字符串，长度范围0-255任意值，</li>
+<li>TEXT </li>
+<li><ul>
+<li>TINYTEXT </li>
+</ul>
+</li>
+<li><ul>
+<li>TEXT </li>
+</ul>
+</li>
+<li><ul>
+<li>MEDIUMTEXT </li>
+</ul>
+</li>
+<li><ul>
+<li>LOGTEXT</li>
+</ul>
+</li>
+<li>BLOB 和text类型类似</li>
+</ul>
+<p>text列一般被看作是非二进制字符串，即字符字符串，有自己的字符集，</p>
+<p>blob列一般被看做是二进制字符串，即字节字符串，没有字符集，排序和比较都是基于字节的。</p>
+<p>datetime 用八个字节进行存储</p>
+<p>TIMESTAMP 时间戳类型，4个字节存储，1970-2038</p>
+<p>选择数据类型的原则：</p>
+<ol>
+<li>最小原则，应该尽量使用可以存储数据的尽可能小的数据类型</li>
+<li>简单原则，计算机处理，尽量使用MySQL自带的东西</li>
+<li>避免索引列上的NULL，MySQL默认的是可以为NULL，最好指定为not null。</li>
+</ol>
+<hr>
+<p>sql语句中的查询，如果需要同时满足两个条件都满足的内容，要用and。</p>
+<hr>
+<p>更新一个表的数据，</p>
+<p>update 表名 set 字段 = 值 where 查询条件</p>
+<p>更新列的名字：</p>
+<p>alter table 表名 change 原列名 新列名 新列存储数据的类型</p>
+<hr>
+<p>在一个表中按照一定的条件查找：</p>
+<p>首先是要查找的内容同时符合两个及其以上的条件。</p>
+<p>select * from 表名 where 条件1 and 条件二 and 条件三…</p>
+<p>接下来是查找的内容符合查找条件的一个就行</p>
+<p>select * from 表名 where 条件1 or 条件2 or 条件3…</p>
+<p>接下来是查找的内容符合其中的一个条件，并且不符合另一个条件：</p>
+<p>select * from 表名 where 字段=条件1 and 字段!=条件2</p>
+<hr>
+<h5 id="数据库（Database）：数据库是带有相关数据的表的集合。"><a href="#数据库（Database）：数据库是带有相关数据的表的集合。" class="headerlink" title="- 数据库（Database）：数据库是带有相关数据的表的集合。"></a>- 数据库（Database）：数据库是带有相关数据的表的集合。</h5><h5 id="表（Table）：表是带有数据的矩阵。数据库中的表就像一种简单的电子表格。"><a href="#表（Table）：表是带有数据的矩阵。数据库中的表就像一种简单的电子表格。" class="headerlink" title="- 表（Table）：表是带有数据的矩阵。数据库中的表就像一种简单的电子表格。"></a>- 表（Table）：表是带有数据的矩阵。数据库中的表就像一种简单的电子表格。</h5><h5 id="列（Column）：每一列（数据元素）都包含着同种类型的数据，比如邮编。"><a href="#列（Column）：每一列（数据元素）都包含着同种类型的数据，比如邮编。" class="headerlink" title="- 列（Column）：每一列（数据元素）都包含着同种类型的数据，比如邮编。"></a>- 列（Column）：每一列（数据元素）都包含着同种类型的数据，比如邮编。</h5><h5 id="行（Row）：行（又被称为元组、项或记录）是一组相关数据，比如有关订阅量的数据。"><a href="#行（Row）：行（又被称为元组、项或记录）是一组相关数据，比如有关订阅量的数据。" class="headerlink" title="- 行（Row）：行（又被称为元组、项或记录）是一组相关数据，比如有关订阅量的数据。"></a>- 行（Row）：行（又被称为元组、项或记录）是一组相关数据，比如有关订阅量的数据。</h5><h5 id="冗余（Redundancy）：存储两次数据，以便使系统更快速。"><a href="#冗余（Redundancy）：存储两次数据，以便使系统更快速。" class="headerlink" title="- 冗余（Redundancy）：存储两次数据，以便使系统更快速。"></a>- 冗余（Redundancy）：存储两次数据，以便使系统更快速。</h5><h5 id="主键（Primary-Key）：主键是唯一的。同一张表中不允许出现同样两个键值。一个键值只对应着一行。"><a href="#主键（Primary-Key）：主键是唯一的。同一张表中不允许出现同样两个键值。一个键值只对应着一行。" class="headerlink" title="- 主键（Primary Key）：主键是唯一的。同一张表中不允许出现同样两个键值。一个键值只对应着一行。"></a>- 主键（Primary Key）：主键是唯一的。同一张表中不允许出现同样两个键值。一个键值只对应着一行。</h5><h5 id="外键（Foreign-Key）：用于连接两张表。"><a href="#外键（Foreign-Key）：用于连接两张表。" class="headerlink" title="- 外键（Foreign Key）：用于连接两张表。"></a>- 外键（Foreign Key）：用于连接两张表。</h5><h5 id="复合键（Compound-Key）：复合键（又称组合键）是一种由多列组成的键，因为一列并不足以确定唯一性。"><a href="#复合键（Compound-Key）：复合键（又称组合键）是一种由多列组成的键，因为一列并不足以确定唯一性。" class="headerlink" title="- 复合键（Compound Key）：复合键（又称组合键）是一种由多列组成的键，因为一列并不足以确定唯一性。"></a>- 复合键（Compound Key）：复合键（又称组合键）是一种由多列组成的键，因为一列并不足以确定唯一性。</h5><h5 id="索引（Index）：它在数据库中的作用就像书后的索引一样。"><a href="#索引（Index）：它在数据库中的作用就像书后的索引一样。" class="headerlink" title="- 索引（Index）：它在数据库中的作用就像书后的索引一样。"></a>- 索引（Index）：它在数据库中的作用就像书后的索引一样。</h5><h5 id="引用完整性（Referential-Integrity）：用来确保外键一直指向已存在的一行。"><a href="#引用完整性（Referential-Integrity）：用来确保外键一直指向已存在的一行。" class="headerlink" title="- 引用完整性（Referential Integrity）：用来确保外键一直指向已存在的一行。"></a>- 引用完整性（Referential Integrity）：用来确保外键一直指向已存在的一行。</h5><hr>
+<p>向表格中添加一列，并设置成自增的整形数，并且设置该字段位这个表格的主键。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; alter table workmates add workid int not null auto_increment primary key;</div></pre></td></tr></table></figure></p>
+<p>创建数据库的时候<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create database 数据库名称 character set</div></pre></td></tr></table></figure></p>
+<p>主要的工作，一个是为项目设计表，另一个是使用SQL语句。</p>
+<p>其余的都可以使用相关的工具。</p>
+<p>多种方式可以连接到mysql，其中本地连接一般用socket，我的DELL的Socket路径是/var/run/mysqld/mysqld.sock </p>
+<p>还可以远程连接，使用 mysql -h IP地址 -P 端口（默认是3306） - uroot -p 敲回车之后会提示你输入密码。然后就连接上了。</p>
+<p>socket权限一般是777，不要随便修改，修改之后就连不上MySQL了。socket是个空文件，不要删除。一旦删除了就要重启mysql，才能恢复。</p>
+<p>不要把密码输入到命令行里，存在安全的风险。</p>
+<p>表中每一行被称为记录，每一列被称为字段。</p>
+<hr>
+<p>常见的SQL语言：</p>
+<ol>
+<li>DDL，数据定义，比如创建，修改和删除表。</li>
+<li>DML，数据操作，对表内的数据进行增删改查。</li>
+<li>DCL，权限管理，</li>
+<li>TCL，事务相关操作。</li>
+</ol>
+<hr>
+<p>如何搭建测试环境</p>
+<hr>
+<p>过滤查询</p>
+<ul>
+<li>比较运算符，常见的 =（等于）， ！=（不等于）， &gt;, &lt;, &gt;=, &lt;=</li>
+<li>逻辑运算符，与或非</li>
+<li>优先级，比较运算符优先级最高，接下来是not，接下来是and，接下来是or</li>
+</ul>
+<hr>
+<p>范围查询，也就是使用between…and..，使用来查询某一个值域范围的记录，常用在数字类型数据的范围上，但是字符类的数据和日期类的数据也可以用。</p>
+<hr>
+<p>集合查询，使用in运算符，来判断列的值是否在指定的集合中。</p>
+<hr>
+<p>空值查询，我么可以使用is null判断列的值是否为空。</p>
+<hr>
+<p>模糊查询，Like，直接举例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select * from tablename where 字段 like(&apos;&apos;);</div></pre></td></tr></table></figure></p>
+<p>匹配的时候%是通配符，表示零或者多个字符；</p>
+<p>_通配符，但是只能表示一个字符；</p>
+<hr>
+<p>drop table 表名 在数据库里直接删除表和表中的信息。</p>
+<p>tips：删除的时候如果一个记录中的某个字段为空，如果使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete from table_name where 字段名 = null;</div></pre></td></tr></table></figure></p>
+<p>这个操作达不到目的，因为这个操作中的筛选条件是记录中的字段有值，是个字符串“null”，所以没有找到空值去确定要删除的记录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete from table_name where 字段名 is null;</div></pre></td></tr></table></figure></p>
+<p>这个语句可以达到目的，因为这样的筛选条件才是筛选对应字段为空值的记录。</p>
+<p>SQL语句对于大小写是不敏感的。</p>
+<hr>
+<p>关于外键的问题，首先要设置外键。假设字段1是表b中的字段，要想使1成为a的外键，那么对字段1要建立索引，如果1恰好是表b的主键，那么他自然就有索引，如果1不是表b的唯一的主键，那么要对字段1添加索引之后，字段1才能作为表a的外键，那么如何为字段创建索引呢？举例说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; alter table section add index sec_id (`sec_id`);</div></pre></td></tr></table></figure></p>
+<p>alter table table_name add index 字段名称 (<code>字段名称</code>);</p>
+<hr>
+<p>建表之后设置主键：<br>alter table table_name add primary key (主键字段);</p>
+<p>建表之后设置外键：<br>alter table table<em>name add constraint fk</em>外键字段名 foreign key (外键字段名) references 外键所在表名称（外键字段名称）;</p>
+<hr>
+<p>如何对查询结果去除重复呢？使用关键字distinct，还是举例说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select building from classroom;</div><div class="line">+--------------+</div><div class="line">| building     |</div><div class="line">+--------------+</div><div class="line">| 化工楼       |</div><div class="line">| 声乐楼       |</div><div class="line">| 声乐楼       |</div><div class="line">| 建艺大厦     |</div><div class="line">| 数学馆       |</div><div class="line">| 数学馆       |</div><div class="line">| 机械大厦     |</div><div class="line">| 梨园楼       |</div><div class="line">| 梨园楼       |</div><div class="line">| 红楼         |</div><div class="line">| 红楼         |</div><div class="line">| 红楼         |</div><div class="line">| 计算机楼     |</div><div class="line">| 计算机楼     |</div><div class="line">| 语言大厦     |</div><div class="line">| 语言大厦     |</div><div class="line">| 通信大楼     |</div><div class="line">| 通信大楼     |</div><div class="line">+--------------+</div><div class="line">18 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; select distinct building from classroom;</div><div class="line">+--------------+</div><div class="line">| building     |</div><div class="line">+--------------+</div><div class="line">| 化工楼       |</div><div class="line">| 声乐楼       |</div><div class="line">| 建艺大厦     |</div><div class="line">| 数学馆       |</div><div class="line">| 机械大厦     |</div><div class="line">| 梨园楼       |</div><div class="line">| 红楼         |</div><div class="line">| 计算机楼     |</div><div class="line">| 语言大厦     |</div><div class="line">| 通信大楼     |</div><div class="line">+--------------+</div><div class="line">10 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>如何添加主键和外键<br><a href="https://zhidao.baidu.com/question/159936267.html" target="_blank" rel="external">https://zhidao.baidu.com/question/159936267.html</a></p>
+<p>如何表示浮点数：<br><a href="http://www.2cto.com/database/201411/350899.html" target="_blank" rel="external">http://www.2cto.com/database/201411/350899.html</a></p>
+<p>如何表示时间和日期的格式：<br><a href="http://www.jb51.net/article/55853.htm" target="_blank" rel="external">http://www.jb51.net/article/55853.htm</a></p>
+<p>索引相关：<br><a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="external">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a></p>
+<hr>
+<p>可以在select语句的筛选条件中使用算术运算符，但是使用的结果不会影响原来的表中的数据，因为select只是查询，不能更改，可以尝试用update语句来更改数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from departmrnt;</div><div class="line">ERROR 1146 (42S02): Table &apos;school_db.departmrnt&apos; doesn&apos;t exist</div><div class="line">mysql&gt; select * from department;</div><div class="line">+--------------+--------------+----------+</div><div class="line">| dept_name    | building     | budget   |</div><div class="line">+--------------+--------------+----------+</div><div class="line">| 中文系       | 红楼         | 10000000 |</div><div class="line">| 化学系       | 化工楼       | 30000000 |</div><div class="line">| 外语学部     | 语言大厦     | 40000000 |</div><div class="line">| 建筑系       | 建艺大厦     |  4000000 |</div><div class="line">| 戏曲系       | 梨园楼       | 20000000 |</div><div class="line">| 数学系       | 数学馆       |  5000000 |</div><div class="line">| 机械系       | 机械大厦     | 20000000 |</div><div class="line">| 电信学部     | 通信大楼     | 50000000 |</div><div class="line">| 计算机系     | 计算机楼     | 30000000 |</div><div class="line">| 音乐系       | 声乐楼       |  3000000 |</div><div class="line">+--------------+--------------+----------+</div><div class="line">10 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; slect dept_name, building, budget*1.2 from department;</div><div class="line">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;slect dept_name, building, budget*1.2 from department&apos; at line 1</div><div class="line">mysql&gt; select dept_name, building, budget*1.2 from department;</div><div class="line">+--------------+--------------+------------+</div><div class="line">| dept_name    | building     | budget*1.2 |</div><div class="line">+--------------+--------------+------------+</div><div class="line">| 中文系       | 红楼         | 12000000.0 |</div><div class="line">| 化学系       | 化工楼       | 36000000.0 |</div><div class="line">| 外语学部     | 语言大厦     | 48000000.0 |</div><div class="line">| 建筑系       | 建艺大厦     |  4800000.0 |</div><div class="line">| 戏曲系       | 梨园楼       | 24000000.0 |</div><div class="line">| 数学系       | 数学馆       |  6000000.0 |</div><div class="line">| 机械系       | 机械大厦     | 24000000.0 |</div><div class="line">| 电信学部     | 通信大楼     | 60000000.0 |</div><div class="line">| 计算机系     | 计算机楼     | 36000000.0 |</div><div class="line">| 音乐系       | 声乐楼       |  3600000.0 |</div><div class="line">+--------------+--------------+------------+</div><div class="line">10 rows in set (0.02 sec)</div><div class="line"></div><div class="line">mysql&gt; update department set budget = budget*1.2 where id not is null;</div><div class="line">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;is null&apos; at line 1</div><div class="line">mysql&gt; update department set budget = budget*1.2 where dept_name not is null;</div><div class="line">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;is null&apos; at line 1</div><div class="line">mysql&gt; update department set budget = budget*1.2 where not dept_name is null;</div><div class="line">Query OK, 10 rows affected (0.25 sec)</div><div class="line">Rows matched: 10  Changed: 10  Warnings: 0</div><div class="line"></div><div class="line">mysql&gt; select * from department;</div><div class="line">+--------------+--------------+----------+</div><div class="line">| dept_name    | building     | budget   |</div><div class="line">+--------------+--------------+----------+</div><div class="line">| 中文系       | 红楼         | 12000000 |</div><div class="line">| 化学系       | 化工楼       | 36000000 |</div><div class="line">| 外语学部     | 语言大厦     | 48000000 |</div><div class="line">| 建筑系       | 建艺大厦     |  4800000 |</div><div class="line">| 戏曲系       | 梨园楼       | 24000000 |</div><div class="line">| 数学系       | 数学馆       |  6000000 |</div><div class="line">| 机械系       | 机械大厦     | 24000000 |</div><div class="line">| 电信学部     | 通信大楼     | 60000000 |</div><div class="line">| 计算机系     | 计算机楼     | 36000000 |</div><div class="line">| 音乐系       | 声乐楼       |  3600000 |</div><div class="line">+--------------+--------------+----------+</div><div class="line">10 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>但是有一个问题就是not这个取反的标识符，有的时候放在字段的后面是可以的，但是有的时候需要放在字段的前面，不知道到底在什么位置是合适的。</p>
+<hr>
+<p>select where 语句中也是允许使用逻辑运算符的，比如与（and），或（or），非（not）；</p>
+<hr>
+<p>多表查询，首先是确定外键，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select name, building from instructor, department where instructor.dept_name = department.dept_name;</div><div class="line">+--------------+-----------------+</div><div class="line">| name         | building        |</div><div class="line">+--------------+-----------------+</div><div class="line">| 康辉         | 梨园楼          |</div><div class="line">| 谭永杰       | 机械大厦        |</div><div class="line">| 陈军         | 第一教学馆      |</div><div class="line">| 黄文鹏       | 材料馆          |</div><div class="line">| 尼格买提     | 建艺大厦        |</div><div class="line">| 文静         | 数学馆          |</div><div class="line">| 朱广全       | 化工楼          |</div><div class="line">| 欧阳夏丹     | 红楼            |</div><div class="line">| 王可爱       | 运动大厦        |</div><div class="line">| 邱慧         | 法律大厦        |</div><div class="line">| 易信         | 八角楼          |</div><div class="line">+--------------+-----------------+</div><div class="line">11 rows in set (0.02 sec)</div></pre></td></tr></table></figure></p>
+<p>关于链接关键字join，sql的join有三种，分别是内连接，外连接和交叉连接。</p>
+<ul>
+<li>内连接，只显示出两个表按照join条件连接起来的信息，其他信息是不显示的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select name,building from instructor as a inner join department as b on a.dept_name = b.dept_name;</div><div class="line">+--------------+-----------------+</div><div class="line">| name         | building        |</div><div class="line">+--------------+-----------------+</div><div class="line">| 康辉         | 梨园楼          |</div><div class="line">| 谭永杰       | 机械大厦        |</div><div class="line">| 陈军         | 第一教学馆      |</div><div class="line">| 黄文鹏       | 材料馆          |</div><div class="line">| 尼格买提     | 建艺大厦        |</div><div class="line">| 文静         | 数学馆          |</div><div class="line">| 朱广全       | 化工楼          |</div><div class="line">| 欧阳夏丹     | 红楼            |</div><div class="line">| 王可爱       | 运动大厦        |</div><div class="line">| 邱慧         | 法律大厦        |</div><div class="line">| 易信         | 八角楼          |</div><div class="line">+--------------+-----------------+</div><div class="line">11 rows in set (0.23 sec)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在这里内部连接使用的命令上面使用where子句的命令的结果是一样的，但是呢，要注意join连接的命令的格式，格式是这样的：</p>
+<p>select 字段1, 字段2… form tableA inner join tableB on tableA.字段 = tableB.字段;</p>
+<p>这里还能使用as关键字，用于指代某个表，方面后面的操作。</p>
+<ul>
+<li>接下来是外连接，左外连接left outer join = left join 显示左表的所有的记录，以及右表中符合join的条件的信息，不符合的置空。下面是参考的例子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select building,name from department as a left outer join instructor as b on a.dept_name = b.dept_name;</div><div class="line">+-----------------+--------------+</div><div class="line">| building        | name         |</div><div class="line">+-----------------+--------------+</div><div class="line">| 八角楼          | 易信         |</div><div class="line">| 化工楼          | 朱广全       |</div><div class="line">| 声乐楼          | NULL         |</div><div class="line">| 建艺大厦        | 尼格买提     |</div><div class="line">| 摩根楼          | NULL         |</div><div class="line">| 摩根楼          | NULL         |</div><div class="line">| 数学馆          | 文静         |</div><div class="line">| 机械大厦        | 谭永杰       |</div><div class="line">| 材料馆          | 黄文鹏       |</div><div class="line">| 梨园楼          | 康辉         |</div><div class="line">| 法律大厦        | 邱慧         |</div><div class="line">| 演艺中心        | NULL         |</div><div class="line">| 第一教学馆      | 陈军         |</div><div class="line">| 红楼            | 欧阳夏丹     |</div><div class="line">| 计算机楼        | NULL         |</div><div class="line">| 语言大厦        | NULL         |</div><div class="line">| 运动大厦        | 王可爱       |</div><div class="line">| 通信大楼        | NULL         |</div><div class="line">+-----------------+--------------+</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>同样右外连接和左外连接相反，举例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select building,name from department as a right outer join instructor as b on a.dept_name = b.dept_name;</div><div class="line">+-----------------+--------------+</div><div class="line">| building        | name         |</div><div class="line">+-----------------+--------------+</div><div class="line">| 梨园楼          | 康辉         |</div><div class="line">| 机械大厦        | 谭永杰       |</div><div class="line">| 第一教学馆      | 陈军         |</div><div class="line">| 材料馆          | 黄文鹏       |</div><div class="line">| 建艺大厦        | 尼格买提     |</div><div class="line">| 数学馆          | 文静         |</div><div class="line">| 化工楼          | 朱广全       |</div><div class="line">| 红楼            | 欧阳夏丹     |</div><div class="line">| 运动大厦        | 王可爱       |</div><div class="line">| 法律大厦        | 邱慧         |</div><div class="line">| 八角楼          | 易信         |</div><div class="line">+-----------------+--------------+</div><div class="line">11 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>在这里left outer join 和 left join是一样的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select building,name from department as a left join instructor as b on a.dept_name = b.dept_name;</div><div class="line">+-----------------+--------------+</div><div class="line">| building        | name         |</div><div class="line">+-----------------+--------------+</div><div class="line">| 八角楼          | 易信         |</div><div class="line">| 化工楼          | 朱广全       |</div><div class="line">| 声乐楼          | NULL         |</div><div class="line">| 建艺大厦        | 尼格买提     |</div><div class="line">| 摩根楼          | NULL         |</div><div class="line">| 摩根楼          | NULL         |</div><div class="line">| 数学馆          | 文静         |</div><div class="line">| 机械大厦        | 谭永杰       |</div><div class="line">| 材料馆          | 黄文鹏       |</div><div class="line">| 梨园楼          | 康辉         |</div><div class="line">| 法律大厦        | 邱慧         |</div><div class="line">| 演艺中心        | NULL         |</div><div class="line">| 第一教学馆      | 陈军         |</div><div class="line">| 红楼            | 欧阳夏丹     |</div><div class="line">| 计算机楼        | NULL         |</div><div class="line">| 语言大厦        | NULL         |</div><div class="line">| 运动大厦        | 王可爱       |</div><div class="line">| 通信大楼        | NULL         |</div><div class="line">+-----------------+--------------+</div><div class="line">18 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; select building,name from department as a right join instructor as b on a.dept_name = b.dept_name;</div><div class="line">+-----------------+--------------+</div><div class="line">| building        | name         |</div><div class="line">+-----------------+--------------+</div><div class="line">| 梨园楼          | 康辉         |</div><div class="line">| 机械大厦        | 谭永杰       |</div><div class="line">| 第一教学馆      | 陈军         |</div><div class="line">| 材料馆          | 黄文鹏       |</div><div class="line">| 建艺大厦        | 尼格买提     |</div><div class="line">| 数学馆          | 文静         |</div><div class="line">| 化工楼          | 朱广全       |</div><div class="line">| 红楼            | 欧阳夏丹     |</div><div class="line">| 运动大厦        | 王可爱       |</div><div class="line">| 法律大厦        | 邱慧         |</div><div class="line">| 八角楼          | 易信         |</div><div class="line">+-----------------+--------------+</div><div class="line">11 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>全外连接，full outer join = full join，左右两个表的信息全部显示，不符合的置空。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from instructor as a full join department as b on a.dept_name = b.dept_name;</div><div class="line">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;full join department as b on a.dept_name = b.dept_name&apos; at line 1</div></pre></td></tr></table></figure></p>
+<p>报错了，是为什么呢？明显是外键的问题，在网上查资料，有的说是表名和mysql的保留字冲突了，但是我的命名没有问题啊。</p>
+<p>是在不是很清楚是什么原因，先放下晚上问问别人。</p>
+<p>那还有个问题，就是不写什么内容直接用join的时候代表的是什么呢？个人理解是代表的inner join。</p>
+<ul>
+<li>还有一种就是cross join，概念：没有 WHERE 子句的交叉联接将产生联接所涉及的表的笛卡尔积。第一个表的行数乘以第二个表的行数等于笛卡尔积结果集的大小。（table1和table2交叉连接产生3*3=9条记录）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from instructor as a cross join department as b;</div><div class="line">+----------+--------------+--------------+--------+--------------+-----------------+----------+</div><div class="line">| id       | name         | dept_name    | salary | dept_name    | building        | budget   |</div><div class="line">+----------+--------------+--------------+--------+--------------+-----------------+----------+</div><div class="line">| 20000065 | 康辉         | 戏曲系       |  30000 | 中文系       | 红楼            | 12000000 |</div><div class="line">| 20000401 | 谭永杰       | 机械系       |   9800 | 中文系       | 红楼            | 12000000 |</div><div class="line">| 20012029 | 陈军         | 工商管理     |  20000 | 中文系       | 红楼            | 12000000 |</div><div class="line">| 20019823 | 汪峰         | 音乐系       |  40000 | 中文系       | 红楼            | 12000000 |</div><div class="line">...</div><div class="line">| 20160129 | 易信         | 农业系       |   9800 | 音乐系       | 声乐楼          |  3600000 |</div><div class="line">| 20172888 | 徐行         | 会计学       |  14300 | 音乐系       | 声乐楼          |  3600000 |</div><div class="line">+----------+--------------+--------------+--------+--------------+-----------------+----------+</div><div class="line">324 rows in set (0.07 sec)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>结果是两个表的笛卡尔积，这里因为两个表每个表各有18行记录，得到的结果是18x18=324行。</p>
+<hr>
+<p>接下来看排序的关键字order by，分为升序排列，关键词asc，这也是order by 默认的序列，降序排列加关键词desc。</p>
+<p>在以上的结果中有两个相等的公司名称 (W3School)。只有这一次，在第一列中有相同的值时，第二列是以升序排列的。如果第一列中有些值为 nulls 时，情况也是这样的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select course_id,title from course order by credits;</div><div class="line">+-----------+--------------------------+</div><div class="line">| course_id | title                    |</div><div class="line">+-----------+--------------------------+</div><div class="line">|     10017 | 中文的发音训练           |</div><div class="line">|     10059 | 评剧的起源与发展         |</div><div class="line">|     10035 | 化学与社会               |</div><div class="line">|     10063 | 环球历史                 |</div><div class="line">|     10001 | 高等代数                 |</div><div class="line">|     10033 | C语言教程                |</div><div class="line">|     10039 | 美声基础                 |</div><div class="line">|     10055 | 京剧鉴赏                 |</div><div class="line">|     10064 | 现代建筑结构欣赏         |</div><div class="line">|     10068 | 建筑美学                 |</div><div class="line">|     10094 | 操作系统                 |</div><div class="line">|     10019 | 中国古诗文鉴赏           |</div><div class="line">|     10046 | 商务英语                 |</div><div class="line">|     10047 | 通信原理                 |</div><div class="line">|     10089 | 数据库基础教程           |</div><div class="line">+-----------+--------------------------+</div><div class="line">15 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; select course_id,title from course order by credits desc;</div><div class="line">+-----------+--------------------------+</div><div class="line">| course_id | title                    |</div><div class="line">+-----------+--------------------------+</div><div class="line">|     10089 | 数据库基础教程           |</div><div class="line">|     10046 | 商务英语                 |</div><div class="line">|     10047 | 通信原理                 |</div><div class="line">|     10019 | 中国古诗文鉴赏           |</div><div class="line">|     10055 | 京剧鉴赏                 |</div><div class="line">|     10064 | 现代建筑结构欣赏         |</div><div class="line">|     10068 | 建筑美学                 |</div><div class="line">|     10094 | 操作系统                 |</div><div class="line">|     10001 | 高等代数                 |</div><div class="line">|     10033 | C语言教程                |</div><div class="line">|     10039 | 美声基础                 |</div><div class="line">|     10035 | 化学与社会               |</div><div class="line">|     10063 | 环球历史                 |</div><div class="line">|     10017 | 中文的发音训练           |</div><div class="line">|     10059 | 评剧的起源与发展         |</div><div class="line">+-----------+--------------------------+</div><div class="line">15 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; select course_id,title from course order by dept_name, credits desc;</div><div class="line">+-----------+--------------------------+</div><div class="line">| course_id | title                    |</div><div class="line">+-----------+--------------------------+</div><div class="line">|     10019 | 中国古诗文鉴赏           |</div><div class="line">|     10017 | 中文的发音训练           |</div><div class="line">|     10035 | 化学与社会               |</div><div class="line">|     10046 | 商务英语                 |</div><div class="line">|     10063 | 环球历史                 |</div><div class="line">|     10064 | 现代建筑结构欣赏         |</div><div class="line">|     10068 | 建筑美学                 |</div><div class="line">|     10055 | 京剧鉴赏                 |</div><div class="line">|     10059 | 评剧的起源与发展         |</div><div class="line">|     10001 | 高等代数                 |</div><div class="line">|     10047 | 通信原理                 |</div><div class="line">|     10089 | 数据库基础教程           |</div><div class="line">|     10094 | 操作系统                 |</div><div class="line">|     10033 | C语言教程                |</div><div class="line">|     10039 | 美声基础                 |</div><div class="line">+-----------+--------------------------+</div><div class="line">15 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>上面的对比不是很明显，下面的更加明显<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from course order by credits desc;</div><div class="line">+-----------+--------------------------+--------------+---------+</div><div class="line">| course_id | title                    | dept_name    | credits |</div><div class="line">+-----------+--------------------------+--------------+---------+</div><div class="line">|     10089 | 数据库基础教程           | 计算机系     |     4.5 |</div><div class="line">|     10046 | 商务英语                 | 外语学部     |     4.0 |</div><div class="line">|     10047 | 通信原理                 | 电信学部     |     4.0 |</div><div class="line">|     10019 | 中国古诗文鉴赏           | 中文系       |     3.5 |</div><div class="line">|     10055 | 京剧鉴赏                 | 戏曲系       |     3.0 |</div><div class="line">|     10064 | 现代建筑结构欣赏         | 建筑系       |     3.0 |</div><div class="line">|     10068 | 建筑美学                 | 建筑系       |     3.0 |</div><div class="line">|     10094 | 操作系统                 | 计算机系     |     3.0 |</div><div class="line">|     10001 | 高等代数                 | 数学系       |     2.5 |</div><div class="line">|     10033 | C语言教程                | 计算机系     |     2.5 |</div><div class="line">|     10039 | 美声基础                 | 音乐系       |     2.5 |</div><div class="line">|     10035 | 化学与社会               | 化学系       |     2.0 |</div><div class="line">|     10063 | 环球历史                 | 外语学部     |     2.0 |</div><div class="line">|     10017 | 中文的发音训练           | 中文系       |     1.0 |</div><div class="line">|     10059 | 评剧的起源与发展         | 戏曲系       |     1.0 |</div><div class="line">+-----------+--------------------------+--------------+---------+</div><div class="line">15 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; select * from course order by dept_name, credits desc;</div><div class="line">+-----------+--------------------------+--------------+---------+</div><div class="line">| course_id | title                    | dept_name    | credits |</div><div class="line">+-----------+--------------------------+--------------+---------+</div><div class="line">|     10019 | 中国古诗文鉴赏           | 中文系       |     3.5 |</div><div class="line">|     10017 | 中文的发音训练           | 中文系       |     1.0 |</div><div class="line">|     10035 | 化学与社会               | 化学系       |     2.0 |</div><div class="line">|     10046 | 商务英语                 | 外语学部     |     4.0 |</div><div class="line">|     10063 | 环球历史                 | 外语学部     |     2.0 |</div><div class="line">|     10064 | 现代建筑结构欣赏         | 建筑系       |     3.0 |</div><div class="line">|     10068 | 建筑美学                 | 建筑系       |     3.0 |</div><div class="line">|     10055 | 京剧鉴赏                 | 戏曲系       |     3.0 |</div><div class="line">|     10059 | 评剧的起源与发展         | 戏曲系       |     1.0 |</div><div class="line">|     10001 | 高等代数                 | 数学系       |     2.5 |</div><div class="line">|     10047 | 通信原理                 | 电信学部     |     4.0 |</div><div class="line">|     10089 | 数据库基础教程           | 计算机系     |     4.5 |</div><div class="line">|     10094 | 操作系统                 | 计算机系     |     3.0 |</div><div class="line">|     10033 | C语言教程                | 计算机系     |     2.5 |</div><div class="line">|     10039 | 美声基础                 | 音乐系       |     2.5 |</div><div class="line">+-----------+--------------------------+--------------+---------+</div><div class="line">15 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>这个里面中文的排序规则就真的不是很清楚是怎样的一个规则了，晚上可以查一下。</p>
+<hr>
+<p>删除某一行，delete from table_name where 字段=值。</p>
+<hr>
+<p>限制我们查询得到的行数，也就是取查询结果的一部分，使用limit关键词。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from course limit 5;</div><div class="line">+-----------+-----------------------+--------------+---------+</div><div class="line">| course_id | title                 | dept_name    | credits |</div><div class="line">+-----------+-----------------------+--------------+---------+</div><div class="line">|     10001 | 高等代数              | 数学系       |     2.5 |</div><div class="line">|     10017 | 中文的发音训练        | 中文系       |     1.0 |</div><div class="line">|     10019 | 中国古诗文鉴赏        | 中文系       |     3.5 |</div><div class="line">|     10033 | C语言教程             | 计算机系     |     2.5 |</div><div class="line">|     10035 | 化学与社会            | 化学系       |     2.0 |</div><div class="line">+-----------+-----------------------+--------------+---------+</div><div class="line">5 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>top和precent关键字实验没有成功，晚上自己回去查相关的资料。</p>
+<hr>
+<p>通配符：</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%</td>
+<td>替代一个或多个字符</td>
+</tr>
+<tr>
+<td>_</td>
+<td>仅替代一个字符</td>
+</tr>
+<tr>
+<td>[charlist]</td>
+<td>字符列中的任何单一字符</td>
+</tr>
+<tr>
+<td>[^charlist]或者[!charlist]</td>
+<td>不在字符列中的任何单一字符</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>[charlist]这个并不是很清楚为什么没成功。一个同事说[charlist]只支持sqlserver和另一个也是微软开发的数据库</p>
+<hr>
+<p>接下开是union,UNION 操作符用于合并两个或多个 SELECT 语句的结果集。<br>请注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select dept_name from instructor union select dept_name from department;</div><div class="line">+--------------+</div><div class="line">| dept_name    |</div><div class="line">+--------------+</div><div class="line">| 中文系       |</div><div class="line">| 会计学       |</div><div class="line">| 体育系       |</div><div class="line">| 农业系       |</div><div class="line">| 化学系       |</div><div class="line">| 外语学部     |</div><div class="line">| 工商管理     |</div><div class="line">| 建筑系       |</div><div class="line">| 戏曲系       |</div><div class="line">| 数学系       |</div><div class="line">| 机械系       |</div><div class="line">| 材料系       |</div><div class="line">| 法学         |</div><div class="line">| 电信学部     |</div><div class="line">| 艺术系       |</div><div class="line">| 金融学       |</div><div class="line">| 音乐系       |</div><div class="line">| 计算机系     |</div><div class="line">+--------------+</div><div class="line">18 rows in set (0.00 sec</div></pre></td></tr></table></figure></p>
+<p>union会自动过滤重复的结果，如果有重复的记录但是不想过滤都显示出来要用union all<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select dept_name from instructor union all select dept_name from department;</div><div class="line">+--------------+</div><div class="line">| dept_name    |</div><div class="line">+--------------+</div><div class="line">| 中文系       |</div><div class="line">| 会计学       |</div><div class="line">| 体育系       |</div><div class="line">| 体育系       |</div><div class="line">...</div><div class="line">| 外语学部     |</div><div class="line">| 体育系       |</div><div class="line">| 电信学部     |</div><div class="line">+--------------+</div><div class="line">36 rows in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>SELECT INTO 语句</p>
+<p>SELECT INTO 语句从一个表中选取数据，然后把数据插入另一个表中。</p>
+<p>SELECT INTO 语句常用于创建表的备份复件或者用于对记录进行存档。</p>
+<p>但是实际操作中呢，这个语句不是很清楚要怎么做，可以以后查相关的资料。</p>
+<hr>
+<p>MySQL中的日期和时间：<br>MySQL Date 函数<br>下面的表格列出了 MySQL 中最重要的内建日期函数：</p>
+<p>函数    描述</p>
+<p>NOW()    返回当前的日期和时间</p>
+<p>CURDATE()    返回当前的日期</p>
+<p>CURTIME()    返回当前的时间</p>
+<p>DATE()    提取日期或日期/时间表达式的日期部分</p>
+<p>EXTRACT()    返回日期/时间按的单独部分 </p>
+<p>DATE_ADD()    给日期添加指定的时间间隔</p>
+<p>DATE_SUB()    从日期减去指定的时间间隔</p>
+<p>DATEDIFF()    返回两个日期之间的天数</p>
+<p>DATE_FORMAT()    用不同的格式显示日期/时间</p>
+<p>reference link： <a href="http://www.w3school.com.cn/sql/sql_dates.asp" target="_blank" rel="external">http://www.w3school.com.cn/sql/sql_dates.asp</a></p>
+<hr>
+<p>mysql中的ifnull()函数和coalesce()函数。</p>
+<hr>
+<p>数据类型：</p>
+<p><a href="http://www.w3school.com.cn/sql/sql_datatypes.asp" target="_blank" rel="external">http://www.w3school.com.cn/sql/sql_datatypes.asp</a></p>
+<hr>
+<p>关于SQL函数</p>
+<p>合计函数（aggregate functions）：</p>
+<p>常见的有：</p>
+<ul>
+<li>avg(列名)： 计算某一列中所有数据的平均值。</li>
+<li>count(列名)：计算某一列得行数。</li>
+<li>count（*）返回被选的行数</li>
+<li>first(列名)：返回在指定的域中的第一个记录的值。经过实践证明，这个函数在MySQL中是不好用的。</li>
+<li>last（列名）：返回在指定域中的最后一个值。经过实践证明，这个函数在MySQL中是不好用的。</li>
+<li>max（列名）：返回某列中的最大的值。</li>
+<li>min（列名）：但会某列中最小的值。</li>
+<li><p>group by用于结合合计函数，根据一个和多个列对结果进行分组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from classroom;</div><div class="line">+--------------+-------------+----------+</div><div class="line">| building     | room_number | capacity |</div><div class="line">+--------------+-------------+----------+</div><div class="line">| 化工楼       | 312         |      100 |</div><div class="line">| 声乐楼       | 东21        |       10 |</div><div class="line">| 声乐楼       | 西11        |       40 |</div><div class="line">| 建艺大厦     | 621         |      100 |</div><div class="line">| 数学馆       | 202         |       20 |</div><div class="line">| 数学馆       | 403         |      120 |</div><div class="line">| 机械大厦     | M10         |      200 |</div><div class="line">| 梨园楼       | 301         |       20 |</div><div class="line">| 梨园楼       | 501         |       20 |</div><div class="line">| 红楼         | a-201       |      200 |</div><div class="line">| 红楼         | a-301       |      200 |</div><div class="line">| 红楼         | b-101       |      150 |</div><div class="line">| 计算机楼     | a-420       |       70 |</div><div class="line">| 计算机楼     | b-305       |      240 |</div><div class="line">| 语言大厦     | A-008       |       50 |</div><div class="line">| 语言大厦     | B-201       |      500 |</div><div class="line">| 通信大楼     | 1003        |      300 |</div><div class="line">| 通信大楼     | 2001        |      300 |</div><div class="line">+--------------+-------------+----------+</div><div class="line">18 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; select building, count(room_number) from classroom group by building;</div><div class="line">+--------------+--------------------+</div><div class="line">| building     | count(room_number) |</div><div class="line">+--------------+--------------------+</div><div class="line">| 化工楼       |                  1 |</div><div class="line">| 声乐楼       |                  2 |</div><div class="line">| 建艺大厦     |                  1 |</div><div class="line">| 数学馆       |                  2 |</div><div class="line">| 机械大厦     |                  1 |</div><div class="line">| 梨园楼       |                  2 |</div><div class="line">| 红楼         |                  3 |</div><div class="line">| 计算机楼     |                  2 |</div><div class="line">| 语言大厦     |                  2 |</div><div class="line">| 通信大楼     |                  2 |</div><div class="line">+--------------+--------------------+</div><div class="line">10 rows in set (0.02 sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p>关键词having，用法：在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SELECT column_name, aggregate_function(column_name)</div><div class="line">FROM table_name</div><div class="line">WHERE column_name operator value</div><div class="line">GROUP BY column_name</div><div class="line">HAVING aggregate_function(column_name) operator value</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>实际举个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from course;</div><div class="line">+-----------+--------------------------+--------------+---------+</div><div class="line">| course_id | title                    | dept_name    | credits |</div><div class="line">+-----------+--------------------------+--------------+---------+</div><div class="line">|     10001 | 高等代数                 | 数学系       |     2.5 |</div><div class="line">|     10017 | 中文的发音训练           | 中文系       |     1.0 |</div><div class="line">|     10019 | 中国古诗文鉴赏           | 中文系       |     3.5 |</div><div class="line">|     10033 | C语言教程                | 计算机系     |     2.5 |</div><div class="line">|     10035 | 化学与社会               | 化学系       |     2.0 |</div><div class="line">|     10039 | 美声基础                 | 音乐系       |     2.5 |</div><div class="line">|     10046 | 商务英语                 | 外语学部     |     4.0 |</div><div class="line">|     10047 | 通信原理                 | 电信学部     |     4.0 |</div><div class="line">|     10055 | 京剧鉴赏                 | 戏曲系       |     3.0 |</div><div class="line">|     10059 | 评剧的起源与发展         | 戏曲系       |     1.0 |</div><div class="line">|     10063 | 环球历史                 | 外语学部     |     2.0 |</div><div class="line">|     10064 | 现代建筑结构欣赏         | 建筑系       |     3.0 |</div><div class="line">|     10068 | 建筑美学                 | 建筑系       |     3.0 |</div><div class="line">|     10089 | 数据库基础教程           | 计算机系     |     4.5 |</div><div class="line">|     10094 | 操作系统                 | 计算机系     |     3.0 |</div><div class="line">+-----------+--------------------------+--------------+---------+</div><div class="line">15 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; select dept_name, count(title) from course group by dept_name;</div><div class="line">+--------------+--------------+</div><div class="line">| dept_name    | count(title) |</div><div class="line">+--------------+--------------+</div><div class="line">| 中文系       |            2 |</div><div class="line">| 化学系       |            1 |</div><div class="line">| 外语学部     |            2 |</div><div class="line">| 建筑系       |            2 |</div><div class="line">| 戏曲系       |            2 |</div><div class="line">| 数学系       |            1 |</div><div class="line">| 电信学部     |            1 |</div><div class="line">| 计算机系     |            3 |</div><div class="line">| 音乐系       |            1 |</div><div class="line">+--------------+--------------+</div><div class="line">9 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; select dept_name from course group by dept_name where count(title) &gt; 1;</div><div class="line">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;where count(title) &gt; 1&apos; at line 1</div><div class="line">mysql&gt; select dept_name from course group by dept_name having count(title) &gt; 1;</div><div class="line">+--------------+</div><div class="line">| dept_name    |</div><div class="line">+--------------+</div><div class="line">| 中文系       |</div><div class="line">| 外语学部     |</div><div class="line">| 建筑系       |</div><div class="line">| 戏曲系       |</div><div class="line">| 计算机系     |</div><div class="line">+--------------+</div><div class="line">5 rows in set (0.01 sec)</div><div class="line"># where和SQL的函数是不能一起使用的，这时候就需要having子句开限制条件。</div></pre></td></tr></table></figure></p>
+<ul>
+<li>ucase()函数，这个函数可以把字段的值变成大写的形式。</li>
+<li>lcase()函数可以吧字段的值变成小写的形式。</li>
+<li>format()函数可以对字段显示进行格式化。</li>
+</ul>
+<hr>
+<p>一些基本的逻辑运算，包括union（并），intersect（交），except（差）。</p>
+<hr>
+<p>==出现在select子句中但是没有被聚集的字段必须出现在group by子句中。==</p>
+<hr>
+<p>用在having中的谓词在形成分组之后才起作用，而where子句中的谓词在分组前起作用。</p>
+<hr>
+<p>那什么是谓词呢？</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/入门/" rel="tag"># 入门</a>
+          
+            <a href="/tags/基本语句/" rel="tag"># 基本语句</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/常见的操作系统的面试问题/" rel="next" title="常见的操作系统的面试问题">
+                <i class="fa fa-chevron-left"></i> 常见的操作系统的面试问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库（Database）：数据库是带有相关数据的表的集合。"><span class="nav-number">1.</span> <span class="nav-text">- 数据库（Database）：数据库是带有相关数据的表的集合。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表（Table）：表是带有数据的矩阵。数据库中的表就像一种简单的电子表格。"><span class="nav-number">2.</span> <span class="nav-text">- 表（Table）：表是带有数据的矩阵。数据库中的表就像一种简单的电子表格。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#列（Column）：每一列（数据元素）都包含着同种类型的数据，比如邮编。"><span class="nav-number">3.</span> <span class="nav-text">- 列（Column）：每一列（数据元素）都包含着同种类型的数据，比如邮编。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#行（Row）：行（又被称为元组、项或记录）是一组相关数据，比如有关订阅量的数据。"><span class="nav-number">4.</span> <span class="nav-text">- 行（Row）：行（又被称为元组、项或记录）是一组相关数据，比如有关订阅量的数据。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#冗余（Redundancy）：存储两次数据，以便使系统更快速。"><span class="nav-number">5.</span> <span class="nav-text">- 冗余（Redundancy）：存储两次数据，以便使系统更快速。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主键（Primary-Key）：主键是唯一的。同一张表中不允许出现同样两个键值。一个键值只对应着一行。"><span class="nav-number">6.</span> <span class="nav-text">- 主键（Primary Key）：主键是唯一的。同一张表中不允许出现同样两个键值。一个键值只对应着一行。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#外键（Foreign-Key）：用于连接两张表。"><span class="nav-number">7.</span> <span class="nav-text">- 外键（Foreign Key）：用于连接两张表。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复合键（Compound-Key）：复合键（又称组合键）是一种由多列组成的键，因为一列并不足以确定唯一性。"><span class="nav-number">8.</span> <span class="nav-text">- 复合键（Compound Key）：复合键（又称组合键）是一种由多列组成的键，因为一列并不足以确定唯一性。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#索引（Index）：它在数据库中的作用就像书后的索引一样。"><span class="nav-number">9.</span> <span class="nav-text">- 索引（Index）：它在数据库中的作用就像书后的索引一样。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#引用完整性（Referential-Integrity）：用来确保外键一直指向已存在的一行。"><span class="nav-number">10.</span> <span class="nav-text">- 引用完整性（Referential Integrity）：用来确保外键一直指向已存在的一行。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>
