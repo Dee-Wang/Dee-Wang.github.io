@@ -957,7 +957,7 @@ pre .javascript .function {
   bottom: 19px;
 }
 .header {
-  background: url("/images/cuiniao.jpg");
+  background: url("/images/lantian.jpg");
 }
 .header-inner {
   position: relative;
@@ -1684,7 +1684,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2fe042;
+  background: #6937cf;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2532,6 +2532,6 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("/images/cuiniao.jpg");
+  background: url("/images/lantian.jpg");
   background-attachment: fixed;
 }
