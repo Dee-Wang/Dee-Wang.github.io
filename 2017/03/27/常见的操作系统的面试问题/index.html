@@ -1,0 +1,1018 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="概念,死锁,进程,线程,临界区,互斥量,信号量," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="知乎专栏： https://zhuanlan.zhihu.com/p/23755202?refer=passer
+1. 请分别简单说一说进程和线程以及它们的区别。参考进程和线程的主要的区别就是它们是不同的操作系统的资源管理方式。
+进程有自己独立的地址空间，有自己的资源，是持有资源的最小单位。一个进程崩溃后，由于系统的保护机制，不会影响到其他的进程。
+线程有自己的堆栈和局部变量，但是线程没有独立的地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见的操作系统的面试问题">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/常见的操作系统的面试问题/index.html">
+<meta property="og:site_name" content="Dee-Wang">
+<meta property="og:description" content="知乎专栏： https://zhuanlan.zhihu.com/p/23755202?refer=passer
+1. 请分别简单说一说进程和线程以及它们的区别。参考进程和线程的主要的区别就是它们是不同的操作系统的资源管理方式。
+进程有自己独立的地址空间，有自己的资源，是持有资源的最小单位。一个进程崩溃后，由于系统的保护机制，不会影响到其他的进程。
+线程有自己的堆栈和局部变量，但是线程没有独立的地">
+<meta property="og:image" content="http://images.cnitblog.com/blog/405877/201308/10184517-d89b6405a3484a998d0d1e083c1e2dba.jpg">
+<meta property="og:image" content="http://images.cnitblog.com/blog/405877/201308/10184553-8259e234239e4e52891460571fd532e2.jpg">
+<meta property="og:image" content="http://images.cnitblog.com/blog/405877/201308/10184630-282e829d31cf4221beb7c2ed327f9993.jpg">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1485056-efde09b1217348ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1485056-999cd919ddf7beac.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1485056-9d17cf698a3f0dbc.png?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2017-03-27T11:17:24.267Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见的操作系统的面试问题">
+<meta name="twitter:description" content="知乎专栏： https://zhuanlan.zhihu.com/p/23755202?refer=passer
+1. 请分别简单说一说进程和线程以及它们的区别。参考进程和线程的主要的区别就是它们是不同的操作系统的资源管理方式。
+进程有自己独立的地址空间，有自己的资源，是持有资源的最小单位。一个进程崩溃后，由于系统的保护机制，不会影响到其他的进程。
+线程有自己的堆栈和局部变量，但是线程没有独立的地">
+<meta name="twitter:image" content="http://images.cnitblog.com/blog/405877/201308/10184517-d89b6405a3484a998d0d1e083c1e2dba.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/27/常见的操作系统的面试问题/"/>
+
+
+
+
+
+  <title> 常见的操作系统的面试问题 | Dee-Wang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Dee-Wang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/常见的操作系统的面试问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dee-Wang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常见的操作系统的面试问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T19:13:11+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>知乎专栏： <a href="https://zhuanlan.zhihu.com/p/23755202?refer=passer" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/23755202?refer=passer</a></p>
+<h5 id="1-请分别简单说一说进程和线程以及它们的区别。参考"><a href="#1-请分别简单说一说进程和线程以及它们的区别。参考" class="headerlink" title="1. 请分别简单说一说进程和线程以及它们的区别。参考"></a>1. 请分别简单说一说进程和线程以及它们的区别。<a href="http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html" target="_blank" rel="external">参考</a></h5><p>进程和线程的主要的区别就是它们是不同的操作系统的资源管理方式。</p>
+<p>进程有自己独立的地址空间，有自己的资源，是持有资源的最小单位。一个进程崩溃后，由于系统的保护机制，不会影响到其他的进程。</p>
+<p>线程有自己的堆栈和局部变量，但是线程没有独立的地址空间，一个线程崩溃了，就回导致他所在的进程也崩溃。</p>
+<p>多进程的程序的健壮性比多线程的程序好，但是在进行进程的切换的时候，耗费的资源比较多，效率也更差一些。</p>
+<p>但是，对于一些要求同时进行并且又要共享某些变量的并发操作，只能用线程，不能用进程。</p>
+<p>可以这样总结：</p>
+<ol>
+<li>一个程序至少要有一个进程，一个进程至少要有一个线程。</li>
+<li>线程的划分尺度小于进程，使得多线程程序并发性高。</li>
+<li>进程在执行过程中有独立的内存单元，但是多核线程共享进程的内存，极大地提高了程序的运行效率。</li>
+<li>运行过程中的区别，每个独立的线程有一个程序运行入口，但是线程不能独立的执行，必须依存在动态程序中，由应用程序提供多个线程执行控制。</li>
+<li>从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是进程和线程的重要区别。</li>
+</ol>
+<hr>
+<h5 id="2-线程同步的方式方式主要有哪些？参考"><a href="#2-线程同步的方式方式主要有哪些？参考" class="headerlink" title="2. 线程同步的方式方式主要有哪些？参考"></a>2. 线程同步的方式方式主要有哪些？<a href="http://www.cnblogs.com/lebronjames/archive/2010/08/11/1797702.html" target="_blank" rel="external">参考</a></h5><p>参考： <a href="http://blog.sina.com.cn/s/blog_5e3604840100ddgm.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_5e3604840100ddgm.html</a></p>
+<p>通常分为四种方式：</p>
+<ol>
+<li>临界区<blockquote>
+<p>在访问同一个资源的时候，可以使用临界区对象。临界区是一个访问共享资源的程序片段，这些共用的资源有无法被多个线程同时访问。当有线程进入临界区段时，其他的线程或者进程必须等待。</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>使用方式：</p>
+<ol>
+<li>定义临界区对象CcriticalSection g_CriticalSection;</li>
+<li>在访问共享资源（代码或变量）之前，先获得临界区对象，g_CriticalSection.Lock（）；</li>
+<li>访问共享资源后，则放弃临界区对象，g_CriticalSection.Unlock（）；</li>
+</ol>
+</blockquote>
+<ol>
+<li><p>事件</p>
+<blockquote>
+<p>事件机制，则允许一个线程在处理完一个任务后，主动唤醒另外一个线程执行任务。比如在某些网络应用程序中，一个线程如A负责侦听通信端口，另外一个线程B负责更新用户数据，利用事件机制，则线程A可以通知线程B何时更新用户数据。每个Cevent对象可以有两种状态：有信号状态和无信号状态。Cevent类对象有两种类型：人工事件和自动事件。<br>自动事件对象，在被至少一个线程释放后自动返回到无信号状态；</p>
+</blockquote>
+</li>
+<li><p>互斥量</p>
+<blockquote>
+<p>采用互斥对象机制。 只有拥有互斥对象的线程才有访问公共资源的权限，因为互斥对象只有一个，所以能保证公共资源不会同时被多个线程访问。</p>
+<p>互斥不仅能实现同一应用程序的公共资源安全共享，还能实现不同应用程序的公共资源安全共享 .互斥量比临界区复杂。因为使用互斥不仅仅能够在同一应用程序不同线程中实现资源的安全共享，而且可以在不同应用程序的线程之间实现对资源的安全共享。</p>
+</blockquote>
+</li>
+</ol>
+<h6 id="什么是线程的互斥？"><a href="#什么是线程的互斥？" class="headerlink" title="什么是线程的互斥？"></a>什么是线程的互斥？</h6><p>实指对共享资源的约束访问。多线程环境中，某些资源只允许一个线程使用，这类资源成为临界资源，线程之间的关系就表现为互斥的。</p>
+<h6 id="什么是线程的同步？"><a href="#什么是线程的同步？" class="headerlink" title="什么是线程的同步？"></a>什么是线程的同步？</h6><p>指多线程通过特定的手段（如互斥量）来控制线程之间的执行顺序。</p>
+<ol>
+<li>信号量</li>
+</ol>
+<p>信号量机制即利用pv操作来对信号量进行处理。</p>
+<h6 id="什么是信号量？"><a href="#什么是信号量？" class="headerlink" title="什么是信号量？"></a>什么是信号量？</h6><p>信号量（semaphore）的数据结构为一个值和一个指针，指针指向等待该信号量的下一个进程。信号量的值与相应资源的使用情况有关。</p>
+<ul>
+<li>当它的值大于0时，表示当前可用资源的数量；</li>
+<li>当它的值小于0时，其绝对值表示等待使用该资源的进程个数。</li>
+</ul>
+<p>注意，信号量的值仅能由PV操作来改变。</p>
+<hr>
+<h5 id="3-进程之间的通信方式主要有哪些？参考"><a href="#3-进程之间的通信方式主要有哪些？参考" class="headerlink" title="3. 进程之间的通信方式主要有哪些？参考"></a>3. 进程之间的通信方式主要有哪些？<a href="http://blog.csdn.net/yufaw/article/details/7409596" target="_blank" rel="external">参考</a></h5><h6 id="什么是进程间的互斥？"><a href="#什么是进程间的互斥？" class="headerlink" title="什么是进程间的互斥？"></a>什么是进程间的互斥？</h6><p>进程互斥是进程之间的间接制约关系。当一个进程进入临界区使用临界资源时，另一个进程必须等待。只有当使用临界资源的进程退出临界区后，这个进程才会解除阻塞状态。</p>
+<p>举个例子，就是打印机的例子：比如进程B需要访问打印机，但此时进程A占有了打印机，进程B会被阻塞，直到进程A释放了打印机资源,进程B才可以继续执行。</p>
+<h6 id="什么是进程间的同步？"><a href="#什么是进程间的同步？" class="headerlink" title="什么是进程间的同步？"></a>什么是进程间的同步？</h6><p>进程同步也是进程之间直接的制约关系，是为完成某种任务而建立的两个或多个线程，这个线程需要在某些位置上协调他们的工作次序而等待、传递信息所产生的制约关系。进程间的直接制约关系来源于他们之间的合作。（其实和线程的同步类似，也是在控制执行的顺序）</p>
+<hr>
+<h5 id="4-什么是缓冲区溢出，可能是因为什么造成的，有什么危害？参考"><a href="#4-什么是缓冲区溢出，可能是因为什么造成的，有什么危害？参考" class="headerlink" title="4. 什么是缓冲区溢出，可能是因为什么造成的，有什么危害？参考"></a>4. 什么是缓冲区溢出，可能是因为什么造成的，有什么危害？<a href="http://www.cnblogs.com/fanzhidongyzby/archive/2013/08/10/3250405.html" target="_blank" rel="external">参考</a></h5><p>先介绍下数据在计算机中是怎样存储的：</p>
+<p><img src="http://images.cnitblog.com/blog/405877/201308/10184517-d89b6405a3484a998d0d1e083c1e2dba.jpg" alt="进程地址中间分布"></p>
+<h6 id="为什么会出现缓冲区溢出？"><a href="#为什么会出现缓冲区溢出？" class="headerlink" title="为什么会出现缓冲区溢出？"></a>为什么会出现缓冲区溢出？</h6><p>因为按照冯·诺依曼存储程序原理，程序代码是作为二进制数据存储在内存的，同样程序的数据也在内存中，因此直接从内存的二进制形式上是无法区分哪些是数据哪些是代码的，这也为缓冲区溢出攻击提供了可能。</p>
+<p>代码存储了用户程序的所有可执行代码，在程序正常执行的情况下，程序计数器（PC指针）只会在代码段和操作系统地址空间（内核态）内寻址。数据段内存储了用户程序的全局变量，文字池等。栈空间存储了用户程序的函数栈帧（包括参数、局部数据等），实现函数调用机制，它的数据增长方向是低地址方向。堆空间存储了程序运行时动态申请的内存数据等，数据增长方向是高地址方向。除了代码段和受操作系统保护的数据区域，其他的内存区域都可能作为缓冲区，因此缓冲区溢出的位置可能在数据段，也可能在堆、栈段。如果程序的代码有软件漏洞，恶意程序会“教唆”程序计数器从上述缓冲区内取指，执行恶意程序提供的数据代码！本文分析并实现栈溢出攻击方式。</p>
+<h6 id="栈溢出攻击方式"><a href="#栈溢出攻击方式" class="headerlink" title="栈溢出攻击方式"></a>栈溢出攻击方式</h6><p>栈的主要功能是实现函数的调用。因此在介绍栈溢出原理之前，需要弄清函数调用时栈空间发生了怎样的变化。每次函数调用时，系统会把函数的返回地址（函数调用指令后紧跟指令的地址），一些关键的寄存器值保存在栈内，函数的实际参数和局部变量（包括数据、结构体、对象等）也会保存在栈内。这些数据统称为函数调用的栈帧，而且是每次函数调用都会有个独立的栈帧，这也为递归函数的实现提供了可能。</p>
+<p>看看栈：</p>
+<p><img src="http://images.cnitblog.com/blog/405877/201308/10184553-8259e234239e4e52891460571fd532e2.jpg" alt="函数栈帧"></p>
+<p>如图所示，我们定义了一个简单的函数function，它接受一个整形参数，做一次乘法操作并返回。当调用function(0)时，arg参数记录了值0入栈，并将call function指令下一条指令的地址0x00bd16f0保存到栈内，然后跳转到function函数内部执行。每个函数定义都会有函数头和函数尾代码，如图绿框表示。因为函数内需要用ebp保存函数栈帧基址，因此先保存ebp原来的值到栈内，然后将栈指针esp内容保存到ebp。函数返回前需要做相反的操作——将esp指针恢复，并弹出ebp。这样，函数内正常情况下无论怎样使用栈，都不会使栈失去平衡。</p>
+<p>sub esp,44h指令为局部变量开辟了栈空间，比如ret变量的位置。理论上，function只需要再开辟4字节空间保存ret即可，但是编译器开辟了更多的空间（这个问题很诡异，你觉得呢？）。函数调用结束返回后，函数栈帧恢复到保存参数0时的状态，为了保持栈帧平衡，需要恢复esp的内容，使用add esp,4将压入的参数弹出。</p>
+<p>之所以会有缓冲区溢出的可能，主要是因为栈空间内保存了函数的返回地址。该地址保存了函数调用结束后后续执行的指令的位置，对于计算机安全来说，该信息是很敏感的。如果有人恶意修改了这个返回地址，并使该返回地址指向了一个新的代码位置，程序便能从其它位置继续执行。</p>
+<p>下面是一个简单的小例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">void fun(unsigned char *data)</div><div class="line">&#123;</div><div class="line">    unsigned char buffer[BUF_LEN];</div><div class="line">    strcpy((char*)buffer,(char*)data);//溢出点</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个函数没有做什么有“意义”的事情（这里主要是为了简化问题），但是它是一个典型的栈溢出代码。在使用不安全的strcpy库函数时，系统会盲目地将data的全部数据拷贝到buffer指向的内存区域。buffer的长度是有限的，一旦data的数据长度超过BUF_LEN，便会产生缓冲区溢出。</p>
+<p><img src="http://images.cnitblog.com/blog/405877/201308/10184630-282e829d31cf4221beb7c2ed327f9993.jpg" alt="缓冲区溢出示例"></p>
+<p>由于栈是低地址方向增长的，因此局部数组buffer的指针在缓冲区的下方。当把data的数据拷贝到buffer内时，超过缓冲区区域的高地址部分数据会“淹没”原本的其他栈帧数据，根据淹没数据的内容不同，可能会有产生以下情况：</p>
+<ol>
+<li>淹没了其他的局部变量。如果被淹没的局部变量是条件变量，那么可能会改变函数原本的执行流程。这种方式可以用于破解简单的软件验证。</li>
+<li>淹没了ebp的值。修改了函数执行结束后要恢复的栈指针，将会导致栈帧失去平衡。</li>
+<li>淹没了返回地址。这是栈溢出原理的核心所在，通过淹没的方式修改函数的返回地址，使程序代码执行“意外”的流程！</li>
+<li>淹没参数变量。修改函数的参数变量也可能改变当前函数的执行结果和流程。</li>
+<li>淹没上级函数的栈帧，情况与上述4点类似，只不过影响的是上级函数的执行。当然这里的前提是保证函数能正常返回，即函数地址不能被随意修改（这可能很麻烦！）。</li>
+</ol>
+<p>如果在data本身的数据内就保存了一系列的指令的二进制代码，一旦栈溢出修改了函数的返回地址，并将该地址指向这段二进制代码的其实位置，那么就完成了基本的溢出攻击行为。</p>
+<hr>
+<h5 id="5-什么是死锁，死锁出现的四个必要条件是什么？参考"><a href="#5-什么是死锁，死锁出现的四个必要条件是什么？参考" class="headerlink" title="5. 什么是死锁，死锁出现的四个必要条件是什么？参考"></a>5. 什么是死锁，死锁出现的四个必要条件是什么？<a href="http://www.cnblogs.com/Jessy/p/3540724.html" target="_blank" rel="external">参考</a></h5><h6 id="什么是死锁？"><a href="#什么是死锁？" class="headerlink" title="什么是死锁？"></a>什么是死锁？</h6><p>死锁是指是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。（解释来自百度百科）</p>
+<h6 id="造成死锁的四个必要条件都是啥？"><a href="#造成死锁的四个必要条件都是啥？" class="headerlink" title="造成死锁的四个必要条件都是啥？"></a>造成死锁的四个必要条件都是啥？</h6><ol>
+<li>互斥条件。一个资源每次只能被一个进程使用。</li>
+<li>请求与保持。一个进程因为请求其他资源请求不到，并且对已获得的资源保持不放。</li>
+<li>非抢占。进程已经占有的资源，在执行完主动释放之前，不能被抢占或者剥夺。</li>
+<li>循环等待。若干的进程因为资源分配形成了一种头尾相接的循环等待的资源的关系。<h6 id="锁的分类"><a href="#锁的分类" class="headerlink" title="锁的分类"></a>锁的分类</h6>这一部分可以参考给的参考链接，个人觉得数据库中的死锁不是我想在这里讨论的内容。等以后或专门写篇博文讨论</li>
+</ol>
+<hr>
+<h5 id="6-进程有哪几种状态？这几种状态之间互相转换的条件是什么？-参考1"><a href="#6-进程有哪几种状态？这几种状态之间互相转换的条件是什么？-参考1" class="headerlink" title="6. 进程有哪几种状态？这几种状态之间互相转换的条件是什么？ 参考1"></a>6. 进程有哪几种状态？这几种状态之间互相转换的条件是什么？ <a href="http://blog.chinaunix.net/uid-23883288-id-3028968.html" target="_blank" rel="external">参考1</a></h5><p><a href="http://www.jianshu.com/p/ac9ce2afd126" target="_blank" rel="external">参考2</a><br>进程有三种基本的状态，分别是</p>
+<ol>
+<li>就绪状态(ready)：当进程已经分配到除CPU以外的所有的必要资源，只要获得处理机就能立即执行，这时的状态成为就绪状态。在一个系统中处于就绪状态的进程可能有很多个，通常将它们排成一个队列，成为就绪队列。</li>
+<li>执行状态：这种状态下，进程已经获得了CPU，其程序正在执行。在单处理机系统中，只有一个进程处于执行状态。在多处理机系统中，可能有多个进程处于执行状态。</li>
+<li>阻塞状态：正在执行的进程由于发生某事件而暂时无法继续执行时，便放弃处理机而处于暂停状态，亦即进程的执行受到阻塞，把这种暂停状态称为阻塞状态，有时也称为等待状态或封锁状态。致使进程阻塞的典型事件有：请求I/O，申请缓冲空间等。通常将这种处于阻塞状态的进程也排成一个队列。有的系统则根据阻塞原因的不同而把处于阻塞状态的进程排成多个队列。</li>
+</ol>
+<h6 id="那三种状态之间是怎样转换的呢？"><a href="#那三种状态之间是怎样转换的呢？" class="headerlink" title="那三种状态之间是怎样转换的呢？"></a>那三种状态之间是怎样转换的呢？</h6><p>先看一张图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1485056-efde09b1217348ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="进程状态之间的转换"></p>
+<p>一个进程在运行期间，不断地从一种状态转换到另一种状态，它可以多次处于就绪状态和执行状态，也可以多次处于阻塞状态。图3_4描述了进程的三种基本状态及其转换。</p>
+<ol>
+<li><p>就绪→执行</p>
+<p>处于就绪状态的进程，当进程调度程序为之分配了处理机后，该进程便由就绪状态转变 成执行状态。</p>
+</li>
+<li><p>执行→就绪</p>
+<p>处于执行状态的进程在其执行过程中，因分配给它的一个时间片已用完而不得不让出处理机，于是进程从执行状态转变成就绪状态。</p>
+</li>
+<li><p>执行→阻塞</p>
+<p>正在执行的进程因等待某种事件发生而无法继续执行时，便从执行状态变成阻塞状态。</p>
+</li>
+<li><p>阻塞→就绪</p>
+<p>处于阻塞状态的进程，若其等待的事件已经发生，于是进程由阻塞状态转变为就绪状态。</p>
+<p>总之不会发生直接从就绪状态到阻塞状态，也不会发生从直接从阻塞状态到执行状态。</p>
+</li>
+</ol>
+<h6 id="挂起状态："><a href="#挂起状态：" class="headerlink" title="挂起状态："></a>挂起状态：</h6><p>在不少系统中进程只有上述三种状态，但在另一些系统中，又增加了一些新状态，最重要的是挂起状态。引入挂起状态的原因有：</p>
+<ul>
+<li><p>(1) 终端用户的请求。当终端用户在自己的程序运行期间发现有可疑问题时，希望暂时使自己的程序静止下来。亦即，使正在执行的进程暂停执行；若此时用户进程正处于就绪状态而未执行，则该进程暂不接受调度，以便用户研究其执行情况或对程序进行修改。我们把这种静止状态称为挂起状态。</p>
+</li>
+<li><p>(2) 父进程请求。有时父进程希望挂起自己的某个子进程，以便考查和修改该子进程，或者协调各子进程间的活动。</p>
+</li>
+<li><p>(3) 负荷调节的需要。当实时系统中的工作负荷较重，已可能影响到对实时任务的控制时，可由系统把一些不重要的进程挂起，以保证系统能正常运行。</p>
+</li>
+<li><p>(4) 操作系统的需要。操作系统有时希望挂起某些进程，以便检查运行中的资源使用情况或进行记账。</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1485056-999cd919ddf7beac.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="加入挂起状态之后的状态转换图"></p>
+<h6 id="延伸：如何创建进程和终止进程"><a href="#延伸：如何创建进程和终止进程" class="headerlink" title="延伸：如何创建进程和终止进程"></a>延伸：如何创建进程和终止进程</h6><ol>
+<li>首先要为一个新进程创建PCB(进程管理块),并且填写必要的管理信息。</li>
+<li>把该进程转入就绪状态并插入就绪队列之中。当一个新进程被创建时，系统已为其分配了PCB，填写了进程标识等信息，但由于该进程所必需的资源或其它信息，如主存资源尚未分配等，一般而言，此时的进程已拥有了自己PCB，但进程自身还未进入主存，即创建工作尚未完成，进程还不能被调度运行，其所处的状态就是创建状态。 引入创建状态，是为了保证进程的调度必须在创建工作完成后进行，以确保对进程控制块操作的完整性。同时，创建状态的引入，也增加了管理的灵活性，操作系统可以根据系统性能或主存容量的限制，推迟创建状态进程的提交。对于处于创建状态的进程，获得了其所必需的资源，以及对其PCB初始化工作完成后，进程状态便可由创建状态转入就绪状态。</li>
+</ol>
+<p>终止进程：</p>
+<p>等待操作系统进行善后处理，然后将其PCB清零，并将PCB空间返还系统。当一个进程到达了自然结束点，或是出现了无法克服的错误，或是被操作系统所终结，或是被其他有终止权的进程所终结，它将进入终止状态。进入终止态的进程以后不能再执行，但在操作系统中依然保留一个记录，其中保存状态码和一些计时统计数据，供其它进程收集。一旦其它进程完成了对终止状态进程的信息提取之后，操作系统将删除该进程。</p>
+<p>增加了创建状态和终止状态后，进程的三种基本状态及转换图衍变为五种状态及转换关系图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1485056-9d17cf698a3f0dbc.png?imageMogr2/auto-orient/strip" alt="进程状态之间的转化"></p>
+<hr>
+<ol>
+<li>分段和分页有什么区别？各自的工作原理？ <a href="http://blog.csdn.net/wangrunmin/article/details/7967293" target="_blank" rel="external">参考</a></li>
+</ol>
+<hr>
+<h5 id="8-操作系统中的常见的调度策略有哪些？-参考"><a href="#8-操作系统中的常见的调度策略有哪些？-参考" class="headerlink" title="8. 操作系统中的常见的调度策略有哪些？ 参考"></a>8. 操作系统中的常见的调度策略有哪些？ <a href="http://blog.csdn.net/luyafei_89430/article/details/12971171" target="_blank" rel="external">参考</a></h5><ol>
+<li>先来先服务调度算法。</li>
+<li>段作业（进程）优先算法。</li>
+<li>优先级调度算法，包括抢占式的和非抢占式的。</li>
+<li>高响应比优先调度算法。</li>
+<li>时间片轮转法，也叫时间片轮询。</li>
+<li>多级反馈队列调度算法。</li>
+</ol>
+<hr>
+<h5 id="9-死锁的解决办法。很大的一块，从产生死锁的四个条件入手，其中还有一些很经典的算法，比如银行家算法，哲学家算法等等。参考"><a href="#9-死锁的解决办法。很大的一块，从产生死锁的四个条件入手，其中还有一些很经典的算法，比如银行家算法，哲学家算法等等。参考" class="headerlink" title="9. 死锁的解决办法。很大的一块，从产生死锁的四个条件入手，其中还有一些很经典的算法，比如银行家算法，哲学家算法等等。参考"></a>9. 死锁的解决办法。很大的一块，从产生死锁的四个条件入手，其中还有一些很经典的算法，比如银行家算法，哲学家算法等等。<a href="http://blog.csdn.net/bxyill/article/details/8237339" target="_blank" rel="external">参考</a></h5><p>从造成死锁的四个条件入手，只要破坏了其中的一个，死锁就不会形成。</p>
+<ol>
+<li>预防死锁。</li>
+</ol>
+<ul>
+<li>资源一次性分配：（破坏请求和保持条件）</li>
+<li>可剥夺资源：即当某进程新的资源未满足时，释放已占有的资源（破坏不可剥夺条件）</li>
+<li>资源有序分配法：系统给每类资源赋予一个编号，每一个进程按编号递增的顺序请求资源，释放则相反（破坏循环等待条件）</li>
+</ul>
+<ol>
+<li>检测死锁：<br>首先为每个进程和每个资源指定一个唯一的号码；然后建立资源分配表和进程等待表。</li>
+<li><p>接触死锁。</p>
+<p>当发现有进程死锁后，便应立即把它从死锁状态中解脱出来，常采用的方法有：</p>
+</li>
+</ol>
+<ul>
+<li>剥夺资源：从其它进程剥夺足够数量的资源给死锁进程，以解除死锁状态；</li>
+<li>撤消进程：可以直接撤消死锁进程或撤消代价最小的进程，直至有足够的资源可用，死锁状态.消除为止；所谓代价是指优先级、运行代价、进程的重要性和价值等。</li>
+</ul>
+<h6 id="算法推荐-之银行家算法"><a href="#算法推荐-之银行家算法" class="headerlink" title="算法推荐 之银行家算法"></a>算法推荐 之银行家算法</h6><p>　　在避免死锁的方法中，允许进程动态地申请资源，但系统在进行资源分配之前，应先计算此次资源分配的安全性。若此次分配不会导致系统进入不安全状态，则将资源分配给进程；否则，令进程等待。</p>
+<p>　 虽然并非所有的不安全状态都必然会转为死锁状态，但当系统进入不安全状态后，便有可能进而进入死锁状态；反之，只要系统处于安全状态，系统便可避免进入死锁状态。因此，避免死锁的实质在于：系统在进行资源分配时，如何使系统不进入不安全状态。</p>
+<p>死锁状态一定是不安全的状态，但是不安全状态不一定是死锁状态。　 </p>
+<p>银行家算法中的数据结构：</p>
+<ul>
+<li>　　(1) 可利用资源向量Available。这是一个含有m个元素的数组，其中的每一个元素代表一类可利用的资源数目，其初始值是系统中所配置的该类全部可用资源的数目，其数值随该类资源的分配和回收而动态地改变。如果Available[j]=K，则表示系统中现有Rj类资源K个。</li>
+<li>　　(2) 最大需求矩阵Max。这是一个n×m的矩阵，它定义了系统中n个进程中的每一个进程对m类资源的最大需求。如果Max[i,j]=K，则表示进程i需要Rj类资源的最大数目为K。</li>
+<li>　 (3) 分配矩阵Allocation。这也是一个n×m的矩阵，它定义了系统中每一类资源当前已分配给每一进程的资源数。如果Allocation[i,j]=K，则表示进程i当前已分得R j类资源的数目为K。</li>
+<li>　　(4) 需求矩阵Need。这也是一个n×m的矩阵，用以表示每一个进程尚需的各类资源数。如果Need[i,j]=K，则表示进程i还需要R j类资源K个，方能完成其任务。</li>
+</ul>
+<p>上面的三个矩阵的关系：==Need[i, j]=Max[i, j]-Allocation[i, j]==</p>
+<p>银行家算法：</p>
+<p>　　设Request i是进程Pi的请求向量，如果Request i[j]=K，表示进程P i需要K个R j类型的资源。当P i发出资源请求后，系统按下述步骤进行检查：</p>
+<ol>
+<li>如果Request i[j] ≤ Need[i,j]，便转向步骤(2)；否则认为出错，因为它所需要的资源数已超过它所宣布的最大值。</li>
+<li>如果Request i[j] ≤ Available[j]，便转向步骤(3)；否则，表示尚无足够资源，Pi须等待。</li>
+<li>系统试探着把资源分配给进程P i，并修改下面数据结构中的数值：</li>
+</ol>
+<ul>
+<li>Available[j]:= Available[j]-Request i[j]；</li>
+<li>Allocation[i,j]:= Allocation[i,j]+Request i[j]；</li>
+<li>Need[i,j]:= Need[i,j]-Request i[j]；</li>
+</ul>
+<ol>
+<li>系统执行==安全性算法==，检查此次资源分配后系统是否处于安全状态。若安全，才正式将资源分配给进程Pi，以完成本次分配；否则，将本次的试探分配作废，恢复原来的资源分配状态，让进程Pi等待。 </li>
+</ol>
+<p>安全性算法：</p>
+<ol>
+<li>　 设置两个向量：</li>
+</ol>
+<ul>
+<li>　　① 工作向量Work，它表示系统可提供给进程继续运行所需的各类资源数目，它含有m个元素，在执行安全算法开始时，Work:=Available。</li>
+<li>　　② Finish，它表示系统是否有足够的资源分配给进程，使之运行完成。开始时先做Finish[i]:=false；当有足够资源分配给进程时，再令Finish[i]:=true。</li>
+</ul>
+<ol>
+<li>　 从进程集合中找到一个能满足下述条件的进程：</li>
+</ol>
+<ul>
+<li>　　① Finish[i]=false；</li>
+<li>　　② Need[i,j]≤Work[j]；若找到，执行步骤(3)，否则，执行步骤(4)。</li>
+</ul>
+<ol>
+<li><p>　 当进程Pi获得资源后，可顺利执行，直至完成，并释放出分配给它的资源，故应执行：<br>Work[j]:= Work[j]+Allocation[i,j]；<br>Finish[i]:=true；<br>go to step （2）；</p>
+</li>
+<li><p>　 如果所有进程的Finish[i]=true都满足，则表示系统处于安全状态；否则，系统处于不安全状态。</p>
+</li>
+</ol>
+<p>下面是一个银行家算法的实例。</p>
+<p>==晚上回去整理==</p>
+<p>算法推荐 之 哲学家算法</p>
+<p>问题描述：一圆桌前坐着5位哲学家，两个人中间有一只筷子，桌子中央有面条。哲学家思考问题，当饿了的时候拿起左右两只筷子吃饭，必须拿到两只筷子才能吃饭。上述问题会产生死锁的情况，当5个哲学家都拿起自己右手边的筷子，准备拿左手边的筷子时产生死锁现象。</p>
+<p>有三种解决办法：</p>
+<ul>
+<li><p>　　1、添加一个服务生，只有当经过服务生同意之后才能拿筷子，服务生负责避免死锁发生。</p>
+</li>
+<li><p>　　2、每个哲学家必须确定自己左右手的筷子都可用的时候，才能同时拿起两只筷子进餐，吃完之后同时放下两只筷子。</p>
+</li>
+<li><p>　　3、规定每个哲学家拿筷子时必须拿序号小的那只，这样最后一位未拿到筷子的哲学家只剩下序号大的那只筷子，不能拿起，剩下的这只筷子就可以被其他哲学家使用，避免了死锁。这种情况不能很好的利用资源。　</p>
+</li>
+</ul>
+<p>Python中对于并发编程，为了避免出现一些潜在的危险，给出的应对方式：<br><a href="http://python3-cookbook.readthedocs.io/zh_CN/latest/chapters/p12_concurrency.html" target="_blank" rel="external">http://python3-cookbook.readthedocs.io/zh_CN/latest/chapters/p12_concurrency.html</a></p>
+<hr>
+<ol>
+<li>Windows下的内存是如何管理的？linux下内存是如何管理的？参考链接： <a href="http://blog.csdn.net/youngchang06hpu/article/details/8009947" target="_blank" rel="external">http://blog.csdn.net/youngchang06hpu/article/details/8009947</a></li>
+<li>描述实时系统的基本特性。</li>
+<li>中断和轮询的特点。</li>
+<li>什么是临界区？如何解决冲突？</li>
+<li>Linux文件属性有哪些？（共十位）</li>
+<li>什么是中断？中断时CPU做什么工作？</li>
+<li>你知道操作系统的内容分为几块吗？什么叫做虚拟内存？他和主存的关系如何？内存管理属于操作系统的内容吗？</li>
+<li>线程是否具有相同的堆栈？dll是否有独立的堆栈？（DLL是什么呢？是动态链接库的意思，参考百度百科中的<a href="http://baike.baidu.com/link?url=j3dcc4RKhEV0oHlj3hIE6HZo6NHKSoFd1h5y6si8BkbCjjYInBK_h8pPJGP0X3MPi_9R3wTi7U2kVrAKeyIaRSO8wMb0gg5QuiyVvPhVNx2Ux0O2mF0f1cc_ev4J8mE8YdizmONHu5dOvIHYYn3jra/" target="_blank" rel="external">动态链接库</a>，但是它是否有独立的堆栈呢？）</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/概念/" rel="tag"># 概念</a>
+          
+            <a href="/tags/死锁/" rel="tag"># 死锁</a>
+          
+            <a href="/tags/进程/" rel="tag"># 进程</a>
+          
+            <a href="/tags/线程/" rel="tag"># 线程</a>
+          
+            <a href="/tags/临界区/" rel="tag"># 临界区</a>
+          
+            <a href="/tags/互斥量/" rel="tag"># 互斥量</a>
+          
+            <a href="/tags/信号量/" rel="tag"># 信号量</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/笔记本用HDMI线和显示器连接起来以后没声音了怎么办/" rel="next" title="笔记本用HDMI线和显示器连接起来以后没声音了怎么办">
+                <i class="fa fa-chevron-left"></i> 笔记本用HDMI线和显示器连接起来以后没声音了怎么办
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-请分别简单说一说进程和线程以及它们的区别。参考"><span class="nav-number">1.</span> <span class="nav-text">1. 请分别简单说一说进程和线程以及它们的区别。参考</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-线程同步的方式方式主要有哪些？参考"><span class="nav-number">2.</span> <span class="nav-text">2. 线程同步的方式方式主要有哪些？参考</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是线程的互斥？"><span class="nav-number">2.1.</span> <span class="nav-text">什么是线程的互斥？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是线程的同步？"><span class="nav-number">2.2.</span> <span class="nav-text">什么是线程的同步？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是信号量？"><span class="nav-number">2.3.</span> <span class="nav-text">什么是信号量？</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-进程之间的通信方式主要有哪些？参考"><span class="nav-number">3.</span> <span class="nav-text">3. 进程之间的通信方式主要有哪些？参考</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是进程间的互斥？"><span class="nav-number">3.1.</span> <span class="nav-text">什么是进程间的互斥？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是进程间的同步？"><span class="nav-number">3.2.</span> <span class="nav-text">什么是进程间的同步？</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-什么是缓冲区溢出，可能是因为什么造成的，有什么危害？参考"><span class="nav-number">4.</span> <span class="nav-text">4. 什么是缓冲区溢出，可能是因为什么造成的，有什么危害？参考</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么会出现缓冲区溢出？"><span class="nav-number">4.1.</span> <span class="nav-text">为什么会出现缓冲区溢出？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#栈溢出攻击方式"><span class="nav-number">4.2.</span> <span class="nav-text">栈溢出攻击方式</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-什么是死锁，死锁出现的四个必要条件是什么？参考"><span class="nav-number">5.</span> <span class="nav-text">5. 什么是死锁，死锁出现的四个必要条件是什么？参考</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是死锁？"><span class="nav-number">5.1.</span> <span class="nav-text">什么是死锁？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#造成死锁的四个必要条件都是啥？"><span class="nav-number">5.2.</span> <span class="nav-text">造成死锁的四个必要条件都是啥？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#锁的分类"><span class="nav-number">5.3.</span> <span class="nav-text">锁的分类</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-进程有哪几种状态？这几种状态之间互相转换的条件是什么？-参考1"><span class="nav-number">6.</span> <span class="nav-text">6. 进程有哪几种状态？这几种状态之间互相转换的条件是什么？ 参考1</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#那三种状态之间是怎样转换的呢？"><span class="nav-number">6.1.</span> <span class="nav-text">那三种状态之间是怎样转换的呢？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#挂起状态："><span class="nav-number">6.2.</span> <span class="nav-text">挂起状态：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#延伸：如何创建进程和终止进程"><span class="nav-number">6.3.</span> <span class="nav-text">延伸：如何创建进程和终止进程</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-操作系统中的常见的调度策略有哪些？-参考"><span class="nav-number">7.</span> <span class="nav-text">8. 操作系统中的常见的调度策略有哪些？ 参考</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-死锁的解决办法。很大的一块，从产生死锁的四个条件入手，其中还有一些很经典的算法，比如银行家算法，哲学家算法等等。参考"><span class="nav-number">8.</span> <span class="nav-text">9. 死锁的解决办法。很大的一块，从产生死锁的四个条件入手，其中还有一些很经典的算法，比如银行家算法，哲学家算法等等。参考</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#算法推荐-之银行家算法"><span class="nav-number">8.1.</span> <span class="nav-text">算法推荐 之银行家算法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>
