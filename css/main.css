@@ -1684,7 +1684,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #494;
+  background: #d008d7;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2530,4 +2530,8 @@ embed {
 }
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
+}
+body {
+  background: url("/images/cuiniao.jpg");
+  background-attachment: fixed;
 }
