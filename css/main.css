@@ -957,7 +957,7 @@ pre .javascript .function {
   bottom: 19px;
 }
 .header {
-  background: url("/images/lantian.jpg");
+  background: url("/images/wusong.jpg");
 }
 .header-inner {
   position: relative;
@@ -1684,7 +1684,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6937cf;
+  background: #ffd1f1;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2532,6 +2532,6 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("/images/lantian.jpg");
+  background: url("/images/wusong.jpg");
   background-attachment: fixed;
 }
