@@ -957,7 +957,7 @@ pre .javascript .function {
   bottom: 19px;
 }
 .header {
-  background: url("/images/wusong.jpg");
+  background: None;
 }
 .header-inner {
   position: relative;
@@ -1684,7 +1684,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #821130;
+  background: #5925b9;
 }
 .links-of-blogroll {
   font-size: 13px;
