@@ -1684,7 +1684,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2a8ef4;
+  background: #162995;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2532,7 +2532,7 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("/images/xuanzhuan.jpg");
+  background: none;
   background-attachment: fixed;
   opacity: 2;
   font-weight: 900;
