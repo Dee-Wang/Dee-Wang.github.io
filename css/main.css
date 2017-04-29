@@ -1684,7 +1684,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f0f23c;
+  background: #e4ffcc;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2532,7 +2532,6 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("/images/与鹤共舞.jpg");
   background-attachment: fixed;
   background-size: 100% 100%;
   -moz-background-size: 100% 100%;
