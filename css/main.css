@@ -305,7 +305,7 @@ hr {
 }
 blockquote {
   padding: 0 15px;
-  color: #666;
+  color: #00a;
   border-left: 4px solid #ddd;
 }
 blockquote cite::before {
@@ -1266,7 +1266,7 @@ pre .javascript .function {
   transition-property: background;
 }
 .posts-collapse .post-header:hover {
-  border-bottom-color: #666;
+  border-bottom-color: #00a;
 }
 .posts-collapse .post-header:hover::before {
   background: #222;
@@ -1291,7 +1291,7 @@ pre .javascript .function {
   opacity: 0.6;
 }
 .posts-collapse .post-title a {
-  color: #666;
+  color: #00a;
   border-bottom: none;
 }
 .page-home .post-type-quote .post-header,
@@ -1314,7 +1314,7 @@ pre .javascript .function {
 .posts-expand .post-title-link {
   display: inline-block;
   position: relative;
-  color: #555;
+  color: #00a;
   border-bottom: none;
   line-height: 1.2;
   vertical-align: top;
@@ -1684,7 +1684,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5cff6f;
+  background: #0ef2ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1737,7 +1737,7 @@ pre .javascript .function {
 }
 .post-toc-empty {
   font-size: 14px;
-  color: #666;
+  color: #00a;
 }
 .post-toc-wrap {
   overflow: hidden;
@@ -2532,7 +2532,7 @@ embed {
   display: inline-block;
 }
 body {
-  background: none;
+  background: url("/images/与鹤共舞.jpg");
   background-attachment: fixed;
   opacity: 2;
   font-weight: 900;
