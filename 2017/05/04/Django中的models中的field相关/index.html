@@ -1,0 +1,920 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="models,Field," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="参考链接：http://www.cnblogs.com/MnCu8261/p/5859941.html
+本文参考自：django官方文档models/field
+在model中添加字段的格式一般为：  field_name = field_type(**field_options)
+一  field options(所有字段共用)
+null   默认为False，True则表示可以为null。（空">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django中的models中的field相关">
+<meta property="og:url" content="http://yoursite.com/2017/05/04/Django中的models中的field相关/index.html">
+<meta property="og:site_name" content="Coding Fun">
+<meta property="og:description" content="参考链接：http://www.cnblogs.com/MnCu8261/p/5859941.html
+本文参考自：django官方文档models/field
+在model中添加字段的格式一般为：  field_name = field_type(**field_options)
+一  field options(所有字段共用)
+null   默认为False，True则表示可以为null。（空">
+<meta property="og:updated_time" content="2017-05-04T14:54:12.039Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django中的models中的field相关">
+<meta name="twitter:description" content="参考链接：http://www.cnblogs.com/MnCu8261/p/5859941.html
+本文参考自：django官方文档models/field
+在model中添加字段的格式一般为：  field_name = field_type(**field_options)
+一  field options(所有字段共用)
+null   默认为False，True则表示可以为null。（空">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/04/Django中的models中的field相关/"/>
+
+
+
+
+
+  <title> Django中的models中的field相关 | Coding Fun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coding Fun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            围观我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/04/Django中的models中的field相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django中的models中的field相关
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发布于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-04T22:54:44+08:00">
+                2017-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类：</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考链接：<a href="http://www.cnblogs.com/MnCu8261/p/5859941.html" target="_blank" rel="external">http://www.cnblogs.com/MnCu8261/p/5859941.html</a></p>
+<p>本文参考自：<a href="https://docs.djangoproject.com/en/1.10/ref/models/fields/" target="_blank" rel="external">django官方文档models/field</a></p>
+<p>在model中添加字段的格式一般为：  field_name = field_type(**field_options)</p>
+<h3 id="一-field-options-所有字段共用"><a href="#一-field-options-所有字段共用" class="headerlink" title="一  field options(所有字段共用)"></a>一  field options(所有字段共用)</h3><ol>
+<li>null   默认为False，True则表示可以为null。（空字符串在数据库中可能被存储为’’）</li>
+<li>blank  默认为False，True表示可以为空。</li>
+<li>choice  可选的，限制了该选项的字段值必须是所指定的choice中的一个。</li>
+</ol>
+<p>代码例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">from django.db import models</div><div class="line"></div><div class="line">class Student(models.Model):</div><div class="line">    FRESHMAN = &apos;FR&apos;</div><div class="line">    SOPHOMORE = &apos;SO&apos;</div><div class="line">    JUNIOR = &apos;JR&apos;</div><div class="line">    SENIOR = &apos;SR&apos;</div><div class="line">    YEAR_IN_SCHOOL_CHOICES = (</div><div class="line">        (FRESHMAN, &apos;Freshman&apos;),      #第一个参数是真正的model参数，#第二个参数则是方便人们理解阅读</div><div class="line">        (SOPHOMORE, &apos;Sophomore&apos;),</div><div class="line">        (JUNIOR, &apos;Junior&apos;),</div><div class="line">        (SENIOR, &apos;Senior&apos;),</div><div class="line">    )</div><div class="line">    year_in_school = models.CharField(</div><div class="line">        max_length=2,</div><div class="line">        choices=YEAR_IN_SCHOOL_CHOICES,</div><div class="line">        default=FRESHMAN,</div><div class="line">    )</div><div class="line"></div><div class="line">    def is_upperclass(self):</div><div class="line">        return self.year_in_school in (self.JUNIOR, self.SENIOR)</div></pre></td></tr></table></figure>
+<p>4  db_column  数据库column名称。默认为本字段的名称。</p>
+<p>5  db_index  如果为True的话，该字段的数据库索引将会被创建</p>
+<p>6  default   设置该字段的默认值，可以是值也可以是对象。</p>
+<p>7  editable   默认为True，若为False，则不会在admin/界面显示</p>
+<p>8  primary_key  若设置为True，则表示将该字段设置为主键。一般情况下django默认会设置一个自增长的id主键。</p>
+<p>9  unique   若设置为True，该字段值不可重复</p>
+<h3 id="二-field"><a href="#二-field" class="headerlink" title="二  field"></a>二  field</h3><p>type(字段类型,细分的话可以分为普通字段以及关系字段)</p>
+<h4 id="1-普通字段"><a href="#1-普通字段" class="headerlink" title="1  普通字段"></a>1  普通字段</h4><h5 id="1-AutoField"><a href="#1-AutoField" class="headerlink" title="1  AutoField()"></a>1  AutoField()</h5><p>根据已有id自增长的整形唯一字段，一般每个model类不需设置该字段，因为django会为每个model自动设置。</p>
+<p>django默认会为每个model类添加如下语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">id = models.AutoField(primary_key=True)</div></pre></td></tr></table></figure></p>
+<p>当其他字段添加了primary_key属性，则不会创建id字段了</p>
+<p>每个model类仅能有一个主键</p>
+<h5 id="2-BooleanField"><a href="#2-BooleanField" class="headerlink" title="2  BooleanField()"></a>2  BooleanField()</h5><p>布尔型字段，默认的表单窗口部件是CheckBoxInput</p>
+<h5 id="3-CharField"><a href="#3-CharField" class="headerlink" title="3  CharField()"></a>3  CharField()</h5><p>字符型字段，默认的表单窗口部件是TextInput。该字段类型有一个必需参数：max_length  在数据库水平限定了字符串最大长度</p>
+<h5 id="4-DateField"><a href="#4-DateField" class="headerlink" title="4  DateField()"></a>4  DateField()</h5><p>日期字段，字段的值是python中datetime.date的实例，默认的表单窗口是TextInput有几个可选的参数：</p>
+<p>auto_now=True/False:当设置为True时，每当该对象使用save()时，该字段的值就会被更新。</p>
+<p>auto_now_add=True/False: 当设置为True时，该字段的值为该对象被创建时的日期</p>
+<h5 id="5-DateTimeField"><a href="#5-DateTimeField" class="headerlink" title="5  DateTimeField()"></a>5  DateTimeField()</h5><p>日期和时间字段，值为datetime.datetime实例。默认的表单窗口以及可选参数同上。</p>
+<h5 id="6-DecimalField"><a href="#6-DecimalField" class="headerlink" title="6  DecimalField()"></a>6  DecimalField()</h5><p>混合精度的小数型数字字段。有两个必需的参数：</p>
+<p>max_digits=ingt_number:限定数字的最大位数（包含小数位）</p>
+<p>decimal_places=int_number:存储数字的小数位</p>
+<p>#to store numbers up to 999 with a resolution of 2 decimal places, you’d use<br>models.DecimalField(…, max_digits=5, decimal_places=2)</p>
+<h5 id="7-EmailField-max-length-254-options"><a href="#7-EmailField-max-length-254-options" class="headerlink" title="7  EmailField(max_length=254, **options)"></a>7  EmailField(max_length=254, **options)</h5><p>邮件字段，使用EmailValidator进行验证</p>
+<h5 id="8-FileField-upload-to-None-max-length-100-options"><a href="#8-FileField-upload-to-None-max-length-100-options" class="headerlink" title="8  FileField(upload_to=None, max_length=100, **options)"></a>8  FileField(upload_to=None, max_length=100, **options)</h5><p>文件上传字段。</p>
+<p>==这个字段不能设置primary_key和unique选项.在数据库中存储类型是varchar，默认最大长度为100.==</p>
+<p>有两个可选参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">upload_to</div></pre></td></tr></table></figure></p>
+<p>如果使用默认的FileSystomStorage，文件将会存储到settings文件中配置的MEDIA_ROOT路径中。</p>
+<p>upload_to的值也可以为可调用对象,通过调用这个对象可以获得上传路径。</p>
+<p>instance=:定义了FileField的模型实例</p>
+<p>filename=’’: 文件名称。</p>
+<p> 实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class MyModel01(models.Model):</div><div class="line">    # file will be uploaded to MEDIA_ROOT/uploads</div><div class="line">    upload = models.FileField(upload_to=&apos;uploads/&apos;)</div><div class="line">    # or...</div><div class="line">    # file will be saved to MEDIA_ROOT/uploads/2015/01/30</div><div class="line">    upload = models.FileField(upload_to=&apos;uploads/%Y/%m/%d/&apos;)</div><div class="line"></div><div class="line">#upload_to=可调用对象</div><div class="line">def user_directory_path(instance, filename):</div><div class="line">    # file will be uploaded to MEDIA_ROOT/user_&lt;id&gt;/&lt;filename&gt;</div><div class="line">    return &apos;user_&#123;0&#125;/&#123;1&#125;&apos;.format(instance.user.id, filename)</div><div class="line"></div><div class="line">class MyModel02(models.Model):</div><div class="line">    upload = models.FileField(upload_to=user_directory_path)</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">storage</div></pre></td></tr></table></figure>
+<p>用来设定文件存储仓库　　　　</p>
+<h5 id="9-FilePathField-path-None-match-None-recursive-False-max-length-100-options"><a href="#9-FilePathField-path-None-match-None-recursive-False-max-length-100-options" class="headerlink" title="9  FilePathField(path=None, match=None, recursive=False, max_length=100, **options)"></a>9  FilePathField(path=None, match=None, recursive=False, max_length=100, **options)</h5><p>　　　　这个字段的值被限制在系统上某个目录中的所有文件名集合中。有三个参数</p>
+<ul>
+<li><p>path=’’:  该参数必需。上行所说的‘某个目录’的绝对路径。Example: “/home/images”.</p>
+</li>
+<li><p>match=’pattern’:  可选参数。格式是正则表达式。用来拣选符合匹配正则表达式的文件</p>
+</li>
+<li><p>recursive=True/False: 可选参数，默认为False。设定是否递归该目录下所有子目录的所有文件。　　　　</p>
+</li>
+<li><p>FilePathField(path=”/home/images”, match=”foo.*”, recursive=True)</p>
+</li>
+</ul>
+<h5 id="10-FloatField"><a href="#10-FloatField" class="headerlink" title="10  FloatField()"></a>10  FloatField()</h5><p>浮点字段，默认的表单窗口部件是NumberInput。和DecimalField经常混淆不清，</p>
+<p>FloatField在内部使用Python中的float对象，而DecimalField在内部使用Python中的decimal对象。</p>
+<h5 id="11-ImageField-upload-to-None-height-field-None-width-field-None-max-length-100-options"><a href="#11-ImageField-upload-to-None-height-field-None-width-field-None-max-length-100-options" class="headerlink" title="11  ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, **options)"></a>11  ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, **options)</h5><p>图像字段。继承了FileField的所有属性和方法。而且还能自动验证上传的对象是否为合法的图像。</p>
+<h5 id="12-IntegerField-整形字段。"><a href="#12-IntegerField-整形字段。" class="headerlink" title="12  IntegerField  整形字段。"></a>12  IntegerField  整形字段。</h5><h5 id="13-GenericIPAddressField-protocol-’both’-unpack-ipv4-False-options"><a href="#13-GenericIPAddressField-protocol-’both’-unpack-ipv4-False-options" class="headerlink" title="13  GenericIPAddressField(protocol=’both’, unpack_ipv4=False, **options)"></a>13  GenericIPAddressField(protocol=’both’, unpack_ipv4=False, **options)</h5><p>ip地址字段。</p>
+<p>protocol=’both/ipv4/ipv6’  默认为both</p>
+<p>unpack_ipv4   用处不大。</p>
+<h5 id="14-NullBooleanField"><a href="#14-NullBooleanField" class="headerlink" title="14  NullBooleanField"></a>14  NullBooleanField</h5><p>类似于BooleanField，不同的是其允许值为null</p>
+<h5 id="15-TextField"><a href="#15-TextField" class="headerlink" title="15  TextField()"></a>15  TextField()</h5><p>与CharField类似，但一般用来存储体积较大的文本。</p>
+<h5 id="16-TimeField-auto-now-False-auto-now-add-False-options"><a href="#16-TimeField-auto-now-False-auto-now-add-False-options" class="headerlink" title="16  TimeField(auto_now=False, auto_now_add=False, **options)"></a>16  TimeField(auto_now=False, auto_now_add=False, **options)</h5><p>时间字段，其值为datetime.time实例</p>
+<h5 id="17-URLField-max-length-200-options-URL字段"><a href="#17-URLField-max-length-200-options-URL字段" class="headerlink" title="17  URLField(max_length=200, **options)    URL字段"></a>17  URLField(max_length=200, **options)    URL字段</h5><p>类似于CharField的子类，默认最大长度为200.</p>
+<h5 id="18-UUIDField-options"><a href="#18-UUIDField-options" class="headerlink" title="18  UUIDField(**options)"></a>18  UUIDField(**options)</h5><p>通用唯一标识字段，当不想用django默认设置的AutoField字段时，可以用该字段代替。</p>
+<h4 id="2-关系字段"><a href="#2-关系字段" class="headerlink" title="2  关系字段"></a>2  关系字段</h4><p>关系字段：一对一，多对一，多对多</p>
+<ul>
+<li><p>一对一：  现在有很多一对一辅导班，也就是上课时，一个老师对应一个学生，一个学生对应一个老师</p>
+</li>
+<li><p>多对一：  很多偏远山区的学校可能整个学校只有一个老师，这一个老师对应多个学生，所有的学生对应这一个老师</p>
+</li>
+<li><p>多对多：  而我们则很幸福，学校里有许多老师，一个老师教习一科，学生有多个老师，老师有多个学生。</p>
+</li>
+</ul>
+<h5 id="1-ForeignKey-othermodel-on-delete-options"><a href="#1-ForeignKey-othermodel-on-delete-options" class="headerlink" title="1  ForeignKey(othermodel, on_delete, **options)"></a>1  ForeignKey(othermodel, on_delete, **options)</h5><p>多对一或者一对多或者外键字段。</p>
+<blockquote>
+<p>othermodel：  所关联的模型，’多’ model使用外键关联  ‘一’model。</p>
+<p>当所关联的模型为他自己时，使用’self’；</p>
+<p>当引用的模型为其他app中的模型时，要加上app名称标签:  ‘app_name.model_name’</p>
+<p>数据库会自动在外键字段上创建索引，可以使用de_index=False关闭该功能。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>on_delete： 当删除 “一”模型对象时，django会根据该参数的值对与该对象相关联的其他对象(也就是 ‘多’)进行操作。</p>
+<p>在django1.9以及之前的版本中，on_delete作为一个关键字参数。而在1.10则可以作为第二个参数</p>
+</blockquote>
+<hr>
+<p>models.CASCADE：   默认为models.CASCADE   级联删除。当删除’一’时，‘多’会被删除。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"># mysite项目下名为polls的app中的models.py</div><div class="line">class follower(models.Model):</div><div class="line">    name = models.CharField(max_length=200)</div><div class="line">    menpai = models.ForeignKey(&apos;menpai&apos;, on_delete=models.CASCADE)  #定义了models.CASCADE属性</div><div class="line"></div><div class="line">    def __str__(self):</div><div class="line">        return self.name</div><div class="line"></div><div class="line">class menpai(models.Model):</div><div class="line">    name = models.CharField(max_length=200)</div><div class="line"></div><div class="line">    def __str__(self):</div><div class="line">        return self.name</div><div class="line"></div><div class="line">#运行 python3 manager.py shell进入交互页面</div><div class="line">&gt;&gt;&gt; from polls.models import follower,menpai</div><div class="line">&gt;&gt;&gt; m1=menpai(name=&apos;huashanpai&apos;)   </div><div class="line">&gt;&gt;&gt; m1.save()</div><div class="line">&gt;&gt;&gt; m2=menpai(name=&apos;riyuejiao&apos;)</div><div class="line">&gt;&gt;&gt; m2.save()</div><div class="line">&gt;&gt;&gt; f1=follower(name=&apos;linghuchong&apos;,menpai=m1)</div><div class="line">&gt;&gt;&gt; f1.save()</div><div class="line">&gt;&gt;&gt; f2=follower(name=&apos;renwoxing&apos;,menpai=m2)</div><div class="line">&gt;&gt;&gt; f2.save()</div><div class="line">&gt;&gt;&gt; f1.menpai</div><div class="line">&lt;menpai: huashanpai&gt;</div><div class="line">&gt;&gt;&gt; m1.delete()</div><div class="line">(2, &#123;&apos;polls.menpai&apos;: 1, &apos;polls.follower&apos;: 1&#125;)   # 删除华山派时，将令狐冲也删除了</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>modles.PROTECT :    当删除一个具有外键关系的对象时，会引发一个异常，阻止删除该对象</p>
+</li>
+<li><p>models.SET_NULL:   设置删除对象所关联的外键字段为null。但字段的null属性必需为True</p>
+</li>
+<li><p>models.SET_DEFAULT :    设置删除对象所关联的外键字段为默认的值。</p>
+</li>
+<li><p>models.SET(value)  ：设置删除对象所关联的对象的外键字段为value,value也可以是一个可调用函数。</p>
+<p>models.SET()实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">from django.conf import settings</div><div class="line">from django.contrib.auth import get_user_model</div><div class="line">from django.db import models</div><div class="line"></div><div class="line">def get_sentinel_user():</div><div class="line">    return get_user_model().objects.get_or_create(username=&apos;deleted&apos;)[0]</div><div class="line"></div><div class="line">class MyModel(models.Model):</div><div class="line">    user = models.ForeignKey(</div><div class="line">        settings.AUTH_USER_MODEL,</div><div class="line">        on_delete=models.SET(get_sentinel_user),</div><div class="line">    )</div></pre></td></tr></table></figure>
+</li>
+<li><p>models.DO_NOTHING :  不做任何操作</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>limit_choices_to  限制该字段为选项形。格式：limit_choices_to={‘is_staff’: True}。值也可以为可调用函数。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">def limit_pub_date_choices():</div><div class="line">    return &#123;&apos;pub_date__lte&apos;: datetime.date.utcnow()&#125;</div><div class="line"></div><div class="line">limit_choices_to = limit_pub_date_choices</div></pre></td></tr></table></figure>
+<ul>
+<li><p>related_name  设置从关联对象到自身的关系的名称，若值为’+’  则关联对象与自身无逆向关系。详解请看官方文档。</p>
+</li>
+<li><p>to_field  设置所关联对象的关联字段。默认为关联对象的主键字段。</p>
+</li>
+</ul>
+<p>　　　　</p>
+<h5 id="2-ManyToManyField-othermodel-options"><a href="#2-ManyToManyField-othermodel-options" class="headerlink" title="2  ManyToManyField(othermodel, **options)"></a>2  ManyToManyField(othermodel, **options)</h5><p>多对多字段。</p>
+<ul>
+<li><p>othermodel:  所关联的model名称</p>
+</li>
+<li><p>db_table:  多对多关系会在两个模型所对应的表中间创建一个‘中间表’ ，将多对多转换为两个多对一，该选项为这个中间表设置名称。一般来说django会默认为中间表创建名称，但人们读起来可能搞不清楚究竟中间表关联到了哪里。</p>
+</li>
+<li><p>related_name:  同多对一字段中的related_name</p>
+</li>
+<li><p>limite_choices_to:  同….</p>
+</li>
+<li><p>symmetrical:  当多对多关联对象为自身时可能会用到的参数。默认为True。a,b同属于person模型，person中的friends字段与自身设置了多对多关系，当该值设置为True时，django假定关系为对称，即：a是b的朋友，那么b也是a的朋友。设置为False时，django会强制为逆向关系创建描述信息。</p>
+</li>
+<li><p>though:  不想让django自动创建中间表，手动创建中间表所对应的model，通过though指定对应的model名称。</p>
+</li>
+<li><p>though_field:  当though参数被使用时，该参数才会有效。指定使用哪些中间模型字段来确立两个模型的多对多关系。</p>
+</li>
+</ul>
+<h5 id="3-OneToOneField-othermodel-on-delete-parent-link-False-options"><a href="#3-OneToOneField-othermodel-on-delete-parent-link-False-options" class="headerlink" title="3  OneToOneField(othermodel, on_delete, parent_link=False, **options)"></a>3  OneToOneField(othermodel, on_delete, parent_link=False, **options)</h5><p>一对一字段。</p>
+<ul>
+<li><p>othermodel: …….</p>
+</li>
+<li><p>on_delete:……..</p>
+</li>
+<li><p>related_name:………..</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/models/" rel="tag"># models</a>
+          
+            <a href="/tags/Field/" rel="tag"># Field</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/29/Django中的使用render-渲染模板以及前后端的信息交互/" rel="next" title="Django中的使用render()渲染模板以及前后端的信息交互">
+                <i class="fa fa-chevron-left"></i> Django中的使用render()渲染模板以及前后端的信息交互
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章导览
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/chaiquan.jpg"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-field-options-所有字段共用"><span class="nav-number">1.</span> <span class="nav-text">一  field options(所有字段共用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-field"><span class="nav-number">2.</span> <span class="nav-text">二  field</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-普通字段"><span class="nav-number">2.1.</span> <span class="nav-text">1  普通字段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-AutoField"><span class="nav-number">2.1.1.</span> <span class="nav-text">1  AutoField()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-BooleanField"><span class="nav-number">2.1.2.</span> <span class="nav-text">2  BooleanField()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-CharField"><span class="nav-number">2.1.3.</span> <span class="nav-text">3  CharField()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-DateField"><span class="nav-number">2.1.4.</span> <span class="nav-text">4  DateField()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-DateTimeField"><span class="nav-number">2.1.5.</span> <span class="nav-text">5  DateTimeField()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-DecimalField"><span class="nav-number">2.1.6.</span> <span class="nav-text">6  DecimalField()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-EmailField-max-length-254-options"><span class="nav-number">2.1.7.</span> <span class="nav-text">7  EmailField(max_length=254, **options)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-FileField-upload-to-None-max-length-100-options"><span class="nav-number">2.1.8.</span> <span class="nav-text">8  FileField(upload_to=None, max_length=100, **options)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-FilePathField-path-None-match-None-recursive-False-max-length-100-options"><span class="nav-number">2.1.9.</span> <span class="nav-text">9  FilePathField(path=None, match=None, recursive=False, max_length=100, **options)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-FloatField"><span class="nav-number">2.1.10.</span> <span class="nav-text">10  FloatField()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-ImageField-upload-to-None-height-field-None-width-field-None-max-length-100-options"><span class="nav-number">2.1.11.</span> <span class="nav-text">11  ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, **options)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12-IntegerField-整形字段。"><span class="nav-number">2.1.12.</span> <span class="nav-text">12  IntegerField  整形字段。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13-GenericIPAddressField-protocol-’both’-unpack-ipv4-False-options"><span class="nav-number">2.1.13.</span> <span class="nav-text">13  GenericIPAddressField(protocol=’both’, unpack_ipv4=False, **options)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14-NullBooleanField"><span class="nav-number">2.1.14.</span> <span class="nav-text">14  NullBooleanField</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#15-TextField"><span class="nav-number">2.1.15.</span> <span class="nav-text">15  TextField()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#16-TimeField-auto-now-False-auto-now-add-False-options"><span class="nav-number">2.1.16.</span> <span class="nav-text">16  TimeField(auto_now=False, auto_now_add=False, **options)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#17-URLField-max-length-200-options-URL字段"><span class="nav-number">2.1.17.</span> <span class="nav-text">17  URLField(max_length=200, **options)    URL字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#18-UUIDField-options"><span class="nav-number">2.1.18.</span> <span class="nav-text">18  UUIDField(**options)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-关系字段"><span class="nav-number">2.2.</span> <span class="nav-text">2  关系字段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-ForeignKey-othermodel-on-delete-options"><span class="nav-number">2.2.1.</span> <span class="nav-text">1  ForeignKey(othermodel, on_delete, **options)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-ManyToManyField-othermodel-options"><span class="nav-number">2.2.2.</span> <span class="nav-text">2  ManyToManyField(othermodel, **options)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-OneToOneField-othermodel-on-delete-parent-link-False-options"><span class="nav-number">2.2.3.</span> <span class="nav-text">3  OneToOneField(othermodel, on_delete, parent_link=False, **options)</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>
