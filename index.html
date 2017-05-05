@@ -215,7 +215,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
@@ -225,7 +225,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -235,7 +235,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            了解我
+            About
           </a>
         </li>
       
@@ -245,7 +245,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            文章
+            Archives
           </a>
         </li>
       
@@ -255,7 +255,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -288,7 +288,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/04/独立完成一个在线网站记录之初识Django，配置静态文件，编写models/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/05/Django中的密码的加密和核对/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dee-Wang">
@@ -310,8 +310,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/04/独立完成一个在线网站记录之初识Django，配置静态文件，编写models/" itemprop="url">
-                  独立完成一个在线网站记录之初识Django，配置静态文件，编写models
+                <a class="post-title-link" href="/2017/05/05/Django中的密码的加密和核对/" itemprop="url">
+                  Django中的密码的加密和核对
                 </a>
               
             
@@ -325,10 +325,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-05-04T23:46:17+08:00">
-                2017-05-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-05T22:11:06+08:00">
+                2017-05-05
               </time>
             
 
@@ -346,7 +346,189 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          使用Django作为框架搭建一个web应用是很高效的一件事。
+现在我就在逐渐的熟悉这个框架，遇到了这样的问题：我们从前端获取的一些数据，例如密码都是明文，但是在数据库中存储的是对应的密文，当我们想注册或者修改密码的时候，怎样将密码等字符串转换成密文呢？当我们进行登录操作的时候，在前端表单中得到的也是明文，怎样将这些数据和后端的密文进行核对呢？
+Django提供了原生的对明文加密的模块：make_password和check_password,现在就详细地梳理下。
+先看看两个模块的源代码吧：
+make_password12345678910111213141516171819def make_p
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/05/Django中的密码的加密和核对/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/05/忘记密码的处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/05/忘记密码的处理/" itemprop="url">
+                  独立完成一个在线网站记录之忘记密码的处理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-05T22:11:06+08:00">
+                2017-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -399,9 +581,200 @@
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          用户忘记密码是一个比较复杂的功能，首先点击忘记密码需要跳转到一个界面，接下来就是提示已经发送了邮件，在邮件中带一个链接，直接跳转到设置新密码的界面，设置的密码符合条件之后，然后跳转到登录界面以使用户成功登录。
+目前已经将忘记密码的前端界面添加进了templates中，接下来添加忘记密码的视图函数。视图函数中首先对用户的登录名进行判断是否在数据库中存在，使用filter()如果没存在在数据库中，就返回一个错误。
+遇到一个坑，仿照注册的页面去做忘记密码的页面，在修改url，添加静态文件，添加一个忘记密码的表单，添加对应的视图函数之后，进入忘记密码的页面后验证码还是没有显示出来。错误就出在了在使用r
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/05/忘记密码的处理/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/04/独立完成一个在线网站记录之初识Django，配置静态文件，编写models/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/04/独立完成一个在线网站记录之初识Django，配置静态文件，编写models/" itemprop="url">
+                  独立完成一个在线网站记录之初识Django，配置静态文件，编写models
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-04T23:46:17+08:00">
+                2017-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/在线学习网/" itemprop="url" rel="index">
+                    <span itemprop="name">在线学习网</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/在线学习网/流水/" itemprop="url" rel="index">
+                    <span itemprop="name">流水</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
                   
                 </span>
               
@@ -441,8 +814,8 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/05/04/独立完成一个在线网站记录之初识Django，配置静态文件，编写models/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/05/04/独立完成一个在线网站记录之初识Django，配置静态文件，编写models/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -524,9 +897,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-05-04T22:54:44+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-04T22:54:44+08:00">
                 2017-05-04
               </time>
             
@@ -545,7 +918,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -587,9 +960,9 @@
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -628,8 +1001,8 @@ choice  可选的，限制了该选项的字段值必须是所指定的choice中
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/05/04/Django中的models中的field相关/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/05/04/Django中的models中的field相关/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -711,9 +1084,9 @@ choice  可选的，限制了该选项的字段值必须是所指定的choice中
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-04-29T14:00:08+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T14:00:08+08:00">
                 2017-04-29
               </time>
             
@@ -732,7 +1105,7 @@ choice  可选的，限制了该选项的字段值必须是所指定的choice中
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -774,9 +1147,9 @@ choice  可选的，限制了该选项的字段值必须是所指定的choice中
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -808,8 +1181,8 @@ choice  可选的，限制了该选项的字段值必须是所指定的choice中
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/29/Django中的使用render-渲染模板以及前后端的信息交互/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/04/29/Django中的使用render-渲染模板以及前后端的信息交互/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -891,9 +1264,9 @@ choice  可选的，限制了该选项的字段值必须是所指定的choice中
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-04-29T09:46:36+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-29T09:46:36+08:00">
                 2017-04-29
               </time>
             
@@ -912,7 +1285,7 @@ choice  可选的，限制了该选项的字段值必须是所指定的choice中
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -954,9 +1327,9 @@ choice  可选的，限制了该选项的字段值必须是所指定的choice中
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -991,8 +1364,8 @@ https://segmentfault.com/a/1190000007932293
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/29/CSRF攻击的原理及其预防/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/04/29/CSRF攻击的原理及其预防/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1074,9 +1447,9 @@ https://segmentfault.com/a/1190000007932293
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-27T23:44:08+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T23:44:08+08:00">
                 2017-03-27
               </time>
             
@@ -1095,7 +1468,7 @@ https://segmentfault.com/a/1190000007932293
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1137,9 +1510,9 @@ https://segmentfault.com/a/1190000007932293
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -1191,8 +1564,8 @@ BI
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/27/入门/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/03/27/入门/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1274,9 +1647,9 @@ BI
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-27T19:13:11+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T19:13:11+08:00">
                 2017-03-27
               </time>
             
@@ -1295,7 +1668,7 @@ BI
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1337,9 +1710,9 @@ BI
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -1374,8 +1747,8 @@ BI
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/27/常见的操作系统的面试问题/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/03/27/常见的操作系统的面试问题/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1457,9 +1830,9 @@ BI
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-27T19:07:16+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T19:07:16+08:00">
                 2017-03-27
               </time>
             
@@ -1478,7 +1851,7 @@ BI
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1531,9 +1904,9 @@ BI
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -1564,8 +1937,8 @@ BI
           
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/27/笔记本用HDMI线和显示器连接起来以后没声音了怎么办/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/03/27/笔记本用HDMI线和显示器连接起来以后没声音了怎么办/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1647,9 +2020,9 @@ BI
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-27T19:07:16+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T19:07:16+08:00">
                 2017-03-27
               </time>
             
@@ -1668,7 +2041,7 @@ BI
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1721,9 +2094,9 @@ BI
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -1757,371 +2130,8 @@ BI
           
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/27/如何将U盘启动盘恢复成原来的容量/#更多" rel="contents">
-              点我了解更多 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/解决django使用数据迁移的时候出现的乱码问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dee-Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coding Fun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/解决django使用数据迁移的时候出现的乱码问题/" itemprop="url">
-                  解决django使用数据迁移的时候出现的乱码问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发布于</span>
-              
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-27T18:38:15+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">归类</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/框架/" itemprop="url" rel="index">
-                    <span itemprop="name">框架</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/框架/Django/" itemprop="url" rel="index">
-                    <span itemprop="name">Django</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">统计文章的字数</span>
-                
-                <span title="统计文章的字数">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          使用Django框架编写一个博客网站，使用的mysql，使用”python3 mange.py migrate”进行数据迁移的时候出现了乱码，其实自己刚开始接触这个框架不是很清，上网搜也没得到解决方案。总结下来就是mysql在创建数据库的时候默认的字符集不是utf-8，所以一旦表里出现中文的话就会造成乱码，可以自己在创建数据库或者表的时候设定默认的字符集。昨天发现数据迁移的时候有乱码，自己也不知道乱码是啥意思，去网上搜也没搜到。今天问了同学才知道乱码是ascii码。
-昨天在网上搜了一些乱七八糟的解决办法，根本没用。
-今天知道那是ascii码之后，我在网上找了一段代码，是把十六进制的字符串转换成
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/27/解决django使用数据迁移的时候出现的乱码问题/#更多" rel="contents">
-              点我了解更多 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/春游/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dee-Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coding Fun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/春游/" itemprop="url">
-                  春游
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发布于</span>
-              
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-27T18:18:41+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">归类</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂记/" itemprop="url" rel="index">
-                    <span itemprop="name">杂记</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂记/游记/" itemprop="url" rel="index">
-                    <span itemprop="name">游记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">统计文章的字数</span>
-                
-                <span title="统计文章的字数">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          上周末天气大好，好长时间没看到这么晴朗的天气了。前段时间一直阴雨绵绵，我放下顾虑，一个人背上书包，装满粮食和水，坐上地铁去爬香山。废话不多说了，直接上图，虽然新手机没到，旧手机照相还是比较渣，但是这也丝毫不影响美感。
-天空相当的蓝，虽然爬上去不算是一件容易的事情，但是这天气和凉爽的春风让人心情很舒服。
-蓝天让人很舒服
-迎春花儿开
-山河天融合成了一体
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/27/春游/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/03/27/如何将U盘启动盘恢复成原来的容量/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -2206,8 +2216,8 @@ BI
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">文章</span>
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -2218,7 +2228,7 @@ BI
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
                 <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">分类</span>
+                <span class="site-state-item-name">categories</span>
               </a>
             </div>
           
@@ -2228,8 +2238,8 @@ BI
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">40</span>
-                <span class="site-state-item-name">标签</span>
+                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -2279,11 +2289,11 @@ BI
 
 
 <div class="powered-by">
-  感谢支持 <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主题 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>

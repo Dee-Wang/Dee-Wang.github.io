@@ -215,7 +215,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
@@ -225,7 +225,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -235,7 +235,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            了解我
+            About
           </a>
         </li>
       
@@ -245,7 +245,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            文章
+            Archives
           </a>
         </li>
       
@@ -255,7 +255,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -278,6 +278,369 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/解决django使用数据迁移的时候出现的乱码问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/27/解决django使用数据迁移的时候出现的乱码问题/" itemprop="url">
+                  解决django使用数据迁移的时候出现的乱码问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T18:38:15+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          使用Django框架编写一个博客网站，使用的mysql，使用”python3 mange.py migrate”进行数据迁移的时候出现了乱码，其实自己刚开始接触这个框架不是很清，上网搜也没得到解决方案。总结下来就是mysql在创建数据库的时候默认的字符集不是utf-8，所以一旦表里出现中文的话就会造成乱码，可以自己在创建数据库或者表的时候设定默认的字符集。昨天发现数据迁移的时候有乱码，自己也不知道乱码是啥意思，去网上搜也没搜到。今天问了同学才知道乱码是ascii码。
+昨天在网上搜了一些乱七八糟的解决办法，根本没用。
+今天知道那是ascii码之后，我在网上找了一段代码，是把十六进制的字符串转换成
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/27/解决django使用数据迁移的时候出现的乱码问题/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/春游/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/27/春游/" itemprop="url">
+                  春游
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T18:18:41+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂记/" itemprop="url" rel="index">
+                    <span itemprop="name">杂记</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂记/游记/" itemprop="url" rel="index">
+                    <span itemprop="name">游记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          上周末天气大好，好长时间没看到这么晴朗的天气了。前段时间一直阴雨绵绵，我放下顾虑，一个人背上书包，装满粮食和水，坐上地铁去爬香山。废话不多说了，直接上图，虽然新手机没到，旧手机照相还是比较渣，但是这也丝毫不影响美感。
+天空相当的蓝，虽然爬上去不算是一件容易的事情，但是这天气和凉爽的春风让人心情很舒服。
+蓝天让人很舒服
+迎春花儿开
+山河天融合成了一体
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/27/春游/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -325,9 +688,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-25T10:36:09+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T10:36:09+08:00">
                 2017-03-25
               </time>
             
@@ -346,7 +709,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -377,9 +740,9 @@
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -409,8 +772,8 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/25/栈/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/03/25/栈/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -492,9 +855,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-25T10:36:09+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T10:36:09+08:00">
                 2017-03-25
               </time>
             
@@ -513,7 +876,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -544,9 +907,9 @@
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -585,8 +948,8 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/25/使用二叉树之二叉排序树/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/03/25/使用二叉树之二叉排序树/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -668,9 +1031,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-25T10:35:35+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T10:35:35+08:00">
                 2017-03-25
               </time>
             
@@ -689,7 +1052,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -720,9 +1083,9 @@
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -753,8 +1116,8 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/25/Python数据结构之List/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/03/25/Python数据结构之List/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -836,9 +1199,9 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-25T10:33:22+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T10:33:22+08:00">
                 2017-03-25
               </time>
             
@@ -857,7 +1220,7 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -888,9 +1251,9 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -920,8 +1283,8 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/03/25/Tips：如何从用户那里得到一个整形数类型的列表/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1003,9 +1366,9 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-25T10:29:08+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T10:29:08+08:00">
                 2017-03-25
               </time>
             
@@ -1033,9 +1396,9 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -1066,8 +1429,8 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
           
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/25/测试/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/03/25/测试/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1149,9 +1512,9 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发布于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-03-19T10:53:47+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-19T10:53:47+08:00">
                 2017-03-19
               </time>
             
@@ -1170,7 +1533,7 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">归类</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1201,9 +1564,9 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">统计文章的字数</span>
+                  <span class="post-meta-item-text">Words count in article</span>
                 
-                <span title="统计文章的字数">
+                <span title="Words count in article">
                   
                 </span>
               
@@ -1246,8 +1609,8 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/19/二叉树/#更多" rel="contents">
-              点我了解更多 &raquo;
+            <a class="btn" href="/2017/03/19/二叉树/#more" rel="contents">
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1332,8 +1695,8 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">文章</span>
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -1344,7 +1707,7 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
                 <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">分类</span>
+                <span class="site-state-item-name">categories</span>
               </a>
             </div>
           
@@ -1354,8 +1717,8 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">40</span>
-                <span class="site-state-item-name">标签</span>
+                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1405,11 +1768,11 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
 
 
 <div class="powered-by">
-  感谢支持 <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主题 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>

@@ -1,0 +1,793 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="加密与解密," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="使用Django作为框架搭建一个web应用是很高效的一件事。
+现在我就在逐渐的熟悉这个框架，遇到了这样的问题：我们从前端获取的一些数据，例如密码都是明文，但是在数据库中存储的是对应的密文，当我们想注册或者修改密码的时候，怎样将密码等字符串转换成密文呢？当我们进行登录操作的时候，在前端表单中得到的也是明文，怎样将这些数据和后端的密文进行核对呢？
+Django提供了原生的对明文加密的模块：make_p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django中的密码的加密和核对">
+<meta property="og:url" content="http://yoursite.com/2017/05/05/Django中的密码的加密和核对/index.html">
+<meta property="og:site_name" content="Coding Fun">
+<meta property="og:description" content="使用Django作为框架搭建一个web应用是很高效的一件事。
+现在我就在逐渐的熟悉这个框架，遇到了这样的问题：我们从前端获取的一些数据，例如密码都是明文，但是在数据库中存储的是对应的密文，当我们想注册或者修改密码的时候，怎样将密码等字符串转换成密文呢？当我们进行登录操作的时候，在前端表单中得到的也是明文，怎样将这些数据和后端的密文进行核对呢？
+Django提供了原生的对明文加密的模块：make_p">
+<meta property="og:updated_time" content="2017-05-05T14:07:43.576Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django中的密码的加密和核对">
+<meta name="twitter:description" content="使用Django作为框架搭建一个web应用是很高效的一件事。
+现在我就在逐渐的熟悉这个框架，遇到了这样的问题：我们从前端获取的一些数据，例如密码都是明文，但是在数据库中存储的是对应的密文，当我们想注册或者修改密码的时候，怎样将密码等字符串转换成密文呢？当我们进行登录操作的时候，在前端表单中得到的也是明文，怎样将这些数据和后端的密文进行核对呢？
+Django提供了原生的对明文加密的模块：make_p">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/05/Django中的密码的加密和核对/"/>
+
+
+
+
+
+  <title> Django中的密码的加密和核对 | Coding Fun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coding Fun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/05/Django中的密码的加密和核对/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django中的密码的加密和核对
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-05T22:11:06+08:00">
+                2017-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>使用Django作为框架搭建一个web应用是很高效的一件事。</p>
+<p>现在我就在逐渐的熟悉这个框架，遇到了这样的问题：我们从前端获取的一些数据，例如密码都是明文，但是在数据库中存储的是对应的密文，当我们想注册或者修改密码的时候，怎样将密码等字符串转换成密文呢？当我们进行登录操作的时候，在前端表单中得到的也是明文，怎样将这些数据和后端的密文进行核对呢？</p>
+<p>Django提供了原生的对明文加密的模块：make_password和check_password,现在就详细地梳理下。</p>
+<p>先看看两个模块的源代码吧：</p>
+<h5 id="make-password"><a href="#make-password" class="headerlink" title="make_password"></a>make_password</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">def make_password(password, salt=None, hasher=&apos;default&apos;):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    Turn a plain-text password into a hash for database storage</div><div class="line"></div><div class="line">    Same as encode() but generates a new random salt.</div><div class="line">    If password is None then a concatenation of</div><div class="line">    UNUSABLE_PASSWORD_PREFIX and a random string will be returned</div><div class="line">    which disallows logins. Additional random string reduces chances</div><div class="line">    of gaining access to staff or superuser accounts.</div><div class="line">    See ticket #20079 for more info.</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    if password is None:</div><div class="line">        return UNUSABLE_PASSWORD_PREFIX + get_random_string(UNUSABLE_PASSWORD_SUFFIX_LENGTH)</div><div class="line">    hasher = get_hasher(hasher)</div><div class="line"></div><div class="line">    if not salt:</div><div class="line">        salt = hasher.salt()</div><div class="line"></div><div class="line">    return hasher.encode(password, salt)</div></pre></td></tr></table></figure>
+<h5 id="check-password"><a href="#check-password" class="headerlink" title="check_password"></a>check_password</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">def check_password(password, encoded, setter=None, preferred=&apos;default&apos;):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    Returns a boolean of whether the raw password matches the three</div><div class="line">    part encoded digest.</div><div class="line"></div><div class="line">    If setter is specified, it&apos;ll be called when you need to</div><div class="line">    regenerate the password.</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    if password is None or not is_password_usable(encoded):</div><div class="line">        return False</div><div class="line"></div><div class="line">    preferred = get_hasher(preferred)</div><div class="line">    hasher = identify_hasher(encoded)</div><div class="line"></div><div class="line">    must_update = hasher.algorithm != preferred.algorithm</div><div class="line">    if not must_update:</div><div class="line">        must_update = preferred.must_update(encoded)</div><div class="line">    is_correct = hasher.verify(password, encoded)</div><div class="line">    if setter and is_correct and must_update:</div><div class="line">        setter(password)</div><div class="line">    return is_correct</div></pre></td></tr></table></figure>
+<hr>
+<p>首先将这些模块import进来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">from django.contrib.auth.hashers import make_password, check_password</div></pre></td></tr></table></figure></p>
+<p>然后使用make_password生成密码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">make_password(&quot;www.111cn.net&quot;, None, &apos;pbkdf2_sha256&apos;)</div><div class="line">u&apos;pbkdf2_sha2561200012000H6HRZD4DDiKg$RXBGBTiFWADyw+J9O7114vxKvysBVP+lz7oSYxkoic0=&apos;</div></pre></td></tr></table></figure></p>
+<p>这样生成的密码有一个特点，就是相同的字符串每一次生成的密码都不一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; make_password(&quot;www.111cn.net&quot;, None, &apos;pbkdf2_sha256&apos;)</div><div class="line">&apos;pbkdf2_sha256$24000$uaJAtjM4bkdS$Hbg5pPm7wjEkzHvwSm+jQmebTfES6nWuL0scrYvH9BU=&apos;</div><div class="line">&gt;&gt;&gt; make_password(&quot;www.111cn.net&quot;, None, &apos;pbkdf2_sha256&apos;)</div><div class="line">&apos;pbkdf2_sha256$24000$vu1Wc6TCEdLX$mBlcqgfMkVS19fX4RR7M38Gvhpr4rRjMqdZitfBQzDI=&apos;</div><div class="line">&gt;&gt;&gt; make_password(&quot;www.111cn.net&quot;, None, &apos;pbkdf2_sha256&apos;)</div><div class="line">&apos;pbkdf2_sha256$24000$fZTFHM5jIVyU$6eK0SjSZLdVdDgkzrDyNUcJLMG2LaZVoUYDf1zkY6uQ=&apos;</div><div class="line"></div><div class="line">&gt;&gt;&gt; make_password(&quot;www.111cn.net&quot;, None, &apos;pbkdf2_sha256&apos;) == make_password(&quot;www.111cn.net&quot;, None,&apos;pbkdf2_sha256&apos;)</div><div class="line">False</div></pre></td></tr></table></figure>
+<hr>
+<p>那么怎样去核对和匹配呢？就用到了checkpassword模块。</p>
+<p>每次使用这个模块，会返回一个布尔类型的值，True表示匹配成功，False表示匹配不成功。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; text = &quot;www.111cn.net&quot;</div><div class="line">&gt;&gt;&gt; passwd = make_password(text, None, &apos;pbkdf2_sha256&apos;)</div><div class="line">&gt;&gt;&gt; print passwd </div><div class="line">pbkdf2_sha2561200012000xzMLhCNvQbb8$i1XDnJIpb/cRRGRX2x7Ym74RNfPRCUp5pbU6Sn+V3J0=</div><div class="line">&gt;&gt;&gt; print check_password(text, passwd)</div><div class="line">True</div></pre></td></tr></table></figure></p>
+<hr>
+<p>如果不像每次都生成不一样的密文，可以把make_password中的第二个参数也就是salt给一个固定的字符串，分析源代码可以知道如果不给传入这个参数的话，Django会自动随机生成一段密文，所以每次都不一样。举个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; make_password(&quot;123456abcde&quot;, &quot;a&quot;, &apos;pbkdf2_sha256&apos;)</div><div class="line"></div><div class="line">&apos;pbkdf2_sha256$24000$a$3DWROrfU8opmd+/8sZETvcKvxdY+1ghn74VPt3Zuv+M=&apos;</div><div class="line"></div><div class="line">&gt;&gt;&gt; make_password(&quot;123456abcde&quot;, &quot;a&quot;, &apos;pbkdf2_sha256&apos;)</div><div class="line"></div><div class="line">&apos;pbkdf2_sha256$24000$a$3DWROrfU8opmd+/8sZETvcKvxdY+1ghn74VPt3Zuv+M=&apos;</div><div class="line"></div><div class="line">&gt;&gt;&gt; make_password(&quot;123456abcde&quot;, &quot;a&quot;, &apos;pbkdf2_sha256&apos;)</div><div class="line"></div><div class="line">&apos;pbkdf2_sha256$24000$a$3DWROrfU8opmd+/8sZETvcKvxdY+1ghn74VPt3Zuv+M=&apos;</div></pre></td></tr></table></figure></p>
+<p>这样做每次生成的密文都是一样的。</p>
+<p>其实第二个参数随便传进来一个字符串都可以，但是不能为空。为空会怎样呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; make_password(&quot;123456abcde&quot;, &quot;&quot;, &apos;pbkdf2_sha256&apos;)</div><div class="line">&apos;pbkdf2_sha256$24000$UAPZchni6kV3$Q+s4/jcR9p/p0YlpW59QLusd9BGofBya3thI9AC9b+o=&apos;</div><div class="line">&gt;&gt;&gt; make_password(&quot;123456abcde&quot;, &quot;&quot;, &apos;pbkdf2_sha256&apos;)</div><div class="line">&apos;pbkdf2_sha256$24000$DnXQMTh6iYOK$o3Hel+bnmZvoRcvCrRY9AgDQs5YEvAh7Yc1hMlz7iZg=&apos;</div><div class="line">&gt;&gt;&gt; make_password(&quot;123456abcde&quot;, &quot;&quot;, &apos;pbkdf2_sha256&apos;)</div><div class="line">&apos;pbkdf2_sha256$24000$7Ya1Bno3T0I6$hgNAiJ10cZk3/TmitCYSz8Bfa+0W7DZYyNu9TlU3t+g=&apos;</div></pre></td></tr></table></figure></p>
+<p>但是如果中间参数不写的话，后面的参数就自动成了第二个参数，这样就默认成第三个参数是空的，这样的生成的密文都是一样的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; make_password(&quot;123456abcde&quot;, &apos;pbkdf2_sha256&apos;)</div><div class="line">&apos;pbkdf2_sha256$24000$pbkdf2_sha256$XAceUSzrCuPrhCG3MJkgwwuQn2pIzHC6n7C1b/GSzdc=&apos;</div><div class="line"></div><div class="line">&gt;&gt;&gt; make_password(&quot;123456abcde&quot;, &apos;pbkdf2_sha256&apos;)</div><div class="line">&apos;pbkdf2_sha256$24000$pbkdf2_sha256$XAceUSzrCuPrhCG3MJkgwwuQn2pIzHC6n7C1b/GSzdc=&apos;</div></pre></td></tr></table></figure></p>
+<p>那第三个参数是干什么的呢？其实指定生成密文的类型。具体我也不是很清楚。常见的有这么几种。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">pbkdf2_sha256</div><div class="line">pbkdf2_sha1</div><div class="line">bcrypt_sha256</div><div class="line">bcrypt</div><div class="line">sha1</div><div class="line">unsalted_md5</div><div class="line">crypt</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/加密与解密/" rel="tag"># 加密与解密</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/05/忘记密码的处理/" rel="next" title="独立完成一个在线网站记录之忘记密码的处理">
+                <i class="fa fa-chevron-left"></i> 独立完成一个在线网站记录之忘记密码的处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/chaiquan.jpg"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#make-password"><span class="nav-number">1.</span> <span class="nav-text">make_password</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#check-password"><span class="nav-number">2.</span> <span class="nav-text">check_password</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>
