@@ -1,0 +1,821 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python3,编码," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文转发自： https://foofish.net/how-python3-handle-charset-encoding.html
+python2.x的不足：Python2.X中的字符集编码真的是一件很蛋疼的事情，主要的原因是：
+
+使用 ASCII 码作为默认编码方式，对中文处理很不友好。
+把字符串的牵强地分为 unicode 和 str 两种类型，误导开发者。1234567Python 2.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3是怎样解决Python2中出现的字符集编码问题的">
+<meta property="og:url" content="http://yoursite.com/2017/05/08/Python3是怎样解决Python2中出现的字符集编码问题的/index.html">
+<meta property="og:site_name" content="Coding Fun">
+<meta property="og:description" content="本文转发自： https://foofish.net/how-python3-handle-charset-encoding.html
+python2.x的不足：Python2.X中的字符集编码真的是一件很蛋疼的事情，主要的原因是：
+
+使用 ASCII 码作为默认编码方式，对中文处理很不友好。
+把字符串的牵强地分为 unicode 和 str 两种类型，误导开发者。1234567Python 2.">
+<meta property="og:updated_time" content="2017-05-08T13:45:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python3是怎样解决Python2中出现的字符集编码问题的">
+<meta name="twitter:description" content="本文转发自： https://foofish.net/how-python3-handle-charset-encoding.html
+python2.x的不足：Python2.X中的字符集编码真的是一件很蛋疼的事情，主要的原因是：
+
+使用 ASCII 码作为默认编码方式，对中文处理很不友好。
+把字符串的牵强地分为 unicode 和 str 两种类型，误导开发者。1234567Python 2.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/08/Python3是怎样解决Python2中出现的字符集编码问题的/"/>
+
+
+
+
+
+  <title> Python3是怎样解决Python2中出现的字符集编码问题的 | Coding Fun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coding Fun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            了解我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/08/Python3是怎样解决Python2中出现的字符集编码问题的/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python3是怎样解决Python2中出现的字符集编码问题的
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发布于</span>
+              
+              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-05-08T21:35:41+08:00">
+                2017-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">归类</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">统计文章的字数</span>
+                
+                <span title="统计文章的字数">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文转发自： <a href="https://foofish.net/how-python3-handle-charset-encoding.html" target="_blank" rel="external">https://foofish.net/how-python3-handle-charset-encoding.html</a></p>
+<h3 id="python2-x的不足："><a href="#python2-x的不足：" class="headerlink" title="python2.x的不足："></a>python2.x的不足：</h3><p>Python2.X中的字符集编码真的是一件很蛋疼的事情，主要的原因是：</p>
+<ul>
+<li>使用 ASCII 码作为默认编码方式，对中文处理很不友好。</li>
+<li>把字符串的牵强地分为 unicode 和 str 两种类型，误导开发者。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Python 2.7.12 (default, Nov 19 2016, 06:48:10) </div><div class="line">[GCC 5.4.0 20160609] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; import sys</div><div class="line">&gt;&gt;&gt; sys.getdefaultencoding()</div><div class="line">&apos;ascii&apos;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这都是大坑，只要不注意可能就会出现这样那样的错误。</p>
+<h3 id="python3-X中的改进："><a href="#python3-X中的改进：" class="headerlink" title="python3.X中的改进："></a>python3.X中的改进：</h3><h4 id="首先，Python3-把系统默认编码设置为-UTF-8。"><a href="#首先，Python3-把系统默认编码设置为-UTF-8。" class="headerlink" title="首先，Python3 把系统默认编码设置为 UTF-8。"></a>首先，Python3 把系统默认编码设置为 UTF-8。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Python 3.5.2 (default, Nov 17 2016, 17:05:23) </div><div class="line">[GCC 5.4.0 20160609] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; import sys</div><div class="line">&gt;&gt;&gt; sys.getdefaultencoding()</div><div class="line">&apos;utf-8&apos;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h4 id="然后，文本字符和二进制数据区分得更清晰。"><a href="#然后，文本字符和二进制数据区分得更清晰。" class="headerlink" title="然后，文本字符和二进制数据区分得更清晰。"></a>然后，文本字符和二进制数据区分得更清晰。</h4><p>python3.X分别用 str 和 bytes 表示。</p>
+<p>文本字符全部用 str 类型表示，str 能表示 Unicode 字符集中所有字符，而二进制字节数据用一种全新的数据类型，用 bytes 来表示。</p>
+<h5 id="str"><a href="#str" class="headerlink" title="str"></a>str</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Python 3.5.2 (default, Nov 17 2016, 17:05:23) </div><div class="line">[GCC 5.4.0 20160609] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; a = &quot;a&quot;</div><div class="line">&gt;&gt;&gt; a</div><div class="line">&apos;a&apos;</div><div class="line">&gt;&gt;&gt; type(a)</div><div class="line">&lt;class &apos;str&apos;&gt;</div><div class="line">&gt;&gt;&gt; b = &quot;好&quot;</div><div class="line">&gt;&gt;&gt; b</div><div class="line">&apos;好&apos;</div><div class="line">&gt;&gt;&gt; type(b)</div><div class="line">&lt;class &apos;str&apos;&gt;</div></pre></td></tr></table></figure>
+<h5 id="bytes"><a href="#bytes" class="headerlink" title="bytes"></a>bytes</h5><p>Python3 中，在字符引号前加‘b’，明确表示这是一个 bytes 类型的对象，实际上它就是一组二进制字节序列组成的数据，bytes 类型可以是 ASCII范围内的字符和其它十六进制形式的字符数据，但不能用中文等非ASCII字符表示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Python 3.5.2 (default, Nov 17 2016, 17:05:23) </div><div class="line">[GCC 5.4.0 20160609] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; c = b&quot;a&quot;</div><div class="line">&gt;&gt;&gt; c</div><div class="line">b&apos;a&apos;</div><div class="line">&gt;&gt;&gt; type(c)</div><div class="line">&lt;class &apos;bytes&apos;&gt;</div><div class="line">&gt;&gt;&gt; d = b&quot;\xe7\xa6\x85&quot;</div><div class="line">&gt;&gt;&gt; d</div><div class="line">b&apos;\xe7\xa6\x85&apos;</div><div class="line">&gt;&gt;&gt; type(d)</div><div class="line">&lt;class &apos;bytes&apos;&gt;</div><div class="line">&gt;&gt;&gt; </div><div class="line">&gt;&gt;&gt; e = b&quot;好&quot;</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1</div><div class="line">SyntaxError: bytes can only contain ASCII literal characters.</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>bytes 类型提供的操作和 str 一样，支持分片、索引、基本数值运算等操作。但是 str 与 bytes 类型的数据不能执行 + 操作，尽管在py2中是可行的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Python 3.5.2 (default, Nov 17 2016, 17:05:23) </div><div class="line">[GCC 5.4.0 20160609] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; b&apos;a&apos;+b&apos;c&apos;</div><div class="line">b&apos;ac&apos;</div><div class="line">&gt;&gt;&gt; b&apos;a&apos;*2</div><div class="line">b&apos;aa&apos;</div><div class="line">&gt;&gt;&gt; b&apos;abcdef\x86&apos;[1:]</div><div class="line">b&apos;bcdef\x86&apos;</div><div class="line">&gt;&gt;&gt; b&apos;abcdef\x86&apos;[:3]</div><div class="line">b&apos;abc&apos;</div><div class="line">&gt;&gt;&gt; b&apos;abcdef\x86&apos;[-1]</div><div class="line">134</div><div class="line">&gt;&gt;&gt; b&apos;a&apos;+&apos;b&apos;</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">TypeError: can&apos;t concat bytes to str</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Python 2.7.12 (default, Nov 19 2016, 06:48:10) </div><div class="line">[GCC 5.4.0 20160609] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; b&apos;a&apos;+b&apos;c&apos;</div><div class="line">&apos;ac&apos;</div><div class="line">&gt;&gt;&gt; b&apos;a&apos;+&apos;b&apos;</div><div class="line">&apos;ab&apos;</div></pre></td></tr></table></figure>
+<h4 id="python2-x和python3-x之间子节与字符对应的关系。"><a href="#python2-x和python3-x之间子节与字符对应的关系。" class="headerlink" title="python2.x和python3.x之间子节与字符对应的关系。"></a>python2.x和python3.x之间子节与字符对应的关系。</h4><table>
+<thead>
+<tr>
+<th>python2</th>
+<th>python3</th>
+<th>表现</th>
+<th>转换</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str</td>
+<td>bytes</td>
+<td>字节</td>
+<td>encode</td>
+<td>存储</td>
+</tr>
+<tr>
+<td>unicode</td>
+<td>str</td>
+<td>字符</td>
+<td>decode</td>
+<td>显示</td>
+</tr>
+</tbody>
+</table>
+<h4 id="在Python3-x中的转换"><a href="#在Python3-x中的转换" class="headerlink" title="在Python3.x中的转换:"></a>在Python3.x中的转换:</h4><h5 id="encode-负责字符到字节的编码转换。默认使用-UTF-8-编码准换。"><a href="#encode-负责字符到字节的编码转换。默认使用-UTF-8-编码准换。" class="headerlink" title="encode 负责字符到字节的编码转换。默认使用 UTF-8 编码准换。"></a>encode 负责字符到字节的编码转换。默认使用 UTF-8 编码准换。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; s = &quot;好日子&quot;</div><div class="line">&gt;&gt;&gt; s.encode()</div><div class="line">b&apos;\xe5\xa5\xbd\xe6\x97\xa5\xe5\xad\x90&apos;</div><div class="line">&gt;&gt;&gt; s.encode(&quot;gbk&quot;)</div><div class="line">b&apos;\xba\xc3\xc8\xd5\xd7\xd3&apos;</div></pre></td></tr></table></figure>
+<h5 id="decode-负责字节到字符的解码转换，通用使用-UTF-8-编码格式进行转换。"><a href="#decode-负责字节到字符的解码转换，通用使用-UTF-8-编码格式进行转换。" class="headerlink" title="decode 负责字节到字符的解码转换，通用使用 UTF-8 编码格式进行转换。"></a>decode 负责字节到字符的解码转换，通用使用 UTF-8 编码格式进行转换。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; s = b&apos;\xe5\xa5\xbd\xe6\x97\xa5\xe5\xad\x90&apos;</div><div class="line">&gt;&gt;&gt; s.decode()</div><div class="line">&apos;好日子&apos;</div><div class="line">&gt;&gt;&gt; s.decode(&apos;gbk&apos;)</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">UnicodeDecodeError: &apos;gbk&apos; codec can&apos;t decode byte 0x90 in position 8: incomplete multibyte sequence</div></pre></td></tr></table></figure>
+<p>不知道为什么，gbk格式的编码总是过不去。</p>
+<p>未完待续…</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python3/" rel="tag"># Python3</a>
+          
+            <a href="/tags/编码/" rel="tag"># 编码</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/05/Django中的密码的加密和核对/" rel="next" title="Django中的密码的加密和核对">
+                <i class="fa fa-chevron-left"></i> Django中的密码的加密和核对
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/08/浅谈python中的字符集和编码问题/" rel="prev" title="浅谈python中的字符集问题">
+                浅谈python中的字符集问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章概览
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            我
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/chaiquan.jpg"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#python2-x的不足："><span class="nav-number">1.</span> <span class="nav-text">python2.x的不足：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python3-X中的改进："><span class="nav-number">2.</span> <span class="nav-text">python3.X中的改进：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先，Python3-把系统默认编码设置为-UTF-8。"><span class="nav-number">2.1.</span> <span class="nav-text">首先，Python3 把系统默认编码设置为 UTF-8。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后，文本字符和二进制数据区分得更清晰。"><span class="nav-number">2.2.</span> <span class="nav-text">然后，文本字符和二进制数据区分得更清晰。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#str"><span class="nav-number">2.2.1.</span> <span class="nav-text">str</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bytes"><span class="nav-number">2.2.2.</span> <span class="nav-text">bytes</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python2-x和python3-x之间子节与字符对应的关系。"><span class="nav-number">2.3.</span> <span class="nav-text">python2.x和python3.x之间子节与字符对应的关系。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在Python3-x中的转换"><span class="nav-number">2.4.</span> <span class="nav-text">在Python3.x中的转换:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#encode-负责字符到字节的编码转换。默认使用-UTF-8-编码准换。"><span class="nav-number">2.4.1.</span> <span class="nav-text">encode 负责字符到字节的编码转换。默认使用 UTF-8 编码准换。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#decode-负责字节到字符的解码转换，通用使用-UTF-8-编码格式进行转换。"><span class="nav-number">2.4.2.</span> <span class="nav-text">decode 负责字节到字符的解码转换，通用使用 UTF-8 编码格式进行转换。</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  感谢支持 <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,832 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="字符集,编码,Unicode,UTF-8," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="什么是字符集？什么是编码方式？下面的内容摘抄自维基百科。
+
+现代编码模型由统一码和通用字符集所构成的现代字符编码模型则没有跟从简单字符集的观点。==它们将字符编码的概念分为：有哪些字符、它们的编号、这些编号如何编码成一系列的“码元”（有限大小的数字）以及最后这些单元如何组成八位字节流==。区分这些概念的核心思想是创建一个能够用不同方法来编码的一个通用字符集。为了正确地表示这个模型需要更多比“字符集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈python中的字符集问题">
+<meta property="og:url" content="http://yoursite.com/2017/05/08/浅谈python中的字符集和编码问题/index.html">
+<meta property="og:site_name" content="Coding Fun">
+<meta property="og:description" content="什么是字符集？什么是编码方式？下面的内容摘抄自维基百科。
+
+现代编码模型由统一码和通用字符集所构成的现代字符编码模型则没有跟从简单字符集的观点。==它们将字符编码的概念分为：有哪些字符、它们的编号、这些编号如何编码成一系列的“码元”（有限大小的数字）以及最后这些单元如何组成八位字节流==。区分这些概念的核心思想是创建一个能够用不同方法来编码的一个通用字符集。为了正确地表示这个模型需要更多比“字符集">
+<meta property="og:updated_time" content="2017-05-08T13:48:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈python中的字符集问题">
+<meta name="twitter:description" content="什么是字符集？什么是编码方式？下面的内容摘抄自维基百科。
+
+现代编码模型由统一码和通用字符集所构成的现代字符编码模型则没有跟从简单字符集的观点。==它们将字符编码的概念分为：有哪些字符、它们的编号、这些编号如何编码成一系列的“码元”（有限大小的数字）以及最后这些单元如何组成八位字节流==。区分这些概念的核心思想是创建一个能够用不同方法来编码的一个通用字符集。为了正确地表示这个模型需要更多比“字符集">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/08/浅谈python中的字符集和编码问题/"/>
+
+
+
+
+
+  <title> 浅谈python中的字符集问题 | Coding Fun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coding Fun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            了解我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/08/浅谈python中的字符集和编码问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                浅谈python中的字符集问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发布于</span>
+              
+              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-05-08T21:47:01+08:00">
+                2017-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">归类</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/编码/" itemprop="url" rel="index">
+                    <span itemprop="name">编码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">统计文章的字数</span>
+                
+                <span title="统计文章的字数">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="什么是字符集？什么是编码方式？"><a href="#什么是字符集？什么是编码方式？" class="headerlink" title="什么是字符集？什么是编码方式？"></a>什么是字符集？什么是编码方式？</h4><p>下面的内容摘抄自维基百科。</p>
+<blockquote>
+<h4 id="现代编码模型"><a href="#现代编码模型" class="headerlink" title="现代编码模型"></a>现代编码模型</h4><p>由统一码和通用字符集所构成的现代字符编码模型则没有跟从简单字符集的观点。==它们将字符编码的概念分为：有哪些字符、它们的编号、这些编号如何编码成一系列的“码元”（有限大小的数字）以及最后这些单元如何组成八位字节流==。区分这些概念的核心思想是创建一个能够用不同方法来编码的一个通用字符集。为了正确地表示这个模型需要更多比“字符集”和“字符编码”更为精确的术语表示。在Unicode Technical Report (UTR) #17中，现代编码模型分为5个层次，所用的术语列在下面：</p>
+<ol>
+<li>抽象字符表（Abstract character repertoire）是一个系统支持的所有抽象字符的集合。字符表可以是封闭的，即除非创建一个新的标准（ASCII和多数ISO/IEC 8859系列都是这样的例子），否则不允许添加新的符号；字符表也可以是开放的，即允许添加新的符号（统一码和一定程度上代码页是这方面的例子）。特定字符表中的字符反映了如何将书写系统分解成线性信息单元的决定。例如拉丁、希腊和斯拉夫字母表分为字母、数字、变音符号、标点和如空格这样的一些少数特殊字符，它们都能按照一种简单的线性序列排列（尽管对它们的处理需要另外的规则，如带有变音符号的字母这样的特定序列如何解释——但这不属于字符表的范畴）。为了方便起见，这样的字符表可以包括预先编号的字母和变音符号的组合。其它的书写系统，如阿拉伯语和希伯莱语，由于要适应双向文字和在不同情形下按照不同方式交叉在一起的字形，就使用更为复杂的符号表表示。</li>
+<li>编码字符集（CCS:Coded Character Set）是将字符集 {\displaystyle C} C中每个字符映射到1个坐标（整数值对：x, y）或者表示为1个非负整数 {\displaystyle N} N。字符集及码位映射称为编码字符集。例如，在一个给定的字符表中，表示大写拉丁字母“A”的字符被赋予整数65、字符“B”是66，如此继续下去。多个编码字符集可以表示同样的字符表，例如ISO-8859-1和IBM的代码页037和代码页500含盖同样的字符表但是将字符映射为不同的整数。由此产生了编码空间（encoding space）的概念：简单说就是包含所有字符的表的维度。可以用一对整数来描述，例如：GB 2312的汉字编码空间是94 x 94。可以用一个整数来描述，例如：ISO-8859-1的编码空间是256。也可以用字符的存储单元尺寸来描述，例如：ISO-8859-1是一个8比特的编码空间。编码空间还可以用其子集来表述，如行、列、面（plane）等。编码空间中的一个位置（position）称为码位（code point）。一个字符所占用的码位称为码位值（code point value）。1个编码字符集就是把抽象字符映射为码位值。</li>
+<li>字符编码表（CEF:Character Encoding Form），也称为”storage format”，是将编码字符集的非负整数值（即抽象的码位）转换成有限比特长度的整型值（称为码元code units）的序列。这对于定长编码来说是个到自身的映射（null mapping），但对于变长编码来说，该映射比较复杂，把一些码位映射到一个码元，把另外一些码位映射到由多个码元组成的序列。例如，使用16比特长的存储单元保存数字信息，系统每个单元只能够直接表示从0到65,535的数值，但是如果使用多个16位单元就能够表示更大的整数。这就是CEF的作用，它可以把Unicode从0到140万的码空间范围的每个码位映射到单个或多个在0到65,5356范围内的码值。最简单的字符编码表就是单纯地选择足够大的单位，以保证编码字符集中的所有数值能够直接编码（一个码位对应一个码值）。这对于能够用使用八比特组来表示的编码字符集（如多数传统的非CJK的字符集编码）是合理的，对于能够使用十六比特来表示的编码字符集（如早期版本的Unicode）来说也足够合理。但是，随着编码字符集的大小增加（例如，现在的Unicode的字符集至少需要21位才能全部表示），这种直接表示法变得越来越没有效率，并且很难让现有计算机系统适应更大的码值。因此，许多使用新近版本Unicode的系统，或者将Unicode码位对应为可变长度的8位字节序列的UTF-8，或者将码位对应为可变长度的16位序列的UTF-16。</li>
+<li>字符编码方案（CES:Character Encoding Scheme），也称作”serialization format”。将定长的整型值（即码元）映射到8位字节序列，以便编码后的数据的文件存储或网络传输。在使用Unicode的场合，使用一个简单的字符来指定字节顺序是大端序或者小端序（但对于UTF-8来说并不需要专门指明字节序）。然而，有些复杂的字符编码机制（如ISO/IEC 2022）使用控制字符转义序列在几种编码字符集或者用于减小每个单元所用字节数的压缩机制（如SCSU、BOCU和Punycode）之间切换。</li>
+<li>传输编码语法（transfer encoding syntax），用于处理上一层次的字符编码方案提供的字节序列。一般其功能包括两种：一是把字节序列的值映射到一套更受限制的值域内，以满足传输环境的限制，例如Email传输时Base64或者quoted-printable，都是把8位的字节编码为7位长的数据；另一是压缩字节序列的值，如LZW或者进程长度编码等无损压缩技术。</li>
+</ol>
+</blockquote>
+<h4 id="什么是Unicode？"><a href="#什么是Unicode？" class="headerlink" title="什么是Unicode？"></a>什么是Unicode？</h4><p>Unicode编码系统，在python中很常见，那它到底是什么呢？是怎么发展来的呢？</p>
+<p>百度百科上的解释：</p>
+<blockquote>
+<p>Unicode组织和ISO组织都试图定义一个超大字符集，目的是要涵盖所有语言使用的字符以及其他学科使用的一些特殊符号，这个字符集就是通用字符集（UCS，Universal Character Set）。</p>
+</blockquote>
+<p>其他博客上面的解释：</p>
+<blockquote>
+<p> 1991 年，国际标准化组织(ISO)和统一码联盟组织(Unicode)各自开发了 ISO/IEC 10646（USC）和 Unicode 项目。他们两的野心都不小，一统江湖，千秋万载。不过很快双方都意识到世界上并不需要两个不兼容的字符集。于是他们就编码问题进行了一次非常友好地会晤，决定彼此把工作内容合并，项目还是独立存在，各自发布各自的标准，前提是两者必须保持兼容。不过由于 Unicode 这一名字比较好记，因而它使用更为广泛，成为了事实上的统一编码标准。</p>
+</blockquote>
+<p>维基百科上的解释：</p>
+<blockquote>
+<p>大概来说，Unicode编码系统可分为编码方式和实现方式两个层次。</p>
+<h4 id="编码方式"><a href="#编码方式" class="headerlink" title="编码方式"></a>编码方式</h4><p>统一码的编码方式与ISO 10646的通用字符集概念相对应。目前实际应用的统一码版本对应于UCS-2，使用16位的编码空间。也就是每个字符占用2个字节。这样理论上一共最多可以表示216（即65536）个字符。基本满足各种语言的使用。实际上当前版本的统一码并未完全使用这16位编码，而是保留了大量空间以作为特殊使用或将来扩展。</p>
+<p>上述16位统一码字符构成基本多文种平面。最新（但未实际广泛使用）的统一码版本定义了16个辅助平面，两者合起来至少需要占据21位的编码空间，比3字节略少。但事实上辅助平面字符仍然占用4字节编码空间，与UCS-4保持一致。未来版本会扩充到ISO 10646-1实现级别3，即涵盖UCS-4的所有字符。UCS-4是一个更大的尚未填充完全的31位字符集，加上恒为0的首位，共需占据32位，即4字节。理论上最多能表示231个字符，完全可以涵盖一切语言所用的符号。</p>
+<p>基本多文种平面的字符的编码为U+hhhh，其中每个h代表一个十六进制数字，与UCS-2编码完全相同。而其对应的4字节UCS-4编码后两个字节一致，前两个字节则所有位均为0。<br>关于统一码和ISO 10646及UCS的详细关系，见通用字符集。</p>
+<h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><p>Unicode的实现方式不同于编码方式。一个字符的Unicode编码是确定的。但是在实际传输过程中，由于不同系统平台的设计不一定一致，以及出于节省空间的目的，对Unicode编码的实现方式有所不同。==Unicode的实现方式称为Unicode转换格式（Unicode Transformation Format，简称为UTF。==</p>
+<p>例如，如果一个仅包含基本7位ASCII字符的Unicode文件，如果每个字符都使用2字节的原Unicode编码传输，其第一字节的8位始终为0。这就造成了比较大的浪费。对于这种情况，可以使用UTF-8编码，这是一种变长编码，它将基本7位ASCII字符仍用7位编码表示，占用一个字节（首位补0）。而遇到与其他Unicode字符混合的情况，将按一定算法转换，每个字符使用1-3个字节编码，并利用首位为0或1进行识别。这样对以7位ASCII字符为主的西文文档就大幅节省了编码长度（具体方案参见UTF-8）。类似的，对未来会出现的需要4个字节的辅助平面字符和其他UCS-4扩充字符，2字节编码的UTF-16也需要通过一定的算法进行转换。</p>
+<p>再如，如果直接使用与Unicode编码一致（仅限于BMP字符）的UTF-16编码，由于每个字符占用了两个字节，在麦金塔电脑（Mac）机和个人电脑上，对字节顺序的理解是不一致的。这时同一字节流可能会被解释为不同内容，如某字符为十六进制编码4E59，按两个字节拆分为4E和59，在Mac上读取时是从低字节开始，那么在Mac OS会认为此4E59编码为594E，找到的字符为“奎”，而在Windows上从高字节开始读取，则编码为U+4E59的字符为“乙”。就是说在Windows下以UTF-16编码保存一个字符“乙”，在Mac OS环境下打开会显示成“奎”。此类情况说明UTF-16的编码顺序若不加以人为定义就可能发生混淆，于是在UTF-16编码实现方式中使用了大端序（Big-Endian，简写为UTF-16 BE）、小端序（Little-Endian，简写为UTF-16 LE）的概念，以及可附加的字节顺序记号解决方案，目前在PC机上的Windows系统和Linux系统对于UTF-16编码默认使用UTF-16 LE。（具体方案参见UTF-16）</p>
+<p>此外Unicode的实现方式还包括UTF-7、Punycode、CESU-8、SCSU、UTF-32、GB18030等，这些实现方式有些仅在一定的国家和地区使用，有些则属于未来的规划方式。目前通用的实现方式是UTF-16小端序（LE）、UTF-16大端序（BE）和UTF-8。在微软公司Windows XP附带的记事本（Notepad）中，“另存为”对话框可以选择的四种编码方式除去非Unicode编码的ANSI（对于英文系统即ASCII编码，中文系统则为GB2312或Big5编码）外，其余三种为“Unicode”（对应UTF-16 LE）、“Unicode big endian”（对应UTF-16 BE）和“UTF-8”。</p>
+<p>目前辅助平面的工作主要集中在第二和第三平面的中日韩统一表意文字中，因此包括GBK、GB18030、Big5等简体中文、繁体中文、日文、韩文以及越南喃字的各种编码与Unicode的协调性被重点关注。考虑到Unicode最终要涵盖所有的字符。从某种意义而言，这些编码方式也可视作Unicode的出现于其之前的既成事实的实现方式，如同ASCII及其扩展Latin-1一样，后两者的字符在16位Unicode编码空间中的编码第一字节各位全为0，第二字节编码与原编码完全一致。但上述东亚语言编码与Unicode编码的对应关系要复杂得多。</p>
+</blockquote>
+<p>其实在具体点 ==Unicode 是一个囊括了世界上所有字符的字符集，其中每一个字符都对应有唯一的编码值（code point），然而它并不是一种什么编码格式，仅仅是字符集而已。==</p>
+<p>按照上面的一些解释，其实在计算机系统中，每个字符都有对应的在字符集中的编码号(code point)，当编码当动词使用的时候，指的就是将这个字符对应的编码号转换成一个字节序列，以便在网络传输或者存储到文本里面。举个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Python 2.7.12 (default, Nov 19 2016, 06:48:10) </div><div class="line">[GCC 5.4.0 20160609] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; a = u&quot;好&quot;</div><div class="line">&gt;&gt;&gt; a</div><div class="line">u&apos;\u597d&apos;</div><div class="line">&gt;&gt;&gt; b = a.encode(&quot;utf-8&quot;)</div><div class="line">&gt;&gt;&gt; b</div><div class="line">&apos;\xe5\xa5\xbd&apos;</div><div class="line">&gt;&gt;&gt; c = a.encode(&quot;utf-16&quot;)</div><div class="line">&gt;&gt;&gt; c</div><div class="line">&apos;\xff\xfe&#125;Y&apos;</div></pre></td></tr></table></figure></p>
+<p>正如例子中那样，“好”字在Unicode中的code point编码以后对应的字节序列就是u’\u597d’，而utf-8可以理解成是一种Unicode字符集的编码方式，维基百科上面对于utf-8是这样解释的：</p>
+<blockquote>
+<p>UTF-8是UNICODE的一种变长度的编码表达方式《一般UNICODE为双位元组（指UCS2）》，它由肯·汤普逊（Ken Thompson）于1992年创建，现在已经标准化为RFC 3629。UTF-8就是以8位为单元对UCS进行编码，而UTF-8不使用大尾序和小尾序的形式，每个使用UTF-8存储的字符，除了第一个字节外，其余字节的头两个比特都是以”10”开始，使文字处理器能够较快地找出每个字符的开始位置。</p>
+</blockquote>
+<p>个人理解，utf-16是对于Unicode字符集的另一种编码方式。那和utf-8又有什么关系呢？</p>
+<p>utf-8和utf-16都是Unicode的编码方式。UTF-16的每个单元是两个字节（16位），而UTF-8的每个单元是一个字节（8位）。UTF-16中用一个或两个双字节表示一个字符，UTF-8中用一个或几个单字节表示一个字符。</p>
+<p>当编码是名词性质的时候，就是指一种具体的编码实现方式，比如 ASCII 编码，GBK 编码，UTF-8 编码，都叫做编码，是一种具体的实实在在的编码格式。</p>
+<p>上面还提到了现在用的比较多的Unicode编码方式有utf-8和utf-16，而utf-16被分成了好几种标准。</p>
+<p>下面是维基百科的解释：</p>
+<blockquote>
+<p>UTF-16是Unicode字符编码五层次模型的第三层：字符编码表（Character Encoding Form，也称为”storage format”）的一种实现方式。即把Unicode字符集的抽象码位映射为16位长的整数（即码元）的序列，用于数据存储或传递。Unicode字符的码位，需要1个或者2个16位长的码元来表示，因此这是一个变长表示。</p>
+</blockquote>
+<p>下面是按照大尾序和小尾序的概念进行解释：</p>
+<blockquote>
+<p>UTF-16的大尾序和小尾序存储形式都在用。一般来说，以Macintosh(Mac,苹果电脑公司)制作或存储的文字使用大尾序格式，以Microsoft或Linux制作或存储的文字使用小尾序格式。</p>
+<p>为了弄清楚UTF-16文件的大小尾序，在UTF-16文件的开首，都会放置一个U+FEFF字符作为Byte Order Mark（UTF-16LE以FF FE代表，UTF-16BE以FE FF代表），以显示这个文本文件是以UTF-16编码，其中U+FEFF字符在UNICODE中代表的意义是ZERO WIDTH NO-BREAK SPACE，顾名思义，它是个没有宽度也没有断字的空白。</p>
+</blockquote>
+<p>至于具体的描述，我会专门写篇文章分析，以后将链接贴到这里。</p>
+<h4 id="utf-16和ucs-2的关系："><a href="#utf-16和ucs-2的关系：" class="headerlink" title="utf-16和ucs-2的关系："></a>utf-16和ucs-2的关系：</h4><p>UTF-16可看成是UCS-2的父集。在没有辅助平面字符（surrogate code points）前，UTF-16与UCS-2所指的是同一的意思。但当引入辅助平面字符后，就称为UTF-16了。现在若有软件声称自己支持UCS-2编码，那其实是暗指它不能支持在UTF-16中超过2字节的字集。对于小于0x10000的UCS码，UTF-16编码就等于UCS码。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/字符集/" rel="tag"># 字符集</a>
+          
+            <a href="/tags/编码/" rel="tag"># 编码</a>
+          
+            <a href="/tags/Unicode/" rel="tag"># Unicode</a>
+          
+            <a href="/tags/UTF-8/" rel="tag"># UTF-8</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/08/Python3是怎样解决Python2中出现的字符集编码问题的/" rel="next" title="Python3是怎样解决Python2中出现的字符集编码问题的">
+                <i class="fa fa-chevron-left"></i> Python3是怎样解决Python2中出现的字符集编码问题的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章概览
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            我
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/chaiquan.jpg"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是字符集？什么是编码方式？"><span class="nav-number">1.</span> <span class="nav-text">什么是字符集？什么是编码方式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#现代编码模型"><span class="nav-number">2.</span> <span class="nav-text">现代编码模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是Unicode？"><span class="nav-number">3.</span> <span class="nav-text">什么是Unicode？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编码方式"><span class="nav-number">4.</span> <span class="nav-text">编码方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现方式"><span class="nav-number">5.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#utf-16和ucs-2的关系："><span class="nav-number">6.</span> <span class="nav-text">utf-16和ucs-2的关系：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  感谢支持 <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>
