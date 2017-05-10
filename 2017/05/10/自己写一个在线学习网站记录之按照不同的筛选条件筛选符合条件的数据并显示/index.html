@@ -1,0 +1,780 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Django,筛选," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="筛选每个城市的培训机构在前端界面上按照城市的id来显示城市的信息。123&amp;#123;% for city in all_cities %&amp;#125;    &amp;lt;a href=&amp;quot;?city=&amp;#123;&amp;#123; city.id &amp;#125;&amp;#125;&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;&amp;quot;&amp;gt;&amp;#123;&amp;#123; city.name &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示">
+<meta property="og:url" content="http://yoursite.com/2017/05/10/自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示/index.html">
+<meta property="og:site_name" content="Coding Fun">
+<meta property="og:description" content="筛选每个城市的培训机构在前端界面上按照城市的id来显示城市的信息。123&amp;#123;% for city in all_cities %&amp;#125;    &amp;lt;a href=&amp;quot;?city=&amp;#123;&amp;#123; city.id &amp;#125;&amp;#125;&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;&amp;quot;&amp;gt;&amp;#123;&amp;#123; city.name &amp;#">
+<meta property="og:updated_time" content="2017-05-10T15:26:05.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示">
+<meta name="twitter:description" content="筛选每个城市的培训机构在前端界面上按照城市的id来显示城市的信息。123&amp;#123;% for city in all_cities %&amp;#125;    &amp;lt;a href=&amp;quot;?city=&amp;#123;&amp;#123; city.id &amp;#125;&amp;#125;&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;&amp;quot;&amp;gt;&amp;#123;&amp;#123; city.name &amp;#">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/10/自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示/"/>
+
+
+
+
+
+  <title> 自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示 | Coding Fun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coding Fun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            围观我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发布于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-10T23:26:32+08:00">
+                2017-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类：</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="筛选每个城市的培训机构"><a href="#筛选每个城市的培训机构" class="headerlink" title="筛选每个城市的培训机构"></a>筛选每个城市的培训机构</h4><p>在前端界面上按照城市的id来显示城市的信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% for city in all_cities %&#125;</div><div class="line">    &lt;a href=&quot;?city=&#123;&#123; city.id &#125;&#125;&quot;&gt;&lt;span class=&quot;&quot;&gt;&#123;&#123; city.name &#125;&#125;&lt;/span&gt;&lt;/a&gt;</div><div class="line">&#123;% endfor %&#125;</div></pre></td></tr></table></figure></p>
+<p>在views（视图函数）中我们根据条件进一步筛选。</p>
+<p>这里有一个小常识。比如我们在在定义培训机构的model的时候，有一个外键，我们虽然传入的字段名称是city，但是在数据库中实际存储的字段名称是city_id， 这样就给我们使用数据带来极大的方便。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 取出筛选的城市</div><div class="line">city_id = request.GET.get(&apos;city&apos;, &apos;&apos;)</div><div class="line"></div><div class="line">if city_id:</div><div class="line">    all_orgs = all_orgs.filter(city_id)</div></pre></td></tr></table></figure></p>
+<p>这里刚刚出现了报错，说参数错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Request Method:	GET</div><div class="line">Request URL:	http://localhost:8000/org_list/?city=1</div><div class="line">Django Version:	1.9</div><div class="line">Exception Type:	ValueError</div><div class="line">Exception Value:	</div><div class="line">not enough values to unpack (expected 2, got 1)</div><div class="line">Exception Location:	/home/peter/mymooc/mymoocvenv/lib/python3.5/site-packages/django/db/models/sql/query.py in build_filter, line 1146</div><div class="line">Python Executable:	/home/peter/mymooc/mymoocvenv/bin/python</div><div class="line">Python Version:	3.5.2</div><div class="line">Python Path:	</div><div class="line">[&apos;/home/peter/mymooc/apps&apos;,</div><div class="line"> &apos;/home/peter/mymooc&apos;,</div><div class="line"> &apos;/root/.venvburrito/lib/python2.7/site-packages&apos;,</div><div class="line"> &apos;/root/.venvburrito/lib/python2.7/site-packages/setuptools-28.8.0-py2.7.egg&apos;,</div><div class="line"> &apos;/root/.venvburrito/lib/python2.7/site-packages/pip-9.0.1-py2.7.egg&apos;,</div><div class="line"> &apos;/home/peter/mymooc/mymoocvenv/lib/python35.zip&apos;,</div><div class="line"> &apos;/home/peter/mymooc/mymoocvenv/lib/python3.5&apos;,</div><div class="line"> &apos;/home/peter/mymooc/mymoocvenv/lib/python3.5/plat-x86_64-linux-gnu&apos;,</div><div class="line"> &apos;/home/peter/mymooc/mymoocvenv/lib/python3.5/lib-dynload&apos;,</div><div class="line"> &apos;/usr/lib/python3.5&apos;,</div><div class="line"> &apos;/usr/lib/python3.5/plat-x86_64-linux-gnu&apos;,</div><div class="line"> &apos;/home/peter/mymooc/mymoocvenv/lib/python3.5/site-packages&apos;]</div></pre></td></tr></table></figure></p>
+<p>修改如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">if city_id:</div><div class="line">    all_orgs = all_orgs.filter(city_id=int(city_id))</div></pre></td></tr></table></figure></p>
+<p>ok，因为city_id在数据库中也是以整形数的形式存储的，也就是int类型的。而从前端页面传过来的的city_id是字符串类型的，所以需要强制转换成整形数，才能正确的找到要筛选的数据。</p>
+<p>附上filter的源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def filter(self, *args, **kwargs):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    Returns a new QuerySet instance with the args ANDed to the existing</div><div class="line">    set.</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    return self._filter_or_exclude(False, *args, **kwargs)</div></pre></td></tr></table></figure></p>
+<p>我们继续做选中状态的处理，如果当前的city的id和后端传过来的city的ID一样，那么就把当前的city设置成选中的状态。</p>
+<p>这里总结的点就是每一个链接都要有一个合理的值，这个值可以是后台传过来的东西。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;h2&gt;机构类别&lt;/h2&gt;</div><div class="line">	&lt;div class=&quot;cont&quot;&gt;</div><div class="line">        &lt;a href=&quot;?city=&#123;&#123; city.id &#125;&#125;&quot;&gt;&lt;span class=&quot;&#123;% ifequal category &apos;&apos; %&#125;active2&#123;% endifequal %&#125;&quot;&gt;全部&lt;/span&gt;&lt;/a&gt;</div><div class="line"></div><div class="line">            &lt;a href=&quot;?ct=trainingorg&amp;city=&#123;&#123; city.id &#125;&#125;&quot;&gt;&lt;span class=&quot;&#123;% ifequal category &apos;trainingorg&apos; %&#125;active2&#123;% endifequal %&#125;&quot;&gt;培训机构&lt;/span&gt;&lt;/a&gt;</div><div class="line"></div><div class="line">            &lt;a href=&quot;?ct=university&amp;city=&#123;&#123; city.id &#125;&#125;&quot;&gt;&lt;span class=&quot;&#123;% ifequal category &apos;university&apos; %&#125;active2&#123;% endifequal %&#125;&quot;&gt;高校&lt;/span&gt;&lt;/a&gt;</div><div class="line"></div><div class="line">            &lt;a href=&quot;?ct=personal&amp;city=&#123;&#123; city.id &#125;&#125;&quot;&gt;&lt;span class=&quot;&#123;% ifequal category &apos;personal&apos; %&#125;active2&#123;% endifequal %&#125;&quot;&gt;个人&lt;/span&gt;&lt;/a&gt;</div><div class="line"></div><div class="line">	&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>在这里培训机构的类别是固定的，所以不用再随着后台传入数据的变化而变化。但是培训机构的信息是从后端传过来的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;cont&quot;&gt;</div><div class="line">    &lt;a href=&quot;?ct=&#123;&#123; category &#125;&#125;&quot;&gt;&lt;span class=&quot;&#123;% ifequal city_id &apos;&apos; %&#125; active2 &#123;% endifequal %&#125;&quot;&gt;全部&lt;/span&gt;&lt;/a&gt;</div><div class="line">        &#123;% for city in all_cities %&#125;</div><div class="line">            &lt;a href=&quot;?city=&#123;&#123; city.id &#125;&#125;&amp;ct=&#123;&#123; category &#125;&#125;&quot;&gt;&lt;span class=&quot;&#123;% ifequal city_id city.id|stringformat:&quot;i&quot; %&#125;active2&#123;% endifequal %&#125;&quot;&gt;&#123;&#123; city.name &#125;&#125;&lt;/span&gt;&lt;/a&gt;</div><div class="line">        &#123;% endfor %&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>在这里实现双重筛选，所以每次判断的条件都会取交集。</p>
+<hr>
+<p>在培训机构的界面有一个机构排名，我们这里默认按照人气排名。其实这也是一个筛选的问题，或者说是一个排序的问题。</p>
+<p>人气体现在什么地方呢，这么看是体现在点击量上，因为点击量越多，说明越受关注。具体的实现如下，直接上代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hot_orgs = all_orgs.order_by(&quot;click_num&quot;)[:5]</div></pre></td></tr></table></figure></p>
+<p>首先定义hot_oegs来存储筛选的信息，比如上面的代码的意思就是在所有的培训机构中抽出人气（点击量）前五名的培训机构。all_orgs是一个列表形式的，我们使用python中的内置的order_by函数对里面的元素进行排序，将排序结果做成切片，显示排名在前的前几个。然后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">return render(request, &quot;org-list.html&quot;, &#123;</div><div class="line">    &quot;all_orgs&quot; : all_orgs,</div><div class="line">    &quot;orgs&quot; : orgs,</div><div class="line">    &quot;all_cities&quot; : all_cities,</div><div class="line">    &quot;city_id&quot;:city_id,</div><div class="line">    &quot;category&quot;:category,</div><div class="line">    &quot;org_nums&quot;:org_nums,</div><div class="line">    &quot;hot_orgs&quot;:hot_orgs,</div><div class="line">    &quot;sort&quot;:sort,</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>我们将hot_orgs 传到前端文件，并且传入的名称也是hot_orgs，在前端的html文件中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;right companyrank layout&quot;&gt;</div><div class="line">	&lt;div class=&quot;head&quot;&gt;授课机构排名&lt;/div&gt;</div><div class="line">        &#123;% for curent_org in hot_orgs %&#125;</div><div class="line">            &lt;dl class=&quot;des&quot;&gt;</div><div class="line">                &lt;dt class=&quot;num fl&quot;&gt;&#123;&#123; forloop.counter &#125;&#125;&lt;/dt&gt;</div><div class="line">                &lt;dd&gt;</div><div class="line">                    &lt;a href=&quot;/company/2/&quot;&gt;&lt;h1&gt;&#123;&#123; curent_org.name &#125;&#125;&lt;/h1&gt;&lt;/a&gt;</div><div class="line">                    &lt;p&gt;&#123;&#123; curent_org.address &#125;&#125;&lt;/p&gt;</div><div class="line">                    &lt;/dd&gt;</div><div class="line">                &lt;/dl&gt;</div><div class="line">        &#123;% endfor %&#125;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>这样就完成了机构的排名。</p>
+<p>接下来类似，可以实现按照学习人数和课程数进行升序或者降序排序以等等，其实和前面的功能是类似的。</p>
+<hr>
+<p>这里还有几个问题要解决下，一个是template中的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% ifequal %&#125;&#123;% endifequal %&#125;</div></pre></td></tr></table></figure></p>
+<p>接着是表示相等的等号的问题，在views.py文件中，因为是python的语法，所以表示相等的符号是双等号，在templates中(也就是html文件中，表示相等的符号是一个等号)，这个要弄清楚。</p>
+<p>python自带了很多很有用的函数，这个是它强大的地方。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django/" rel="tag"># Django</a>
+          
+            <a href="/tags/筛选/" rel="tag"># 筛选</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/08/浅谈python中的字符集和编码问题/" rel="next" title="浅谈python中的字符集问题">
+                <i class="fa fa-chevron-left"></i> 浅谈python中的字符集问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章导览
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/chaiquan.jpg"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#筛选每个城市的培训机构"><span class="nav-number">1.</span> <span class="nav-text">筛选每个城市的培训机构</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>
