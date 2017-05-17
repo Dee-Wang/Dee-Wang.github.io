@@ -115,7 +115,7 @@ Web 应用框架，简称为 web 框架，是编写 web 应用程序的基石。
 <meta property="og:description" content="本文转载自微信公众号：数据与算法之美
 Web 应用框架，简称为 web 框架，是编写 web 应用程序的基石。不管简单的博客系统，还是 Ajax 为主的应用，网络上所有的页面都是代码构成的。进来我发现，很多想学习诸如 Flask 或者 Django 等 web 框架的开发者，并不很了解 web 框架是什么，它们的作用和工作原理。
 这篇文章，我将会讲一下这个通常会被忽略的话题。希望读完这篇文章，你能">
-<meta property="og:updated_time" content="2017-05-15T15:20:49.058Z">
+<meta property="og:updated_time" content="2017-05-17T13:54:32.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初步认识web框架">
 <meta name="twitter:description" content="本文转载自微信公众号：数据与算法之美
@@ -407,7 +407,7 @@ Web 应用框架，简称为 web 框架，是编写 web 应用程序的基石。
       
         <p>本文转载自微信公众号：数据与算法之美</p>
 <h5 id="Web-应用框架，简称为-web-框架，是编写-web-应用程序的基石。不管简单的博客系统，还是-Ajax-为主的应用，网络上所有的页面都是代码构成的。进来我发现，很多想学习诸如-Flask-或者-Django-等-web-框架的开发者，并不很了解-web-框架是什么，它们的作用和工作原理。"><a href="#Web-应用框架，简称为-web-框架，是编写-web-应用程序的基石。不管简单的博客系统，还是-Ajax-为主的应用，网络上所有的页面都是代码构成的。进来我发现，很多想学习诸如-Flask-或者-Django-等-web-框架的开发者，并不很了解-web-框架是什么，它们的作用和工作原理。" class="headerlink" title="Web 应用框架，简称为 web 框架，是编写 web 应用程序的基石。不管简单的博客系统，还是 Ajax 为主的应用，网络上所有的页面都是代码构成的。进来我发现，很多想学习诸如 Flask 或者 Django 等 web 框架的开发者，并不很了解 web 框架是什么，它们的作用和工作原理。"></a>Web 应用框架，简称为 web 框架，是编写 web 应用程序的基石。不管简单的博客系统，还是 Ajax 为主的应用，网络上所有的页面都是代码构成的。进来我发现，很多想学习诸如 Flask 或者 Django 等 web 框架的开发者，并不很了解 web 框架是什么，它们的作用和工作原理。</h5><hr>
-<p>这篇文章，我将会讲一下这个通常会被忽略的话题。希望读完这篇文章，你能比较深刻地理解 web 框架到底是什么，还有为什么会有 web 框架。这些知识将有利于你学习新的 web 框架，而且在选择 web 框架的时候有法可依。<br>WEB 是什么工作的？</p>
+<p>这篇文章，我将会讲一下这个通常会被忽略的话题。希望读完这篇文章，你能比较深刻地理解 web 框架到底是什么，还有为什么会有 web 框架。这些知识将有利于你学习新的 web 框架，而且在选择 web 框架的时候有法可依。</p>
 <hr>
 <h3 id="在讨论框架之前，我们要先了解一下网页是怎么工作。"><a href="#在讨论框架之前，我们要先了解一下网页是怎么工作。" class="headerlink" title="在讨论框架之前，我们要先了解一下网页是怎么工作。"></a>在讨论框架之前，我们要先了解一下网页是怎么工作。</h3><p>我们就从你在浏览器输入一个网址，摁下 enter 键说起。打开你的浏览器，输入 <a href="http://www.douban.com（豆瓣首页），我们来看看你的浏览器做了那些事情（DNS" target="_blank" rel="external">http://www.douban.com（豆瓣首页），我们来看看你的浏览器做了那些事情（DNS</a> 查询的 buffer 就略过），才能显示你看到的网页。</p>
 <h4 id="web-servers，和-web-…-servers-…"><a href="#web-servers，和-web-…-servers-…" class="headerlink" title="web servers，和 web … servers …"></a>web servers，和 web … servers …</h4><p>浏览器接接收到的网页都是 HTML 文件， HTML 是一种描述网页内容和结构的语言。负责给浏览器发送 HTML 的程序称为 web server，容易混淆的是，这个应用程序所在的机器通常也被称为 web server。<br>最重要的一点是，所有的 web 应用做的事情就是把 HTML 内容发送给浏览器。不论这个 web 应用有多么复杂，最终的任务都是把 HTML（我故意忽略掉其他格式的内容，比如 JSON，CSS 文件，因为原理都是一样的）发送给浏览器。</p>
@@ -515,6 +515,10 @@ Web 应用框架，简称为 web 框架，是编写 web 应用程序的基石。
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/17/Django中的request里面到底有些啥？/" rel="prev" title="Django中的request里面到底有些啥？">
+                Django中的request里面到底有些啥？ <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>

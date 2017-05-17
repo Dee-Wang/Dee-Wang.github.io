@@ -288,6 +288,189 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/17/Django中的request里面到底有些啥？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/17/Django中的request里面到底有些啥？/" itemprop="url">
+                  Django中的request里面到底有些啥？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发布于</span>
+              
+              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-05-17T21:08:17+08:00">
+                2017-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">归类</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">统计文章的字数</span>
+                
+                <span title="统计文章的字数">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          本文转载自：http://www.cnblogs.com/MnCu8261/p/5871085.html
+最近做在线学习网站的用户修改头像的功能，使用一个表单上传，在后端接收数据的时候，不止是接收request.POST,还接收了request.FILE,后面这个里面存放的是文件类的信息。
+那么request中到底有些什么，不同类型的数据都在什么里面呢？
+
+Django 使用Request 对象和Response 对象在系统间传递状态。
+当请求一个页面时，Django会建立一个包含请求元数据的 HttpRequest 对象。 当Django 加载对应的视图时，HttpRequest 对象将作为
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/17/Django中的request里面到底有些啥？/#更多" rel="contents">
+              点我了解更多 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/15/初步认识web框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -407,9 +590,9 @@
           
           本文转载自微信公众号：数据与算法之美
 Web 应用框架，简称为 web 框架，是编写 web 应用程序的基石。不管简单的博客系统，还是 Ajax 为主的应用，网络上所有的页面都是代码构成的。进来我发现，很多想学习诸如 Flask 或者 Django 等 web 框架的开发者，并不很了解 web 框架是什么，它们的作用和工作原理。
-这篇文章，我将会讲一下这个通常会被忽略的话题。希望读完这篇文章，你能比较深刻地理解 web 框架到底是什么，还有为什么会有 web 框架。这些知识将有利于你学习新的 web 框架，而且在选择 web 框架的时候有法可依。WEB 是什么工作的？
+这篇文章，我将会讲一下这个通常会被忽略的话题。希望读完这篇文章，你能比较深刻地理解 web 框架到底是什么，还有为什么会有 web 框架。这些知识将有利于你学习新的 web 框架，而且在选择 web 框架的时候有法可依。
 
-在讨论框架之前，我们要
+在讨论框架之前，我们要先了解一下网页是怎么工
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1878,186 +2061,6 @@ choice  可选的，限制了该选项的字段值必须是所指定的choice中
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/04/Django中的models中的field相关/#更多" rel="contents">
-              点我了解更多 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/29/Django中的使用render-渲染模板以及前后端的信息交互/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dee-Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coding Fun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/29/Django中的使用render-渲染模板以及前后端的信息交互/" itemprop="url">
-                  Django中的使用render()渲染模板以及前后端的信息交互
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发布于</span>
-              
-              <time title="新建文章" itemprop="dateCreated datePublished" datetime="2017-04-29T14:00:08+08:00">
-                2017-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">归类</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/框架/" itemprop="url" rel="index">
-                    <span itemprop="name">框架</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/框架/Django/" itemprop="url" rel="index">
-                    <span itemprop="name">Django</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">统计文章的字数</span>
-                
-                <span title="统计文章的字数">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          render真的是Django框架中的一个神奇的函数，到目前为止，在我的理解里，它是负责前端页面和后端逻辑之前传出数据。
-首先看看网上别人的理解，参考链接：http://www.cnblogs.com/panwenbin-logs/p/5838064.html
-别的不说先上源码：（这里Django版本是1.9）123456789101112131415161718192021222324252627282930313233343536373839404142def render(request, template_name, context=None,           context_in
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/29/Django中的使用render-渲染模板以及前后端的信息交互/#更多" rel="contents">
               点我了解更多 &raquo;
             </a>
           </div>
