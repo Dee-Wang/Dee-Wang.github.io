@@ -1364,7 +1364,7 @@ pre .javascript .function {
   color: #999;
 }
 .posts-expand .post-meta .post-description {
-  font-size: 14px;
+  font-size: 10px;
   margin-top: 2px;
 }
 .post-meta-divider {
@@ -1399,7 +1399,7 @@ pre .javascript .function {
   }
 }
 .social-like {
-  font-size: 14px;
+  font-size: 10px;
   height: 20px;
   text-align: center;
   border-top: 1px solid #eee;
@@ -1684,14 +1684,14 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b89ffe;
+  background: #46e313;
 }
 .links-of-blogroll {
   font-size: 13px;
 }
 .links-of-blogroll-title {
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 600;
 }
 .links-of-blogroll-list {
@@ -1796,7 +1796,7 @@ pre .javascript .function {
   color: #87daff;
 }
 .footer {
-  font-size: 14px;
+  font-size: 10px;
   color: #999;
 }
 .footer img {
@@ -2537,7 +2537,7 @@ body {
   -moz-background-size: 100% 100%;
   -webkit-background-size: 100% 100%;
   opacity: 2;
-  font-weight: 900;
+  font-weight: 500;
 }
 tag {
   font-weight: 900;
