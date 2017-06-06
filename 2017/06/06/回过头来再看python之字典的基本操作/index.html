@@ -1,0 +1,782 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据结构,常用函数,字典,Dictionary," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="字典是一些列的键值对，这些键值对是无序的。
+我们可以通过索引来访问，添加，修改甚至删除键值对。
+
+遍历字典
+字典中可能包含大量的数据，一般情况下我们这样遍历，假设现在有一个字典叫users1234users = &amp;#123;&amp;apos;Lily&amp;apos;:20, &amp;apos;Krist&amp;apos;:27, &amp;apos;Eric&amp;apos;:40, &amp;apos;Json&amp;apos;:20&amp;#125">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回过头来再看python之字典的基本操作">
+<meta property="og:url" content="http://yoursite.com/2017/06/06/回过头来再看python之字典的基本操作/index.html">
+<meta property="og:site_name" content="Coding Fun">
+<meta property="og:description" content="字典是一些列的键值对，这些键值对是无序的。
+我们可以通过索引来访问，添加，修改甚至删除键值对。
+
+遍历字典
+字典中可能包含大量的数据，一般情况下我们这样遍历，假设现在有一个字典叫users1234users = &amp;#123;&amp;apos;Lily&amp;apos;:20, &amp;apos;Krist&amp;apos;:27, &amp;apos;Eric&amp;apos;:40, &amp;apos;Json&amp;apos;:20&amp;#125">
+<meta property="og:updated_time" content="2017-06-06T15:22:55.598Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="回过头来再看python之字典的基本操作">
+<meta name="twitter:description" content="字典是一些列的键值对，这些键值对是无序的。
+我们可以通过索引来访问，添加，修改甚至删除键值对。
+
+遍历字典
+字典中可能包含大量的数据，一般情况下我们这样遍历，假设现在有一个字典叫users1234users = &amp;#123;&amp;apos;Lily&amp;apos;:20, &amp;apos;Krist&amp;apos;:27, &amp;apos;Eric&amp;apos;:40, &amp;apos;Json&amp;apos;:20&amp;#125">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/06/回过头来再看python之字典的基本操作/"/>
+
+
+
+
+
+  <title> 回过头来再看python之字典的基本操作 | Coding Fun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coding Fun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            围观我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/06/回过头来再看python之字典的基本操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                回过头来再看python之字典的基本操作
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发布于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-06T23:23:16+08:00">
+                2017-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类：</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/python数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">python数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>字典是一些列的键值对，这些键值对是无序的。</p>
+<p>我们可以通过索引来访问，添加，修改甚至删除键值对。</p>
+<hr>
+<p>遍历字典</p>
+<p>字典中可能包含大量的数据，一般情况下我们这样遍历，假设现在有一个字典叫<code>users</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">users = &#123;&apos;Lily&apos;:20, &apos;Krist&apos;:27, &apos;Eric&apos;:40, &apos;Json&apos;:20&#125;</div><div class="line">for key, value in users.items():</div><div class="line">    print(&quot;name is &quot;+ key)</div><div class="line">    print(&quot;age is &quot;+ value)</div></pre></td></tr></table></figure></p>
+<p>我们还可以遍历字典中的所有的键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for name in users.keys():</div><div class="line">    print(name.title())</div></pre></td></tr></table></figure></p>
+<p>字典本身是无序的，所以我们在遍历的时候可以确保获得正确的键值对，但是获取的顺序是不可预测的。</p>
+<p>可以使用以下的方法来获得按照特定顺序排列的键值对列表的副本。（列表是有顺序的）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for name in sorted(users.keys()):</div><div class="line">    print(name.title())</div></pre></td></tr></table></figure></p>
+<hr>
+<p>获取字典中的所有的值？和取所有的键类似，要使用values()函数。但是这里我有一个疑问就是我们是用这个方法获取到的值是什么类型的呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; users = &#123;&apos;001&apos;:&apos;lily&apos;, &apos;002&apos;:&apos;Bob&apos;, &apos;008&apos;:&apos;Eric&apos;,&apos;015&apos;:&apos;Andrew&apos;&#125;</div><div class="line">&gt;&gt;&gt; test_obj = users.keys()</div><div class="line">&gt;&gt;&gt; test_obj</div><div class="line">dict_keys([&apos;015&apos;, &apos;002&apos;, &apos;001&apos;, &apos;008&apos;])</div><div class="line">&gt;&gt;&gt; type(test_obj)</div><div class="line">&lt;class &apos;dict_keys&apos;&gt;</div><div class="line">&gt;&gt;&gt; isinstance(test_obj, list)</div><div class="line">False</div><div class="line">&gt;&gt;&gt; isinstance(test_obj, dict)</div><div class="line">False</div><div class="line">&gt;&gt;&gt; isinstance(test_obj, tuple)</div><div class="line">False</div><div class="line">&gt;&gt;&gt; isinstance(test_obj, str)</div><div class="line">False</div><div class="line">&gt;&gt;&gt; test_obj2 = users.values()</div><div class="line">&gt;&gt;&gt; test_obj2</div><div class="line">dict_values([&apos;Andrew&apos;, &apos;Bob&apos;, &apos;lily&apos;, &apos;Eric&apos;])</div><div class="line">&gt;&gt;&gt; isinstance(test_obj2, list)</div><div class="line">False</div><div class="line">&gt;&gt;&gt; test_obj3 = sorted(test_obj2)</div><div class="line">&gt;&gt;&gt; test_obj3</div><div class="line">[&apos;Andrew&apos;, &apos;Bob&apos;, &apos;Eric&apos;, &apos;lily&apos;]</div><div class="line">&gt;&gt;&gt; isinstance(test_obj3, list)</div><div class="line">True</div><div class="line">&gt;&gt;&gt; for name in test_obj3:</div><div class="line">...     print(name.title())</div><div class="line">... </div><div class="line">Andrew</div><div class="line">Bob</div><div class="line">Eric</div><div class="line">Lily</div><div class="line">&gt;&gt;&gt; for name in test_obj3:</div><div class="line">...     names.append(name.title())</div><div class="line">... </div><div class="line">&gt;&gt;&gt; names</div><div class="line">[&apos;Andrew&apos;, &apos;Bob&apos;, &apos;Eric&apos;, &apos;Lily&apos;]</div></pre></td></tr></table></figure></p>
+<p>但是这个对象是可以迭代的。</p>
+<p>最后这样先声明一个空的列表，再每次往里面添加元素和直接对这个对象使用sorted()函数得到的结果是一样的，都是一个元素是字符串类型的列表。</p>
+<p>我们在获取值的时候可能存在重复的元素，有的时候我们想去掉这些重复的内容，就需要使用方法set()，这个方法将传入的参数转换成集合类型的对象，集合中是没有重复的元素的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; set(test_obj3)</div><div class="line">&#123;&apos;Bob&apos;, &apos;Eric&apos;, &apos;Andrew&apos;, &apos;lily&apos;&#125;</div><div class="line">&gt;&gt;&gt; test_obj4 = set(test_obj3)</div><div class="line">&gt;&gt;&gt; test_obj4</div><div class="line">&#123;&apos;Bob&apos;, &apos;Eric&apos;, &apos;Andrew&apos;, &apos;lily&apos;&#125;</div><div class="line">&gt;&gt;&gt; type(test_obj4)</div><div class="line">&lt;class &apos;set&apos;&gt;</div><div class="line">&gt;&gt;&gt; isinstance(test_obj4,set)</div><div class="line">True</div></pre></td></tr></table></figure></p>
+<p>当我们想要了解字典中的键值对的个数的时候，可以使用len()方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; users = &#123;&apos;001&apos;:&apos;lily&apos;, &apos;002&apos;:&apos;Bob&apos;, &apos;008&apos;:&apos;Eric&apos;,&apos;015&apos;:&apos;Andrew&apos;&#125;</div><div class="line">&gt;&gt;&gt; nums = len(users)</div><div class="line">&gt;&gt;&gt; nums</div><div class="line">4</div></pre></td></tr></table></figure></p>
+<p>当我们对整个字典使用set()方法的时候，默认的是将字典中所有的键取出来，再转换成一个集合。如果我们想对所有键值对中的值进行去重，那么我们要指定正确的参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; set(users)</div><div class="line">&#123;&apos;008&apos;, &apos;001&apos;, &apos;002&apos;, &apos;015&apos;&#125;</div><div class="line">&gt;&gt;&gt; set(users.keys())</div><div class="line">&#123;&apos;008&apos;, &apos;001&apos;, &apos;002&apos;, &apos;015&apos;&#125;</div><div class="line">&gt;&gt;&gt; set(users.values())</div><div class="line">&#123;&apos;Bob&apos;, &apos;Eric&apos;, &apos;Andrew&apos;, &apos;lily&apos;&#125;</div><div class="line">&gt;&gt;&gt; len(set(users))</div><div class="line">4</div></pre></td></tr></table></figure></p>
+<hr>
+<p>假设存在这样的一种情况：我定义了一个字典，其中有的键值是重复的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; users = &#123;&apos;001&apos;:&apos;lily&apos;, &apos;002&apos;:&apos;Bob&apos;, &apos;001&apos;:&apos;Peter&apos;&#125;</div><div class="line">&gt;&gt;&gt; users</div><div class="line">&#123;&apos;002&apos;: &apos;Bob&apos;, &apos;001&apos;: &apos;Peter&apos;&#125;</div><div class="line">&gt;&gt;&gt; users[&apos;001&apos;]</div><div class="line">&apos;Peter&apos;</div></pre></td></tr></table></figure></p>
+<p>可以看到，这样写并没有报错，只不过后面那个’001’的键将前面的这个’001’的键给覆盖掉了，所以说其实字典里的键值是没有重复的，因为一旦重复，后面的就会将前面的覆盖掉。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/常用函数/" rel="tag"># 常用函数</a>
+          
+            <a href="/tags/字典/" rel="tag"># 字典</a>
+          
+            <a href="/tags/Dictionary/" rel="tag"># Dictionary</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/06/Python中的元素仓库之集合(set)/" rel="next" title="Python中的元素仓库之集合(set)">
+                <i class="fa fa-chevron-left"></i> Python中的元素仓库之集合(set)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/07/初识JSON/" rel="prev" title="初识JSON">
+                初识JSON <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/chaiquan.jpg"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>
