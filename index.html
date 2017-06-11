@@ -288,6 +288,200 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/11/scrapy爬取到的数据如何写入MySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/11/scrapy爬取到的数据如何写入MySQL/" itemprop="url">
+                  scrapy爬取到的数据如何写入MySQL
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发布于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T23:46:15+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类：</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/" itemprop="url" rel="index">
+                    <span itemprop="name">项目</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/分布式爬虫打造搜索引擎/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式爬虫打造搜索引擎</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目/分布式爬虫打造搜索引擎/流水/" itemprop="url" rel="index">
+                    <span itemprop="name">流水</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          在抓取伯乐在线上面的文章的信息的时候我们尝试将抓取到的数据写入数据库。
+写入的方式有两种，一种是同步的写入，另一种是异步的写入。
+同步的写入比较好理解，就是爬到数据以后就立刻将数据写入MySQL。
+但是同步地写入有一个缺点，因为scrapy爬取数据的速度远远大于将数据写入MySQL的速度，在数据量比较小的时候造成的影响不大，但是当数据量非常大的时候就会出现很多的问题。所以我们要采用异步的方式爬取数据并且写入MySQL。
+python有一个Twisted框架可以完成异步的写入。这个框架可以提供一个连接池，先将爬取到的数据缓存进连接池，然后将连接池中的数据写入MySQL。
+举个例子：pipelin
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/11/scrapy爬取到的数据如何写入MySQL/#more" rel="contents">
+              点我了解更多 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/11/常见的web攻击的方式之SQL注入攻击，XSS攻击/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -434,7 +628,7 @@ SQL注入 是一个很常见的形式，在SQL注入中，攻击者改变web网�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/06/11/常见的web攻击的方式之SQL注入攻击，XSS攻击/#更多" rel="contents">
+            <a class="btn" href="/2017/06/11/常见的web攻击的方式之SQL注入攻击，XSS攻击/#more" rel="contents">
               点我了解更多 &raquo;
             </a>
           </div>
@@ -624,7 +818,7 @@ SQL注入 是一个很常见的形式，在SQL注入中，攻击者改变web网�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/06/07/在线学习网站记录之如何获得学习当前课程的用户以及点击我要学习之后的处理/#更多" rel="contents">
+            <a class="btn" href="/2017/06/07/在线学习网站记录之如何获得学习当前课程的用户以及点击我要学习之后的处理/#more" rel="contents">
               点我了解更多 &raquo;
             </a>
           </div>
@@ -803,7 +997,7 @@ Python的list的实现不是类似数据结构中的单链表，而是类似数�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/06/07/Python数据结构之List/#更多" rel="contents">
+            <a class="btn" href="/2017/06/07/Python数据结构之List/#more" rel="contents">
               点我了解更多 &raquo;
             </a>
           </div>
@@ -985,7 +1179,7 @@ j
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/06/07/初识JSON/#更多" rel="contents">
+            <a class="btn" href="/2017/06/07/初识JSON/#more" rel="contents">
               点我了解更多 &raquo;
             </a>
           </div>
@@ -1167,7 +1361,7 @@ j
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/06/06/回过头来再看python之字典的基本操作/#更多" rel="contents">
+            <a class="btn" href="/2017/06/06/回过头来再看python之字典的基本操作/#more" rel="contents">
               点我了解更多 &raquo;
             </a>
           </div>
@@ -1351,7 +1545,7 @@ set中的元素不可重复这个就是类似于dict的键。
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/06/06/Python中的元素仓库之集合(set)/#更多" rel="contents">
+            <a class="btn" href="/2017/06/06/Python中的元素仓库之集合(set)/#more" rel="contents">
               点我了解更多 &raquo;
             </a>
           </div>
@@ -1534,7 +1728,7 @@ Django 使用Request 对象和Response 对象在系统间传递状态。
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/05/17/Django中的request里面到底有些啥？/#更多" rel="contents">
+            <a class="btn" href="/2017/05/17/Django中的request里面到底有些啥？/#more" rel="contents">
               点我了解更多 &raquo;
             </a>
           </div>
@@ -1705,7 +1899,7 @@ Web 应用框架，简称为 web 框架，是编写 web 应用程序的基石。
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/05/15/初步认识web框架/#更多" rel="contents">
+            <a class="btn" href="/2017/05/15/初步认识web框架/#more" rel="contents">
               点我了解更多 &raquo;
             </a>
           </div>
@@ -1888,176 +2082,7 @@ v
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/05/13/浅析Django中的Meta类/#更多" rel="contents">
-              点我了解更多 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dee-Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Coding Fun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/10/自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示/" itemprop="url">
-                  自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发布于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-10T23:26:32+08:00">
-                2017-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类：</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          筛选每个城市的培训机构在前端界面上按照城市的id来显示城市的信息。123&#123;% for city in all_cities %&#125;    &lt;a href=&quot;?city=&#123;&#123; city.id &#125;&#125;&quot;&gt;&lt;span class=&quot;&quot;&gt;&#123;&#123; city.name &#125;&#125;&lt;/span&gt;&lt;/a&gt;&#123;% endfor %&#125;
-在views（视图函数）中我们根据条件进一步筛选。
-这里有一个小常识。比如我们在在定义培
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/10/自己写一个在线学习网站记录之按照不同的筛选条件筛选符合条件的数据并显示/#更多" rel="contents">
+            <a class="btn" href="/2017/05/13/浅析Django中的Meta类/#more" rel="contents">
               点我了解更多 &raquo;
             </a>
           </div>
@@ -2143,7 +2168,7 @@ v
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -2154,7 +2179,7 @@ v
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2165,7 +2190,7 @@ v
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
