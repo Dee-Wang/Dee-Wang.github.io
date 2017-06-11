@@ -1,0 +1,828 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="安全,SQL注入攻击,XSS攻击," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="SQL注入攻击SQL注入的危害。
+SQL注入的危险源：
+SQL注入 是一个很常见的形式，在SQL注入中，攻击者改变web网页的参数（例如 GET /POST 数据或者URL地址），加入一些其他的SQL片段。 未加处理的网站会将这些信息在后台数据库直接运行。举个例子：
+假设我们要写一个函数，用来从通信录搜索页面收集一系列的联系信息。 为防止垃圾邮件发送器阅读系统中的email，我们将在提供email">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见的web攻击的方式之SQL注入攻击，XSS攻击">
+<meta property="og:url" content="http://yoursite.com/2017/06/11/常见的web攻击的方式之SQL注入攻击，XSS攻击/index.html">
+<meta property="og:site_name" content="Coding Fun">
+<meta property="og:description" content="SQL注入攻击SQL注入的危害。
+SQL注入的危险源：
+SQL注入 是一个很常见的形式，在SQL注入中，攻击者改变web网页的参数（例如 GET /POST 数据或者URL地址），加入一些其他的SQL片段。 未加处理的网站会将这些信息在后台数据库直接运行。举个例子：
+假设我们要写一个函数，用来从通信录搜索页面收集一系列的联系信息。 为防止垃圾邮件发送器阅读系统中的email，我们将在提供email">
+<meta property="og:updated_time" content="2017-06-11T15:18:55.705Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见的web攻击的方式之SQL注入攻击，XSS攻击">
+<meta name="twitter:description" content="SQL注入攻击SQL注入的危害。
+SQL注入的危险源：
+SQL注入 是一个很常见的形式，在SQL注入中，攻击者改变web网页的参数（例如 GET /POST 数据或者URL地址），加入一些其他的SQL片段。 未加处理的网站会将这些信息在后台数据库直接运行。举个例子：
+假设我们要写一个函数，用来从通信录搜索页面收集一系列的联系信息。 为防止垃圾邮件发送器阅读系统中的email，我们将在提供email">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/11/常见的web攻击的方式之SQL注入攻击，XSS攻击/"/>
+
+
+
+
+
+  <title> 常见的web攻击的方式之SQL注入攻击，XSS攻击 | Coding Fun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coding Fun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            围观我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/11/常见的web攻击的方式之SQL注入攻击，XSS攻击/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常见的web攻击的方式之SQL注入攻击，XSS攻击
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发布于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T23:19:29+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类：</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/框架/Django/Web安全/" itemprop="url" rel="index">
+                    <span itemprop="name">Web安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="SQL注入攻击"><a href="#SQL注入攻击" class="headerlink" title="SQL注入攻击"></a>SQL注入攻击</h3><p>SQL注入的危害。</p>
+<p>SQL注入的危险源：</p>
+<p>SQL注入 是一个很常见的形式，在SQL注入中，攻击者改变web网页的参数（例如 GET /POST 数据或者URL地址），加入一些其他的SQL片段。 未加处理的网站会将这些信息在后台数据库直接运行。举个例子：</p>
+<p>假设我们要写一个函数，用来从通信录搜索页面收集一系列的联系信息。 为防止垃圾邮件发送器阅读系统中的email，我们将在提供email地址以前，首先强制用户输入用户名。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">def user_contacts(request):</div><div class="line">    user = request.GET[&apos;username&apos;]</div><div class="line">    sql = &quot;SELECT * FROM user_contacts WHERE username = &apos;%s&apos;;&quot; % username</div><div class="line">    # execute the SQL here...</div></pre></td></tr></table></figure></p>
+<p>这样的情况下如果用户使用吧符合规范而且正确的用户名，查询到的结果还是没问题的，但是存在这样的一种情况，比如我们在输入用户名的时候输入<code>&quot;&#39; OR &#39;a&#39;=&#39;a&quot;</code>,这时候我们运行后台的逻辑，查询的字符串构造变成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM user_contacts WHERE username = &apos;&apos; OR &apos;a&apos; = &apos;a&apos;;</div></pre></td></tr></table></figure></p>
+<p>因为<code>&#39;a&#39; = &#39;a&#39;</code>一定是成立的，所以攻击者就伪装成用户完成登陆了，而且这样会返回数据表中的每一行的数据。</p>
+<p>SQL注入还有更破坏性的，比如我们在用户名处输入<code>&#39;; DELETE FROM user_contacts WHERE &#39;a&#39; = &#39;a&#39;</code>,在后台逻辑执行中，SQL语句变成了这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM user_contacts WHERE username = &apos;&apos;; DELETE FROM user_contacts WHERE &apos;a&apos; = &apos;a&apos;;</div></pre></td></tr></table></figure></p>
+<p>我们查询没有什么结果，但是后面的<code>delete</code>语句就把数据表中的所有的数据删除了。这对于我们来说简直是灾难。</p>
+<p>那么我们使用Django的ORM的时候，它是怎样去防范SQL注入攻击的呢？</p>
+<p>方法就是绝对不信任用户提交的数据，并且在传递给SQL语句的时候总是转义它。比如上面的例子中；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo.get_list(bar__exact=&quot;&apos; OR 1=1&quot;)</div></pre></td></tr></table></figure></p>
+<p>Django会自动转义，得到下面的表达：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM foos WHERE bar = &apos;\&apos; OR 1=1&apos;</div></pre></td></tr></table></figure></p>
+<p>不会造成什么伤害。</p>
+<hr>
+<h3 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h3><p>参考链接：<a href="https://blog.tonyseek.com/post/introduce-to-xss-and-csrf/" target="_blank" rel="external">https://blog.tonyseek.com/post/introduce-to-xss-and-csrf/</a></p>
+<p>XSS(Cross Site Scripting)跨站脚本攻击</p>
+<p>危害：</p>
+<ol>
+<li>盗取各类的用户账号，例如用户网银账号，各类的管理员账号。</li>
+<li>盗取企业重要的具有商业价值的资料。</li>
+<li>非法装张</li>
+<li>控制受害者的及其向其他的网站发起攻击，注入木马等等。</li>
+</ol>
+<h4 id="攻击分类"><a href="#攻击分类" class="headerlink" title="攻击分类"></a>攻击分类</h4><h5 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h5><p>反射性XSS，也就是被动的非持久性XSS。诱骗用户点击URL带攻击代码的链接，服务器解析后响应，在返回的响应内容中隐藏和嵌入攻击者的XSS代码，被浏览器执行，从而攻击用户。<br>URL可能被用户怀疑，但是可以通过短网址服务将之缩短，从而隐藏自己。</p>
+<h5 id="持久型XSS"><a href="#持久型XSS" class="headerlink" title="持久型XSS"></a>持久型XSS</h5><p>也叫存储型XSS——主动提交恶意数据到服务器，攻击者在数据中嵌入代码，这样当其他用户请求后，服务器从数据库中查询数据并发给用户，用户浏览此类页面时就可能受到攻击。可以描述为:恶意用户的HTML或JS输入服务器-&gt;进入数据库-&gt;服务器响应时查询数据库-&gt;用户浏览器。</p>
+<h5 id="DOM-based-XSS"><a href="#DOM-based-XSS" class="headerlink" title="DOM-based XSS"></a>DOM-based XSS</h5><p>基于DOM的XSS，通过对具体DOM代码进行分析，根据实际情况构造dom节点进行XSS跨站脚本攻击。</p>
+<p>注：domxss取决于输出位置，并不取决于输出环境，因此domxss既有可能是反射型的，也有可能是存储型的。dom-based与非dom-based，反射和存储是两个不同的分类标准。</p>
+<p>在Web应用中， 跨站点脚本 (XSS)有时在被渲染成HTML之前，不能恰当地对用户提交的内容进行转义。 这使得攻击者能够向你的网站页面插入通常以<code>&lt;script&gt;</code> 标签形式的任意HTML代码。</p>
+<p>攻击者通常利用XSS攻击来窃取cookie和会话信息，或者诱骗用户将其私密信息透漏给别人（又称 钓鱼 ）。</p>
+<p>这种攻击方式能采用多种不同的方式，而且有很多变体，看一些经典的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from django.http import HttpResponse</div><div class="line"></div><div class="line">def say_hello(request):</div><div class="line">    name = request.GET.get(&apos;name&apos;, &apos;world&apos;)</div><div class="line">    return HttpResponse(&apos;&lt;h1&gt;Hello, %s!&lt;/h1&gt;&apos; % name)</div></pre></td></tr></table></figure></p>
+<p>上面这段代码是一个hello world视图，我们使用get方法得到用户提交的name，并且输出<code>Hello 用户名</code>这样形式的结果。</p>
+<p>当我们访问<code>http://example.com/hello/?name=Jacob</code>这个网址的时候被呈现的页面应该包含：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;Hello, Jacob!&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
+<p>但是当我们受到攻击者发来的一个链接，因为是在<code>example.com</code>这个域名下面的，所以一般的用户都会信任，点击以后向服务器发送了这个链接<code>http://example.com/hello/?name=&lt;i&gt;Jacob&lt;/i&gt;</code>这个网址的时候被呈现的页面是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;Hello, &lt;i&gt;Jacob&lt;/i&gt;!&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
+<p>当然，一个攻击者不会使用<code>&lt;i&gt;</code>标签开始的类似代码，他可能会用任意内容去包含一个完整的HTML集来劫持您的页面。 这种类型的攻击已经运用于虚假银行站点以诱骗用户输入个人信息，事实上这就是一种劫持XSS的形式，用以使用户向攻击者提供他们的银行帐户信息。</p>
+<p>如果您将这些数据保存在数据库中，然后将其显示在您的站点上，那么问题就变得更严重了。 例如，一旦MySpace被发现这样的特点而能够轻易的被XSS攻击，后果不堪设想。 某个用户向他的简介中插入JavaScript，使得您在访问他的简介页面时自动将其加为您的好友，这样在几天之内，这个人就能拥有上百万的好友。 在几天的时间里，他拥有了数以百万的朋友。</p>
+<p>现在，这种后果听起来还不那么恶劣，但是您要清楚——这个攻击者正设法将 他 的代码而不是MySpace的代码运行在 您 的计算机上。 这显然违背了假定信任——所有运行在MySpace上的代码应该都是MySpace编写的，而事实上却不如此。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><h5 id="总之就是一句话：所有的用户的输入都是不可信任的。"><a href="#总之就是一句话：所有的用户的输入都是不可信任的。" class="headerlink" title="总之就是一句话：所有的用户的输入都是不可信任的。"></a>总之就是一句话：所有的用户的输入都是不可信任的。</h5><p>转义可能来自某个用户的任何内容。Django 模板会 编码特殊字符 ，这些字符在 HTML 中都是特别危险的。 虽然这可以防止大多数恶意输入的用户，但它不能完全保证万无一失。 例如，它不会防护以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;style class=&gt;...&lt;/style&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="CSRF攻击"><a href="#CSRF攻击" class="headerlink" title="CSRF攻击"></a>CSRF攻击</h3><p>这个我之前写过一篇博文介绍这个攻击方式，<a href="https://dee-wang.github.io/2017/04/29/CSRF%E6%94%BB%E5%87%BB%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E9%A2%84%E9%98%B2/" target="_blank" rel="external">传送门</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/安全/" rel="tag"># 安全</a>
+          
+            <a href="/tags/SQL注入攻击/" rel="tag"># SQL注入攻击</a>
+          
+            <a href="/tags/XSS攻击/" rel="tag"># XSS攻击</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/07/在线学习网站记录之如何获得学习当前课程的用户以及点击我要学习之后的处理/" rel="next" title="在线学习网站记录之如何获得学习当前课程的用户以及点击我要学习之后的处理">
+                <i class="fa fa-chevron-left"></i> 在线学习网站记录之如何获得学习当前课程的用户以及点击我要学习之后的处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章导览
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/chaiquan.jpg"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL注入攻击"><span class="nav-number">1.</span> <span class="nav-text">SQL注入攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS攻击"><span class="nav-number">2.</span> <span class="nav-text">XSS攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#攻击分类"><span class="nav-number">2.1.</span> <span class="nav-text">攻击分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#反射型XSS"><span class="nav-number">2.1.1.</span> <span class="nav-text">反射型XSS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#持久型XSS"><span class="nav-number">2.1.2.</span> <span class="nav-text">持久型XSS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DOM-based-XSS"><span class="nav-number">2.1.3.</span> <span class="nav-text">DOM-based XSS</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">2.2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#总之就是一句话：所有的用户的输入都是不可信任的。"><span class="nav-number">2.2.1.</span> <span class="nav-text">总之就是一句话：所有的用户的输入都是不可信任的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSRF攻击"><span class="nav-number">3.</span> <span class="nav-text">CSRF攻击</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>
