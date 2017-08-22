@@ -1,0 +1,864 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="文件读和写," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="统计单词在一段文本中出现的频率：12345&amp;gt;&amp;gt;&amp;gt; import collections&amp;gt;&amp;gt;&amp;gt; import os&amp;gt;&amp;gt;&amp;gt; with open(&amp;apos;/home/peter/Documents/por.txt&amp;apos;) as file1:    str1 = file1.read().split(&amp;apos; &amp;apos;)&amp;gt;&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python中文件的读和写(由一个小例子引起的思考)">
+<meta property="og:url" content="http://yoursite.com/2017/08/22/Python中文件的读和写(由一个小例子引起的思考)/index.html">
+<meta property="og:site_name" content="Coding Fun">
+<meta property="og:description" content="统计单词在一段文本中出现的频率：12345&amp;gt;&amp;gt;&amp;gt; import collections&amp;gt;&amp;gt;&amp;gt; import os&amp;gt;&amp;gt;&amp;gt; with open(&amp;apos;/home/peter/Documents/por.txt&amp;apos;) as file1:    str1 = file1.read().split(&amp;apos; &amp;apos;)&amp;gt;&amp;gt">
+<meta property="og:updated_time" content="2017-08-22T14:14:26.985Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python中文件的读和写(由一个小例子引起的思考)">
+<meta name="twitter:description" content="统计单词在一段文本中出现的频率：12345&amp;gt;&amp;gt;&amp;gt; import collections&amp;gt;&amp;gt;&amp;gt; import os&amp;gt;&amp;gt;&amp;gt; with open(&amp;apos;/home/peter/Documents/por.txt&amp;apos;) as file1:    str1 = file1.read().split(&amp;apos; &amp;apos;)&amp;gt;&amp;gt">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/22/Python中文件的读和写(由一个小例子引起的思考)/"/>
+
+
+
+
+
+  <title> Python中文件的读和写(由一个小例子引起的思考) | Coding Fun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coding Fun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            围观我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/Python中文件的读和写(由一个小例子引起的思考)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python中文件的读和写(由一个小例子引起的思考)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发布于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-22T22:15:33+08:00">
+                2017-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类：</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/python-Tips/" itemprop="url" rel="index">
+                    <span itemprop="name">python Tips</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/python-Tips/文件/" itemprop="url" rel="index">
+                    <span itemprop="name">文件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>统计单词在一段文本中出现的频率：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import collections</div><div class="line">&gt;&gt;&gt; import os</div><div class="line">&gt;&gt;&gt; with open(&apos;/home/peter/Documents/por.txt&apos;) as file1:</div><div class="line">    str1 = file1.read().split(&apos; &apos;)</div><div class="line">&gt;&gt;&gt; print(collections.Counter(str1))</div></pre></td></tr></table></figure></p>
+<p>这里用空格分开每个单词。</p>
+<hr>
+<h4 id="文件的操作"><a href="#文件的操作" class="headerlink" title="文件的操作"></a>文件的操作</h4><p>分析一下：</p>
+<p>首先读整个文件的写法，因为无论要对文件内容进行什么操作，都需要先打开这个文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">with open(&apos;filename&apos;) as file1:</div></pre></td></tr></table></figure></p>
+<p>open()函数会在这个文件所在的目录中寻找对应文件名的文件，打开它。</p>
+<p>open()函数还有另外的一个参数表示对文件的处理方式。例如”r”表示只读模式，”w”表示只写模式，等等。如果不指定对文件的操作方式，那么默认的操作方式是只读方式。</p>
+<p>这里有一点要注意就是如果是写入”w”模式操作有的时候，如果要写入的文件名称不存在，系统就会自己创建这个文件，如果存在，在系统返回文件对象之前会清空文件。</p>
+<p>python将内容写入文件的时候，只能是将字符串类型的值写入文件，所以在写入文件之前，非字符串类型的值需要先转换成字符串类型。</p>
+<p>操作方式”a”表示不覆盖掉原来的内容，而是在原来内容结尾后继续写入新的内容。</p>
+<p>open()函数返回的是一个文件对象，as给这个对象取一个别名。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Python 3.5.2 (default, Nov 17 2016, 17:05:23) </div><div class="line">[GCC 5.4.0 20160609] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; test_me = open(&quot;test.txt&quot;)</div><div class="line">&gt;&gt;&gt; test_me</div><div class="line">&lt;_io.TextIOWrapper name=&apos;test.txt&apos; mode=&apos;r&apos; encoding=&apos;UTF-8&apos;&gt;</div><div class="line">&gt;&gt;&gt; type(test_me)</div><div class="line">&lt;class &apos;_io.TextIOWrapper&apos;&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; with open(&quot;test.txt&quot;) as testfile:</div><div class="line">...     contant = testfile.read()</div><div class="line">... </div><div class="line">&gt;&gt;&gt; contant</div><div class="line">&apos;Chanel S.A. (/ʃəˈnɛl/; French: [ʃaˈnɛl]) is a French, privately held company</div><div class="line"># 中间部分的内容省略掉了……</div><div class="line">necklace of pearls, and a leather handbag.[3][6][8]&apos;</div><div class="line">&gt;&gt;&gt; type(contant)</div><div class="line">&lt;class &apos;str&apos;&gt;</div></pre></td></tr></table></figure>
+<p>读取了内容之后，我们按照每行打印输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; with open(&quot;test.txt&quot;) as testfile:</div><div class="line">...     for line in testfile:</div><div class="line">...         print(line)</div></pre></td></tr></table></figure></p>
+<p>在这里我们得到的结果中每行之间多了一个空行，因为每一行后面都有一个看不到的换行符，我们使用 rstrip()函数来去除这个换行符。</p>
+<p>函数rstrip()的作用就是删除字符串末尾的空白。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; with open(&quot;test.txt&quot;) as testfile:</div><div class="line">...     for line in testfile:</div><div class="line">...         print(line.rstrip())</div></pre></td></tr></table></figure></p>
+<p>函数read()是将文本的所有的内容都读出来返回一个字符串类型的值。</p>
+<p>函数readlines()是将文本的所有内容按行读取，并且将每一行作为一个元素存储到一个列表中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; with open(filename) as testfile:</div><div class="line">...     lines = testfile.readlines()</div><div class="line">... </div><div class="line">&gt;&gt;&gt; lines</div><div class="line">[&apos;Beijing\n&apos;, &apos;Paris\n&apos;, &apos;London\n&apos;, &apos;HongKong\n&apos;, &apos;Tianjin\n&apos;, &apos;Shanghai\n&apos;, &apos;Dalian\n&apos;, &apos;Shenyang&apos;]</div><div class="line">&gt;&gt;&gt; type(lines)</div><div class="line">&lt;class &apos;list&apos;&gt;</div></pre></td></tr></table></figure></p>
+<p>与rstrip()函数对应，strip()函数是用来去除每一行前面的空格的作用。</p>
+<hr>
+<h4 id="collections"><a href="#collections" class="headerlink" title="collections"></a>collections</h4><p>collections是Python内建的一个集合模块，提供了许多有用的集合类。</p>
+<p>关于这个模块另起一篇去描述。</p>
+<hr>
+<h4 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h4><p>open中不同的参数对应不同的操作类型</p>
+<table>
+<thead>
+<tr>
+<th>文件打开的类型</th>
+<th>表示的含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“rt”</td>
+<td>只读打开一个文本文件，只允许读数据</td>
+</tr>
+<tr>
+<td>“wt”</td>
+<td>只写打开或建立一个文本文件，只允许写数据</td>
+</tr>
+<tr>
+<td>“at”</td>
+<td>追加打开一个文本文件，并在文件末尾写数据</td>
+</tr>
+<tr>
+<td>“rb”</td>
+<td>只读打开一个二进制文件，只允许读数据</td>
+</tr>
+<tr>
+<td>“wb”</td>
+<td>只写打开或建立一个二进制文件，只允许写数据</td>
+</tr>
+<tr>
+<td>“ab”</td>
+<td>追加打开一个二进制文件，并在文件末尾写数据</td>
+</tr>
+<tr>
+<td>“rt+”</td>
+<td>读写打开一个文本文件，允许读和写</td>
+</tr>
+<tr>
+<td>“wt+”</td>
+<td>读写打开或建立一个文本文件，允许读写</td>
+</tr>
+<tr>
+<td>“at+”</td>
+<td>读写打开一个文本文件，允许读，或在文件末追加数据</td>
+</tr>
+<tr>
+<td>“rb+”</td>
+<td>读写打开一个二进制文件，允许读和写</td>
+</tr>
+<tr>
+<td>“wb+”</td>
+<td>读写打开或建立一个二进制文件，允许读和写</td>
+</tr>
+<tr>
+<td>“ab+”</td>
+<td>读写打开或建立一个二进制文件，允许读和写</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/文件读和写/" rel="tag"># 文件读和写</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/22/Django中的Request和Response对象/" rel="next" title="Django中的Request和Response对象">
+                <i class="fa fa-chevron-left"></i> Django中的Request和Response对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/22/python中的下划线/" rel="prev" title="python中的下划线">
+                python中的下划线 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章导览
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/chaiquan.jpg"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件的操作"><span class="nav-number">1.</span> <span class="nav-text">文件的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#collections"><span class="nav-number">2.</span> <span class="nav-text">collections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附件"><span class="nav-number">3.</span> <span class="nav-text">附件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>

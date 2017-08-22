@@ -1,0 +1,945 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="下划线," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="参考链接：http://www.jianshu.com/p/ad39aae155ed
+参考链接： http://www.cnblogs.com/skying555/p/6169110.html
+Python 用下划线作为变量前缀和后缀指定特殊变量
+_xxx 不能用from module import *导入
+__xxx__系统定义名字
+__xxx类中的私有变量名
+核心风格：==避免用下划线作为变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python中的下划线">
+<meta property="og:url" content="http://yoursite.com/2017/08/22/python中的下划线/index.html">
+<meta property="og:site_name" content="Coding Fun">
+<meta property="og:description" content="参考链接：http://www.jianshu.com/p/ad39aae155ed
+参考链接： http://www.cnblogs.com/skying555/p/6169110.html
+Python 用下划线作为变量前缀和后缀指定特殊变量
+_xxx 不能用from module import *导入
+__xxx__系统定义名字
+__xxx类中的私有变量名
+核心风格：==避免用下划线作为变量">
+<meta property="og:updated_time" content="2017-08-22T14:11:10.870Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python中的下划线">
+<meta name="twitter:description" content="参考链接：http://www.jianshu.com/p/ad39aae155ed
+参考链接： http://www.cnblogs.com/skying555/p/6169110.html
+Python 用下划线作为变量前缀和后缀指定特殊变量
+_xxx 不能用from module import *导入
+__xxx__系统定义名字
+__xxx类中的私有变量名
+核心风格：==避免用下划线作为变量">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/22/python中的下划线/"/>
+
+
+
+
+
+  <title> python中的下划线 | Coding Fun </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Coding Fun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            围观我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/python中的下划线/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dee-Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coding Fun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python中的下划线
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发布于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-22T22:15:33+08:00">
+                2017-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类：</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/python-Tips/" itemprop="url" rel="index">
+                    <span itemprop="name">python Tips</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考链接：<a href="http://www.jianshu.com/p/ad39aae155ed" target="_blank" rel="external">http://www.jianshu.com/p/ad39aae155ed</a></p>
+<p>参考链接： <a href="http://www.cnblogs.com/skying555/p/6169110.html" target="_blank" rel="external">http://www.cnblogs.com/skying555/p/6169110.html</a></p>
+<p>Python 用下划线作为变量前缀和后缀指定特殊变量</p>
+<p><code>_xxx</code> 不能用<code>from module import *</code>导入</p>
+<p><code>__xxx__</code>系统定义名字</p>
+<p><code>__xxx</code>类中的私有变量名</p>
+<p>核心风格：==避免用下划线作为变量名的开始==。</p>
+<p>“单下划线” 开始的成员变量叫做保护变量，意思是只有类对象和子类对象自己能访问到这些变量；</p>
+<p>“双下划线” 开始的是私有成员，意思是只有类对象自己能访问，连子类对象也不能访问到这个数据。</p>
+<p>以单下划线开头（<code>_foo</code>）的代表不能直接访问的类属性，需通过类提供的接口进行访问，不能用<code>from xxx import*</code>而导入；</p>
+<p>以双下划线开头的（<code>__foo</code>）代表类的私有成员；</p>
+<p>以双下划线开头和结尾的（<code>__foo__</code>）代表python里特殊方法专用的标识，如 <code>__init__（）</code>代表类的构造函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; Class1.__doc__ # 类型帮助信息&apos;Class1 Doc.&apos; </div><div class="line">&gt;&gt;&gt; Class1.__name__ # 类型名称 &apos;Class1&apos; </div><div class="line">&gt;&gt;&gt; Class1.__module__ # 类型所在模块 &apos;__main__&apos; </div><div class="line">&gt;&gt;&gt; Class1.__bases__ # 类型所继承的基类 (&lt;type &apos;object&apos;&gt;,) </div><div class="line">&gt;&gt;&gt; Class1.__dict__ # 类型字典，存储所有类型成员信息。 &lt;dictproxy object at 0x00D3AD70&gt; </div><div class="line">&gt;&gt;&gt; Class1().__class__ # 类型 &lt;class &apos;__main__.Class1&apos;&gt; </div><div class="line">&gt;&gt;&gt; Class1().__module__ # 实例类型所在模块 &apos;__main__&apos; </div><div class="line">&gt;&gt;&gt; Class1().__dict__ # 对象字典，存储所有实例成员信息。</div></pre></td></tr></table></figure>
+<p>python 中的保留方法分类：</p>
+<h4 id="类的基础方法"><a href="#类的基础方法" class="headerlink" title="类的基础方法"></a>类的基础方法</h4><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>目的</th>
+<th>所编写代码</th>
+<th>Python 实际调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>初始化一个实例</td>
+<td>x = MyClass()</td>
+<td>x.<strong>init</strong>()</td>
+</tr>
+<tr>
+<td>2</td>
+<td>字符串的“官方”表现形式</td>
+<td>repr(x)</td>
+<td>x.<strong>repr</strong>()</td>
+</tr>
+<tr>
+<td>3</td>
+<td>字符串的“非正式”值</td>
+<td>str(x)</td>
+<td>x.<strong>str</strong>()</td>
+</tr>
+<tr>
+<td>4</td>
+<td>字节数组的“非正式”值</td>
+<td>bytes(x)</td>
+<td>x.<strong>bytes</strong>()</td>
+</tr>
+<tr>
+<td>5</td>
+<td>格式化字符串的值</td>
+<td>format(x,format_spec)</td>
+<td>x.<strong>format</strong>(format_spec)</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>对 <code>__init__()</code> 方法的调用发生在实例被创建之后。如果要控制实际创建进程，请使用 <code>__new__()</code>方法。</li>
+<li>按照约定， <code>__repr__()</code> 方法所返回的字符串为合法的 Python 表达式。</li>
+<li>在调用 print(x) 的同时也调用了<code>__str__()</code>方法。</li>
+<li>由于 <code>bytes</code> 类型的引入而从 Python 3 开始出现。</li>
+</ol>
+<h4 id="行为方式与迭代器类似的类"><a href="#行为方式与迭代器类似的类" class="headerlink" title="行为方式与迭代器类似的类"></a>行为方式与迭代器类似的类</h4><p>序号    目的    所编写代码    Python 实际调用<br>①    遍历某个序列    iter(seq)    seq.<strong>iter</strong>()<br>②    从迭代器中获取下一个值    next(seq)    seq.<strong>next</strong>()<br>③    按逆序创建一个迭代器    reversed(seq)    seq.<strong>reversed</strong>()</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>目的</th>
+<th>所编写代码</th>
+<th>Python 实际调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>遍历某个序列</td>
+<td>iter(seq)</td>
+<td>seq.<strong>iter</strong>()</td>
+</tr>
+<tr>
+<td>2</td>
+<td>从迭代器中获取下一个值</td>
+<td>next(seq)</td>
+<td>seq.<strong>next</strong>()</td>
+</tr>
+<tr>
+<td>3</td>
+<td>按逆序创建一个迭代器</td>
+<td>reversed(seq)</td>
+<td>seq.<strong>reversed</strong>()</td>
+</tr>
+</tbody>
+</table>
+<p>注意：</p>
+<ol>
+<li>无论何时创建迭代器都将调用 <code>__iter__()</code>方法。这是用初始值对迭代器进行初始化的绝佳之处。</li>
+<li>无论何时从迭代器中获取下一个值都将调用 <code>__next__()</code> 方法。</li>
+<li><code>__reversed__()</code> 方法并不常用。它以一个现有序列为参数，并将该序列中所有元素从尾到头以逆序排列生成一个新的迭代器。</li>
+</ol>
+<h4 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h4><p>序号    目的    所编写代码    Python 实际调用<br>①    获取一个计算属性（无条件的）    x.my_property    x.<strong>getattribute</strong>(‘my_property’)<br>②    获取一个计算属性（后备）    x.my_property    x.<strong>getattr</strong>(‘my_property’)<br>③    设置某属性    x.my_property = value    x.<strong>setattr</strong>(‘my_property’,value)<br>④    删除某属性    del x.my_property    x.<strong>delattr</strong>(‘my_property’)<br>⑤    列出所有属性和方法    dir(x)    x.<strong>dir</strong>()</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>目的</th>
+<th>所编写代码</th>
+<th>Python 实际调用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>获取一个计算属性（无条件的）</td>
+<td>x.my_property</td>
+<td>x.<strong>getattribute</strong>(‘my_property’)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>获取一个计算属性（后备）</td>
+<td>x.my_property</td>
+<td>x.<strong>getattr</strong>(‘my_property’)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>设置某属性</td>
+<td>x.my_property = value</td>
+<td>x.<strong>setattr</strong>(‘my_property’,value) </td>
+</tr>
+<tr>
+<td>4</td>
+<td>删除某属性</td>
+<td>del x.my_property</td>
+<td>x.<strong>delattr</strong>(‘my_property’)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>从迭代器中获取下一个值</td>
+<td>next(seq)</td>
+<td>seq.<strong>next</strong>()</td>
+</tr>
+<tr>
+<td>6</td>
+<td>列出所有属性和方法</td>
+<td>dir(x)</td>
+<td>x.<strong>dir</strong>()</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>如果某个类定义了 <code>__getattribute__()</code> 方法，在 每次引用属性或方法名称时 Python 都调用它（特殊方法名称除外，因为那样将会导致讨厌的无限循环）。</li>
+<li>如果某个类定义了 <code>__getattr__()</code> 方法，Python 将只在正常的位置查询属性时才会调用它。如果实例 <code>x</code> 定义了属性<code>color</code>， <code>x.color</code> 将 不会 调用<code>x.__getattr__(&#39;color&#39;)</code>；而只会返回<code>x.color</code> 已定义好的值。</li>
+<li>无论何时给属性赋值，都会调用 <code>__setattr__()</code> 方法。</li>
+<li>无论何时删除一个属性，都将调用 <code>__delattr__()</code> 方法。</li>
+<li>如果定义了 <code>__getattr__()</code> 或 <code>__getattribute__()</code> 方法， <code>__dir__()</code> 方法将非常有用。通常，调用 <code>dir(x)</code> 将只显示正常的属性和方法。如果 <code>__getattr()__</code>方法动态处理<code>color</code> 属性，<code>dir(x)</code> 将不会将 <code>color</code> 列为可用属性。可通过覆盖 <code>__dir__()</code> 方法允许将 <code>color</code> 列为可用属性，对于想使用你的类但却不想深入其内部的人来说，该方法非常有益。</li>
+</ol>
+<p>未完待续…</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/下划线/" rel="tag"># 下划线</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/22/Python中文件的读和写(由一个小例子引起的思考)/" rel="next" title="Python中文件的读和写(由一个小例子引起的思考)">
+                <i class="fa fa-chevron-left"></i> Python中文件的读和写(由一个小例子引起的思考)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/22/台阶问题/" rel="prev" title="台阶问题">
+                台阶问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章导览
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/chaiquan.jpg"
+               alt="Dee-Wang" />
+          <p class="site-author-name" itemprop="name">Dee-Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录-分享-收获</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#类的基础方法"><span class="nav-number">1.</span> <span class="nav-text">类的基础方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行为方式与迭代器类似的类"><span class="nav-number">2.</span> <span class="nav-text">行为方式与迭代器类似的类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算属性"><span class="nav-number">3.</span> <span class="nav-text">计算属性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dee-Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>
